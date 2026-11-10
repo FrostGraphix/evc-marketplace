@@ -1,0 +1,37 @@
+'use client';
+
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import { CFG } from '@/lib/products';
+
+export const AnnouncementBar: React.FC = () => {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
+  const items = [
+    'EVC Nigeria — Smart Living, Clean Energy & Architectural Finishes',
+    'Corporate Offices: Ilorin • Ibadan • Abuja',
+    'Nationwide Site Delivery & Professional Installation',
+    `WhatsApp Support & Instant Inquiries: ${CFG.phoneDisp}`,
+    'Tier-1 Solar Inverters, Biometric Smart Locks & Acoustic Paneling',
+    'Warranty Backed & Verified Authentic Tech',
+  ];
+
+  return (
+    <div
+      className="bg-[var(--inv)] text-[var(--inv-ink)] text-xs font-medium overflow-hidden whitespace-nowrap py-2 border-b border-white/10 select-none"
+      aria-label="Store announcements"
+    >
+      <div className="animate-marquee flex items-center gap-10">
+        {[...items, ...items, ...items, ...items].map((text, idx) => (
+          <span key={idx} className="inline-flex items-center gap-10">
+            <span>{text}</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};

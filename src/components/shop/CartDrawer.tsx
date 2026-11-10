@@ -1,0 +1,311 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { X, Plus, Minus, Trash2, ArrowRight, ShoppingBag, Share2 } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
+import { byId, CFG, PAL, PRODUCTS } from '@/lib/products';
+import { lineKey, money } from '@/lib/utils';
+import { ProductImage } from './ProductImage';
+import { ShareCartModal } from './ShareCartModal';
+import { DeliveryEstimator } from './DeliveryEstimator';
+
+export const CartDrawer: React.FC = () => {
+  const pathname = usePathname();
+  const {
+    cart,
+    cartCount,
+    subtotal,
+    discount,
+    isDrawerOpen,
+    closeDrawer,
+    setQty,
+    removeItem,
+    addToCart,
+  } = useCart();
+
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (isDrawerOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isDrawerOpen]);
+
+  useEffect(() => {
+    if (!isDrawerOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDrawerOpen, closeDrawer]);
+
+  if (pathname?.startsWith('/admin') || !isDrawerOpen) return null;
+
+  const freeThreshold = CFG.freeOver;
+  const currentTotal = subtotal - discount;
+  const amountLeft = Math.max(0, freeThreshold - currentTotal);
+  const progressPercent = Math.min(100, (currentTotal / freeThreshold) * 100);
+
+  // Recommendations
+  const upsellItems = PRODUCTS.filter((p) => !cart.some((l) => l.id === p.id)).slice(0, 2);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Shopping Cart Drawer"
+      className="fixed inset-0 z-50 flex justify-end"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) closeDrawer();
+      }}
+    >
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        aria-hidden="true"
+        onClick={closeDrawer}
+      />
+
+      {/* Drawer Panel with clean outline */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md bg-[var(--surface)] border-l border-[var(--line)] shadow-2xl flex flex-col h-full z-10 animate-in slide-in-from-right duration-300"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-[var(--line)]">
+          <div className="flex items-center gap-2">
+            <h3 className="font-display text-xl font-bold text-[var(--ink)]">Your Cart</h3>
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand/10 text-brand border border-brand/20">
+              {cartCount} {cartCount === 1 ? 'item' : 'items'}
+            </span>
+          </div>
+          <button
+            onClick={closeDrawer}
+            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--surface2)] text-[var(--mute)] hover:text-[var(--ink)] transition-colors"
+            aria-label="Close cart"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Body Content */}
+        <div className="flex-1 overflow-y-auto p-5 space-y-4">
+          {cart.length === 0 ? (
+            <div className="flex flex-col items-center justify-center text-center py-16 px-4">
+              <div className="w-20 h-20 mb-4 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex items-center justify-center text-brand">
+                <ShoppingBag className="w-10 h-10" />
+              </div>
+              <h4 className="font-display text-lg font-bold text-[var(--ink)]">Your cart is empty</h4>
+              <p className="text-xs text-[var(--mute)] mt-1 max-w-xs mb-6">
+                Discover clean energy solutions, smart gadgets, and architectural wall finishes.
+              </p>
+              <button
+                onClick={closeDrawer}
+                className="btn-primary text-xs py-2.5 px-6"
+              >
+                Browse Catalog <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          ) : (
+            <div className="divide-y divide-[var(--line)]">
+              {cart.map((item) => {
+                const product = byId(item.id);
+                if (!product) return null;
+                const k = lineKey(item);
+
+                return (
+                  <div key={k} className="py-4 flex gap-3.5 items-start">
+                    {/* Item Thumbnail */}
+                    <Link
+                      href={`/product/${product.id}`}
+                      onClick={closeDrawer}
+                      className="w-20 h-20 rounded-2xl overflow-hidden bg-[var(--surface2)] border border-[var(--line)] flex-shrink-0 relative"
+                    >
+                      <ProductImage
+                        src={product.images?.[0]}
+                        alt={product.name}
+                        fallbackArt={{ type: product.art, color: item.color, view: 0 }}
+                      />
+                    </Link>
+
+                    {/* Item Details */}
+                    <div className="flex-1 min-w-0">
+                      <Link
+                        href={`/product/${product.id}`}
+                        onClick={closeDrawer}
+                        className="font-display font-semibold text-sm hover:text-brand transition-colors line-clamp-1 text-[var(--ink)]"
+                      >
+                        {product.name}
+                      </Link>
+
+                      <div className="text-xs text-[var(--mute)] mt-0.5">
+                        {PAL[item.color]?.n || item.color}
+                        {item.size ? ` / ${item.size}` : ''}
+                      </div>
+
+                      <div className="font-display font-bold text-sm mt-1.5 text-[var(--ink)]">
+                        {money(product.price * item.qty)}
+                      </div>
+
+                      {/* Stepper & Remove */}
+                      <div className="flex items-center justify-between mt-2">
+                        <div className="inline-flex items-center border border-[var(--line)] rounded-full h-8 px-1.5 bg-[var(--surface2)]">
+                          <button
+                            onClick={() => setQty(k, item.qty - 1)}
+                            className="w-6 h-full flex items-center justify-center text-[var(--mute)] hover:text-brand"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus className="w-3 h-3" />
+                          </button>
+                          <span className="w-6 text-center text-xs font-bold font-mono text-[var(--ink)]">
+                            {item.qty}
+                          </span>
+                          <button
+                            onClick={() => setQty(k, item.qty + 1)}
+                            className="w-6 h-full flex items-center justify-center text-[var(--mute)] hover:text-brand"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
+
+                        <button
+                          onClick={() => removeItem(k)}
+                          className="text-[var(--mute)] hover:text-rose-500 transition-colors p-1"
+                          aria-label="Remove item"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Upsell Recommendations Shelf */}
+          {cart.length > 0 && upsellItems.length > 0 && (
+            <div className="pt-4 border-t border-[var(--line)]">
+              <span className="text-xs font-semibold text-[var(--mute)] block mb-3">
+                Recommended equipment:
+              </span>
+              <div className="space-y-2">
+                {upsellItems.map((p) => (
+                  <div
+                    key={p.id}
+                    className="p-2.5 rounded-2xl bg-[var(--surface2)] flex items-center justify-between gap-3 border border-[var(--line)] hover:border-brand/30 transition-all"
+                  >
+                    <div className="w-10 h-10 rounded-xl overflow-hidden bg-[var(--surface)] flex-shrink-0 relative">
+                      <ProductImage
+                        src={p.images?.[0]}
+                        alt={p.name}
+                        fallbackArt={{ type: p.art, color: p.colors[0], view: 0 }}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="block font-semibold text-xs truncate text-[var(--ink)]">
+                        {p.name}
+                      </span>
+                      <span className="text-[11px] text-[var(--mute)] font-mono">
+                        {money(p.price)}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => addToCart(p.id, p.colors[0])}
+                      className="text-xs font-semibold px-3 py-1.5 rounded-full bg-brand text-white hover:bg-brand-deep transition-colors"
+                    >
+                      Add
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer with Free Shipping Bar & Checkout */}
+        {cart.length > 0 && (
+          <div className="p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] border-t border-[var(--line)] bg-[var(--surface2)] flex flex-col gap-3">
+            {/* Free Shipping Milestone */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between text-xs">
+                {amountLeft > 0 ? (
+                  <span className="text-[var(--ink)]">
+                    Add <b>{money(amountLeft)}</b> more for free delivery
+                  </span>
+                ) : (
+                  <span className="text-emerald-500 font-semibold flex items-center gap-1">
+                    ✓ Unlocked free delivery threshold!
+                  </span>
+                )}
+                <span className="text-[10px] text-[var(--mute)]">
+                  {Math.round(progressPercent)}%
+                </span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-[var(--line)] overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-brand to-glow transition-all duration-300"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Subtotal */}
+            <div className="flex items-center justify-between font-display text-lg font-bold pt-1 text-[var(--ink)]">
+              <span>Subtotal</span>
+              <span>{money(subtotal - discount)}</span>
+            </div>
+
+            {/* Nigerian Delivery Estimator */}
+            <div className="py-0.5">
+              <DeliveryEstimator cartTotal={subtotal - discount} compact={true} />
+            </div>
+
+            <div className="grid grid-cols-2 gap-2.5 pt-1">
+              <Link
+                href="/cart"
+                onClick={closeDrawer}
+                className="btn-ghost text-xs py-2.5 text-center"
+              >
+                View Full Cart
+              </Link>
+              <Link
+                href="/checkout"
+                onClick={closeDrawer}
+                className="btn-primary text-xs py-2.5 text-center"
+              >
+                Checkout <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsShareModalOpen(true)}
+              className="w-full py-2.5 px-3 rounded-full bg-brand/10 hover:bg-brand/15 text-brand font-semibold text-xs border border-brand/20 transition-all flex items-center justify-center gap-1.5"
+            >
+              <Share2 className="w-3.5 h-3.5" /> Share Cart with Partner / Approver
+            </button>
+          </div>
+        )}
+
+        {/* Social Cart Share Modal */}
+        <ShareCartModal
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          cart={cart}
+          subtotal={subtotal - discount}
+        />
+      </div>
+    </div>
+  );
+};
