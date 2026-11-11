@@ -9,7 +9,10 @@ import {
   Clock,
   Sparkles,
   MessageSquare,
-  Zap,
+  MapPin,
+  Calendar,
+  FileCheck,
+  BadgeCheck,
 } from 'lucide-react';
 import { PRODUCTS, CATS, CFG, byId } from '@/lib/products';
 import { money, waLink } from '@/lib/utils';
@@ -122,6 +125,11 @@ export default function HomePage() {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  // Top 3 featured properties for hero parallax
+  const broadway = byId(1) || PRODUCTS[0];
+  const eden = byId(2) || PRODUCTS[1];
+  const afonja = byId(4) || PRODUCTS[3];
+
   return (
     <div className="flex flex-col gap-20 md:gap-28 bg-[#03090a] text-slate-100 min-h-screen">
       {/* Hero Section */}
@@ -135,50 +143,50 @@ export default function HomePage() {
           <div className="lg:col-span-7 flex flex-col gap-6 items-start">
             <div className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-brand border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 px-3.5 py-1.5 rounded-full">
               <span className="w-2 h-2 rounded-full bg-brand animate-ping" />
-              Ilorin &bull; Ibadan &bull; Abuja &bull; Nationwide
+              Official EVC Nigeria Real Estate Marketplace &bull; evcng.com
             </div>
 
             {/* Headline */}
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.92] text-white">
               <span className="block overflow-hidden py-1">
-                <span className="inline-block">Smart Living.</span>
+                <span className="inline-block">Own Verified.</span>
               </span>
               <span className="block overflow-hidden py-1">
                 <span className="inline-block text-brand">
-                  <em className="serif-italic text-white">Clean</em> Energy.
+                  <em className="serif-italic text-white">Build</em> Wealth.
                 </span>
               </span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
-              EVC Nigeria is your premier marketplace for high-efficiency solar inverters, lithium energy storage, smart automation, and designer architectural finishes.
+              Explore officially verified land, master-planned residential estates, student housing, and strategic corridors in Kwara, Oyo, Lagos, Ogun, and Abuja. 100% dry land with guaranteed titles.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <Link href="/shop" className="btn-primary text-sm inline-flex items-center gap-2">
-                Explore Catalog <ArrowRight className="w-4 h-4" />
+                Explore All Projects <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href={waLink('Hello EVC Nigeria, I would like to inquire about solar systems and smart tech products.')}
+                href={waLink('Hello EVC Nigeria, I am interested in acquiring land and would like to speak with a property consultant.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost text-sm text-[#25d366] hover:border-[#25d366] hover:bg-green-500/10 inline-flex items-center gap-2"
               >
-                <MessageSquare className="w-4 h-4" /> Chat on WhatsApp
+                <MessageSquare className="w-4 h-4" /> Chat with Property Advisor
               </a>
             </div>
 
             {/* Trust Bullet Items */}
             <ul className="flex flex-wrap items-center gap-4 sm:gap-8 pt-4 text-xs sm:text-sm font-medium text-slate-400">
               <li className="flex items-center gap-2">
-                <Truck className="w-4 h-4 text-brand" /> Fast Nationwide Delivery
+                <FileCheck className="w-4 h-4 text-brand" /> Verified Title (C of O &amp; Survey)
               </li>
               <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-brand" /> Official Warranty & Support
+                <Calendar className="w-4 h-4 text-brand" /> Free Site Inspections (Tue, Thu, Sat)
               </li>
               <li className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-brand" /> 24/7 Technical Inquiry
+                <BadgeCheck className="w-4 h-4 text-brand" /> Instant Allocation Guarantee
               </li>
             </ul>
           </div>
@@ -189,9 +197,9 @@ export default function HomePage() {
             className="lg:col-span-5 relative aspect-square max-w-[500px] mx-auto w-full"
             style={{ ['--mx' as any]: 0, ['--my' as any]: 0 }}
           >
-            {/* Card 1: Solar Inverter */}
+            {/* Card 1: Broadway Residentials */}
             <Link
-              href="/product/1"
+              href={`/product/${broadway.slug || broadway.id}`}
               className="absolute left-0 top-[2%] w-[48%] aspect-[1/1.18] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105"
               style={{
                 transform:
@@ -199,19 +207,19 @@ export default function HomePage() {
               }}
             >
               <ProductImage
-                src={byId(1)?.images?.[0]}
-                alt="EVC Hybrid Solar Inverter"
-                fallbackArt={{ type: 'inverter', color: 'orange', view: 0 }}
+                src={broadway.images?.[0]}
+                alt={broadway.name}
+                fallbackArt={{ type: 'building', color: 'orange', view: 0 }}
               />
               <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
-                <span>Inverter 5kVA</span>
-                <b className="text-brand">{money(byId(1)?.price || 350000)}</b>
+                <span className="truncate max-w-[80px]">Broadway</span>
+                <b className="text-brand font-mono">{money(broadway.price)}</b>
               </div>
             </Link>
 
-            {/* Card 2: Smart Lock */}
+            {/* Card 2: Eden Crest */}
             <Link
-              href="/product/2"
+              href={`/product/${eden.slug || eden.id}`}
               className="absolute right-0 top-[10%] w-[48%] aspect-[1/1.15] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105"
               style={{
                 transform:
@@ -219,19 +227,19 @@ export default function HomePage() {
               }}
             >
               <ProductImage
-                src={byId(2)?.images?.[0]}
-                alt="EVC Smart Lock"
-                fallbackArt={{ type: 'smartlock', color: 'black', view: 0 }}
+                src={eden.images?.[0]}
+                alt={eden.name}
+                fallbackArt={{ type: 'estate', color: 'orange', view: 0 }}
               />
               <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
-                <span>Smart Lock</span>
-                <b className="text-brand">{money(byId(2)?.price || 125000)}</b>
+                <span className="truncate max-w-[80px]">Eden Crest</span>
+                <b className="text-brand font-mono">{money(eden.price)}</b>
               </div>
             </Link>
 
-            {/* Card 3: Lithium Battery */}
+            {/* Card 3: Afonja Boulevard */}
             <Link
-              href="/product/3"
+              href={`/product/${afonja.slug || afonja.id}`}
               className="absolute left-[26%] bottom-[0%] w-[46%] aspect-[1/1.1] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105 z-10"
               style={{
                 transform:
@@ -239,13 +247,13 @@ export default function HomePage() {
               }}
             >
               <ProductImage
-                src={byId(3)?.images?.[0]}
-                alt="EVC Powerwall Lithium Battery"
-                fallbackArt={{ type: 'powerwall', color: 'orange', view: 0 }}
+                src={afonja.images?.[0]}
+                alt={afonja.name}
+                fallbackArt={{ type: 'land', color: 'orange', view: 0 }}
               />
               <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
-                <span>Powerwall</span>
-                <b className="text-brand">{money(byId(3)?.price || 780000)}</b>
+                <span className="truncate max-w-[80px]">Afonja Blvd</span>
+                <b className="text-brand font-mono">{money(afonja.price)}</b>
               </div>
             </Link>
 
@@ -261,7 +269,7 @@ export default function HomePage() {
                   </textPath>
                 </text>
               </svg>
-              <Zap className="w-7 h-7 text-brand" />
+              <BadgeCheck className="w-7 h-7 text-brand" />
             </div>
           </div>
         </div>
@@ -285,19 +293,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stacked Category Cards: Shop by world */}
+      {/* Stacked Category Cards: Browse by sector */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-              Browse Categories
+              Property Portfolios
             </span>
             <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 max-w-lg text-white">
-              Engineered for modern living and reliable power.
+              Master-planned estates and strategic investment corridors.
             </h2>
           </div>
           <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-            From smart biometric security to clean renewable solar backup, explore our certified catalog across Nigeria.
+            From low-density residential estates to interstate commercial corridors and organic agro-cities, discover verified properties with guaranteed title security.
           </p>
         </div>
 
@@ -309,17 +317,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 flex items-end justify-between gap-6">
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-              Featured Solutions
+              Prime Projects
             </span>
             <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 text-white">
-              Trending across Nigeria.
+              Trending estates across Nigeria.
             </h2>
           </div>
           <Link
             href="/shop"
             className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline"
           >
-            View all products <ArrowRight className="w-4 h-4" />
+            View all projects <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
@@ -353,10 +361,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-12">
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-              Seamless Ordering
+              Transparent Acquisition
             </span>
             <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 text-white">
-              Order directly or chat with our engineering consultants.
+              From site inspection to registered deed allocation.
             </h2>
           </div>
 
@@ -374,22 +382,22 @@ export default function HomePage() {
         <div className="rounded-[40px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 text-white p-8 sm:p-12 md:p-16 relative overflow-hidden grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-2xl">
           <div className="md:col-span-7 flex flex-col gap-4 relative z-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-brand">
-              Bespoke Projects & Solar Audits
+              Diaspora Investment &amp; Institutional Portfolios
             </span>
             <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight text-white">
-              Need a full solar load audit or architectural finish plan?
+              Planning large acreage acquisition or commercial development?
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-lg">
-              Our engineering team conducts precise load analyses, designs custom lithium backup setups, and provides architectural surface samples for residences and estates.
+              Our real estate advisory team handles comprehensive title verifications, boundary surveys, master layout planning, and diaspora remote allocations with video walk-throughs.
             </p>
             <div className="pt-2">
               <a
-                href={waLink('Hello EVC Nigeria, I would like to request an energy audit / architectural consultation.')}
+                href={waLink('Hello EVC Nigeria, I would like to consult on large acreage acquisition / diaspora property investment.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-sm inline-flex items-center gap-2"
               >
-                <MessageSquare className="w-4 h-4" /> Request Consultation
+                <MessageSquare className="w-4 h-4" /> Request Property Consultation
               </a>
             </div>
           </div>
@@ -397,15 +405,15 @@ export default function HomePage() {
           <div className="md:col-span-5 grid grid-cols-2 gap-4 relative z-10">
             <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
               <span className="font-display text-4xl font-extrabold text-brand">
-                <AnimatedCounter end={1200} suffix="+" />
+                <AnimatedCounter end={100} suffix="%" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Solar & Tech Deployments</span>
+              <span className="text-xs font-medium text-slate-400">Dry Land &amp; Verified Titles</span>
             </div>
             <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
               <span className="font-display text-4xl font-extrabold text-brand">
-                <AnimatedCounter end={99} suffix="%" />
+                <AnimatedCounter end={13} suffix="+" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Customer Satisfaction</span>
+              <span className="text-xs font-medium text-slate-400">Master-Planned Projects</span>
             </div>
             <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
               <span className="font-display text-4xl font-extrabold text-brand">
@@ -415,9 +423,9 @@ export default function HomePage() {
             </div>
             <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
               <span className="font-display text-4xl font-extrabold text-brand">
-                <AnimatedCounter end={24} suffix="/7" />
+                <AnimatedCounter end={3} suffix=" Days/Wk" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Engineering Inquiry Support</span>
+              <span className="text-xs font-medium text-slate-400">Free Guided Site Tours</span>
             </div>
           </div>
         </div>

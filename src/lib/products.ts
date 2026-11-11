@@ -3,12 +3,13 @@ import { Category, ColorDef, ColorKey, DeliveryOption, DeliveryType, Product } f
 export const CFG = {
   name: 'EVC Nigeria',
   shortName: 'EVC',
-  tagline: 'Powering Smart Living & Infrastructure',
+  tagline: 'Experience Vision Creations — Real Estate & Land Marketplace',
   url: 'https://evcng.com',
+  buyLandUrl: 'https://evcng.com/buy-land',
   phone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '2347082938870',
   phoneDisp: process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '+234 708 293 8870',
   email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'contact@evcng.com',
-  freeOver: 250000,
+  freeOver: 10000000,
   socials: {
     instagram: 'https://www.instagram.com/evc_ng/',
     x: 'https://x.com/evcnigeria',
@@ -42,28 +43,28 @@ export const CFG = {
   ],
   delivery: {
     ilorin: {
-      label: 'Ilorin Direct / Hub Pickup',
-      eta: 'Same day or 24 hours',
-      fee: 2000,
+      label: 'Kwara Hub Deed Dispatch',
+      eta: '24 to 48 hours',
+      fee: 0,
     },
     ibadan: {
-      label: 'Ibadan Bodija Hub Delivery',
-      eta: 'Same day or 24 hours',
-      fee: 2500,
+      label: 'Oyo Hub Deed Dispatch',
+      eta: '24 to 48 hours',
+      fee: 0,
     },
     abuja: {
-      label: 'Abuja Doorstep & Corporate Express',
-      eta: '24 to 48 hours',
-      fee: 3000,
+      label: 'Abuja Corporate Courier',
+      eta: '24 to 72 hours',
+      fee: 0,
     },
     nationwide: {
-      label: 'Nationwide Freight & Courier',
-      eta: '2 to 4 working days',
+      label: 'Registered Nationwide Courier Delivery',
+      eta: '3 to 5 working days',
       fee: 5000,
     },
     pickup: {
-      label: 'Hub Pickup (Ilorin / Ibadan / Abuja)',
-      eta: 'Ready same day',
+      label: 'Physical Collection at Regional EVC Office',
+      eta: 'Immediate upon verification',
       fee: 0,
     },
   } as Record<DeliveryType, DeliveryOption>,
@@ -74,7 +75,7 @@ export const CFG = {
   },
   promo: {
     code: 'EVC2026',
-    pct: 10,
+    pct: 5,
   },
 };
 
@@ -127,7 +128,6 @@ export const PAL: Record<ColorKey, ColorDef> = {
   gold: { n: 'Brass Gold', main: '#b8862e', dark: '#855d1a', light: '#deb868', deep: '#54390b' },
   blue: { n: 'Electric Blue', main: '#38bdf8', dark: '#0284c7', light: '#7dd3fc', deep: '#0369a1' },
   slate: { n: 'Anodized Slate', main: '#64748b', dark: '#334155', light: '#94a3b8', deep: '#1e293b' },
-  // Aliases and UI theme keys
   brand: { n: 'EVC Orange', main: '#f26522', dark: '#c24912', light: '#ff8547', deep: '#872e05' },
   white: { n: 'Pure White', main: '#ffffff', dark: '#e2e8f0', light: '#ffffff', deep: '#cbd5e1' },
   silver: { n: 'Brushed Silver', main: '#cbd5e1', dark: '#94a3b8', light: '#f1f5f9', deep: '#64748b' },
@@ -141,680 +141,690 @@ export const PAL: Record<ColorKey, ColorDef> = {
 
 export const CATS: Category[] = [
   {
+    id: 'residential-estates',
+    name: 'Residential Land Estates',
+    blurb: 'Master-planned residential communities, serviced land plots, perimeter fencing, and verified C of O documentation in Ilorin, Lagos & Ibadan.',
+    art: ['estate', 'land', 'city'],
+    cols: ['orange', 'navy', 'gold'],
+    image: 'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png',
+  },
+  {
+    id: 'corridor-developments',
+    name: 'Strategic Corridors',
+    blurb: 'Prime economic corridors connecting Lagos, Ibadan, Ogun and Epe with massive upcoming road infrastructure and high capital appreciation.',
+    art: ['estate', 'land', 'building'],
+    cols: ['orange', 'glow', 'blue'],
+    image: 'https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png',
+  },
+  {
+    id: 'farmland-agricultural',
+    name: 'Farmland & Agro-Cities',
+    blurb: 'Large-scale surveyed agricultural farmland parcels with functional water sources, solar illumination, and agro-tourism appreciation in Oyo State.',
+    art: ['farmland', 'estate'],
+    cols: ['gold', 'slate', 'orange'],
+    image: 'https://framerusercontent.com/images/9fqTXq8yaPPUtZzQt6YuOIWa4.png',
+  },
+  {
+    id: 'housing-developments',
+    name: 'Smart Housing & Apartments',
+    blurb: 'Turn-key solar-powered apartments, executive studio flats, and communal residential housing in high student and executive demand zones.',
+    art: ['building', 'estate'],
+    cols: ['orange', 'glow', 'navy'],
+    image: 'https://framerusercontent.com/images/kbRFYh9OoPZpzrl0d7cY7dJZGk8.png',
+  },
+  {
+    id: 'smart-tech-cities',
+    name: 'Smart Cities & Tech Enclaves',
+    blurb: 'Technology-oriented residential and business hubs with planned fiber optic conduits, green energy zones, and 24/7 smart surveillance.',
+    art: ['city', 'estate'],
+    cols: ['blue', 'slate', 'black'],
+    image: 'https://framerusercontent.com/images/AONfpWfc0Kh6HV9vx9KFwgjydxg.png',
+  },
+  {
+    id: 'sold-out',
+    name: 'Sold Out Developments',
+    blurb: 'Archived landmark EVC projects—100% subscribed and delivered to proud property owners and institutional investors.',
+    art: ['estate', 'city'],
+    cols: ['black', 'orange', 'slate'],
+    image: 'https://framerusercontent.com/images/0YhBffpM2P1Z00k96j40F2r9LpA.png',
+  },
+  // Backward compatibility alias IDs
+  {
+    id: 'all',
+    name: 'All Land & Estates',
+    blurb: 'Browse all active verified land projects and archived developments across Kwara, Oyo, Lagos, and Ogun States.',
+    art: ['estate', 'land'],
+    cols: ['orange', 'navy', 'gold'],
+    image: 'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png',
+  },
+  {
     id: 'smart-living',
-    name: 'Smart Living & Automation',
-    blurb: 'Intelligent video doorbells, biometric locks, automated curtains & unified security hubs for connected spaces.',
-    art: ['doorbell', 'smartlock', 'curtain', 'securityhub'],
-    cols: ['orange', 'black', 'navy'],
-    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80',
+    name: 'Residential Land Estates',
+    blurb: 'Master-planned residential communities, serviced land plots, and verified C of O documentation.',
+    art: ['estate', 'land'],
+    cols: ['orange', 'navy'],
+    image: 'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png',
   },
   {
     id: 'solar-energy',
-    name: 'Solar & Clean Energy',
-    blurb: 'High-efficiency hybrid inverters, tier-1 lithium storage powerwalls, monocrystalline solar arrays & EV chargers.',
-    art: ['inverter', 'powerwall', 'solarpanel', 'evcharger'],
-    cols: ['orange', 'glow', 'blue'],
-    image: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80',
+    name: 'Smart Housing & Apartments',
+    blurb: 'Turn-key solar-powered apartments and serviced communal developments.',
+    art: ['building'],
+    cols: ['orange', 'glow'],
+    image: 'https://framerusercontent.com/images/kbRFYh9OoPZpzrl0d7cY7dJZGk8.png',
   },
   {
     id: 'architectural',
-    name: 'Architectural Finishes',
-    blurb: 'Imported large-format porcelain tiles, matte black designer sanitaryware & luxury minimalist fixtures.',
-    art: ['tiles', 'sanitaryware', 'pendant', 'faucet'],
-    cols: ['black', 'gold', 'ivory'],
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
+    name: 'Strategic Corridors',
+    blurb: 'High-growth investment corridors spanning Lagos, Ibadan, Ogun & Epe.',
+    art: ['estate'],
+    cols: ['black', 'gold'],
+    image: 'https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png',
   },
   {
     id: 'furniture',
-    name: 'Luxury Living & Furniture',
-    blurb: 'Executive motorized ergonomic workstations, architectural lounge chairs & acoustic soundproof pods.',
-    art: ['desk', 'loungechair', 'privacypod'],
-    cols: ['slate', 'navy', 'gold'],
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+    name: 'Farmland & Agro-Cities',
+    blurb: 'Surveyed agricultural farmland parcels with functional water sources.',
+    art: ['farmland'],
+    cols: ['gold', 'slate'],
+    image: 'https://framerusercontent.com/images/9fqTXq8yaPPUtZzQt6YuOIWa4.png',
   },
   {
     id: 'infrastructure',
-    name: 'Building Tech & Infrastructure',
-    blurb: 'Enterprise Starlink satellite brackets, smart IoT sub-meters, and precision environmental climate sensors.',
-    art: ['starlinkmount', 'submeter', 'climatesensor'],
-    cols: ['blue', 'slate', 'black'],
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+    name: 'Smart Cities & Tech Enclaves',
+    blurb: 'Technology-oriented residential and business hubs.',
+    art: ['city'],
+    cols: ['blue', 'slate'],
+    image: 'https://framerusercontent.com/images/AONfpWfc0Kh6HV9vx9KFwgjydxg.png',
   },
   {
     id: 'lifestyle',
-    name: 'EVC Lifestyle & Merch',
-    blurb: 'Curated executive tech lifestyle gear, titanium smart health rings, branded apparel & luxury leather folios.',
-    art: ['journal', 'smartring', 'polo', 'folio'],
-    cols: ['orange', 'black', 'gold'],
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-  },
-  // Backward compatible alias IDs
-  {
-    id: 'solar',
-    name: 'Solar & Clean Energy',
-    blurb: 'High-efficiency hybrid inverters, tier-1 lithium storage powerwalls, monocrystalline solar arrays & EV chargers.',
-    art: ['inverter', 'powerwall', 'solarpanel'],
-    cols: ['orange', 'glow', 'black'],
-    image: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'smart-tech',
-    name: 'Smart Tech & Automation',
-    blurb: 'Biometric smart locks, smart touch switches, sensors, and intelligent security.',
-    art: ['smartlock', 'doorbell', 'securityhub'],
-    cols: ['black', 'orange', 'slate'],
-    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'finishes',
-    name: 'Architectural Finishes',
-    blurb: 'Designer acoustic panels, fluted 3D wall panels, and bespoke modern lighting.',
-    art: ['tiles', 'pendant', 'sanitaryware'],
-    cols: ['black', 'gold', 'slate'],
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'living',
-    name: 'Smart Living & Appliances',
-    blurb: 'Automated curtains, climate monitors, and connected comfort for modern spaces.',
-    art: ['curtain', 'climatesensor', 'doorbell'],
-    cols: ['orange', 'ivory', 'slate'],
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+    name: 'Sold Out Developments',
+    blurb: 'Archived landmark EVC projects—100% subscribed.',
+    art: ['estate'],
+    cols: ['orange', 'black'],
+    image: 'https://framerusercontent.com/images/0YhBffpM2P1Z00k96j40F2r9LpA.png',
   },
 ];
 
 export const PRODUCTS: Product[] = [
-  // --- Category: Smart Living & Automation ---
   {
-    id: 1,
-    name: 'EVC Vision AI Smart Video Doorbell',
-    cat: 'smart-living',
-    price: 88500,
-    was: 105000,
-    art: 'doorbell',
-    colors: ['black', 'slate', 'orange'],
-    badge: 'Popular',
-    desc: '2K HDR ultra-wide angle video doorbell equipped with local AI facial recognition, crisp two-way audio, and infrared night vision. Integrates directly with EVC Smart Home hubs and smartphones.',
-    feat: [
-      '2K HDR resolution with 160° diagonal FOV',
-      'Local on-device AI person & package recognition',
-      'Rechargeable 6,500mAh lithium battery or hardwired 12-24V',
-      'Dual-band Wi-Fi (2.4GHz / 5GHz) with IP65 weather rating',
+    "id": 1,
+    "name": "Afonja Boulevard District 1",
+    "slug": "afonja-boulevard",
+    "cat": "residential-estates",
+    "price": 650000,
+    "was": 900000,
+    "art": "estate",
+    "colors": [
+      "orange",
+      "navy",
+      "gold",
+      "slate"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "150 SQM (₦650K)",
+      "300 SQM (₦1.3M)",
+      "500 SQM (₦1.8M)",
+      "1 Acre / 6 Plots (₦10.8M)"
     ],
-    stock: 24,
-    cogs: 52000,
-    lowStockThreshold: 5,
-    status: 'active',
-    slug: 'evc-vision-ai-smart-video-doorbell',
+    "badge": "C of O in View",
+    "desc": "Embodying the future of urban lifestyle where visionary design and cutting-edge infrastructure converge. Afonja Boulevard District 1 is strategically located in Oke Oyi, Ilorin, offering 100% dry table land, modern road networks, commercial zones, and rapid capital appreciation in the Kwara State growth corridor.",
+    "feat": [
+      "Title: C of O in View",
+      "Free Provisional Survey (in client’s name)",
+      "Registered Deed of Assignment",
+      "Location: Oke Oyi, Ilorin, Kwara State",
+      "100% Dry Table Land ready for immediate building",
+      "Initial Deposit from only ₦200,000",
+      "Flexible payment plans up to 12 months",
+      "Perimeter fencing & modern gatehouse layout",
+      "Dedicated green community recreation & commercial spaces"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png",
+      "https://framerusercontent.com/images/blOJPGX0VAy46Sr0PkBkZ0Bh30.png",
+      "https://framerusercontent.com/images/T6j9XjxzmbLmuO8ygeXmh8pJNEM.png",
+      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png"
+    ],
+    "stock": 24,
+    "status": "active"
   },
   {
-    id: 2,
-    name: 'AeroLock Biometric Digital Mortise Lock',
-    cat: 'smart-living',
-    price: 165000,
-    was: 185000,
-    art: 'smartlock',
-    colors: ['black', 'gold', 'slate'],
-    badge: 'Flagship',
-    desc: 'Military-grade semiconductor 3D fingerprint recognition mortise lock. Features encrypted digital keypad, RFID smart card swipe, mechanical backup key, and Zigbee remote app access.',
-    feat: [
-      '3D live fingerprint scanner (under 0.3s unlock speed)',
-      'Anti-peep touch keypad with one-time guest passcode generator',
-      'Heavy-duty stainless steel 6068 lock body mortise',
-      'Micro-USB emergency power terminal and low-battery warning',
+    "id": 2,
+    "name": "Broadway Residentials",
+    "slug": "broadway-residentials",
+    "cat": "housing-developments",
+    "price": 2000000,
+    "was": 2500000,
+    "art": "building",
+    "colors": [
+      "orange",
+      "glow",
+      "navy",
+      "black"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "300 SQM Land (₦2M)",
+      "500 SQM Land (₦3.2M)",
+      "Studio Apartment (₦18M)",
+      "2 Bedroom Flat (₦35M)",
+      "3 Bedroom Flat (₦40M)"
     ],
-    stock: 18,
-    cogs: 95000,
-    lowStockThreshold: 4,
-    status: 'active',
-    slug: 'aerolock-biometric-digital-mortise-lock',
+    "badge": "Solar Powered Estate",
+    "desc": "Granting access to smarter communal living in the high-demand host community of Kwara State University (KWASU), Malete. Broadway Residentials combines serviced residential plots with turn-key, solar-powered apartments (Studio, 2-Bedroom, and 3-Bedroom units) delivering guaranteed high student and executive rental yields.",
+    "feat": [
+      "Title: Certificate of Occupancy (C of O)",
+      "Free Provisional Survey (in client’s name) & Deed of Assignment",
+      "Location: Malete, Kwara State University (KWASU Corridor)",
+      "Solar-powered uninterrupted clean electricity estate grid",
+      "Land Plots: 300 SQM (₦2M), 500 SQM (₦3.2M)",
+      "Apartments: Studio (₦18M), 2-Bed (₦35M), 3-Bed (₦40M)",
+      "Initial deposit: ₦2,000,000 for housing units",
+      "High rental yield from university student & faculty influx",
+      "Paved access roads, drainage systems, and 24/7 security patrol"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/kbRFYh9OoPZpzrl0d7cY7dJZGk8.png",
+      "https://framerusercontent.com/images/4Tb7BuM5ZXAEoaIlC9k8xdoug.png",
+      "https://framerusercontent.com/images/RbQbI6tcH466lV1Ac7bijsLVw.png",
+      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
+    ],
+    "stock": 15,
+    "status": "active"
   },
   {
-    id: 3,
-    name: 'OmniGlide Motorized Smart Curtain Track',
-    cat: 'smart-living',
-    price: 125000,
-    art: 'curtain',
-    colors: ['ivory', 'black', 'slate'],
-    sizes: ['3.2m', '4.2m', '5.2m', 'Custom'],
-    badge: 'New',
-    desc: 'Whisper-quiet motorized smart drapery system. Features customizable telescopic aluminum track, smooth manual tug trigger, smartphone scheduling, and Tuya / Matter voice assistant integration.',
-    feat: [
-      'Ultra-silent brushless motor (< 30dB operating noise)',
-      'Telescopic length adjustable track without custom cutting',
-      'Touch-to-start gentle pull automatic opening & closing',
-      'App timing schedules synced to sunrise & sunset in Nigeria',
+    "id": 3,
+    "name": "Eden Crest",
+    "slug": "eden-crest",
+    "cat": "residential-estates",
+    "price": 2100000,
+    "was": 2800000,
+    "art": "estate",
+    "colors": [
+      "gold",
+      "orange",
+      "navy",
+      "ivory"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "300 SQM (₦2.1M)",
+      "500 SQM (₦3.5M)",
+      "1000 SQM (₦7M)",
+      "1 Acre / 6 Plots (₦12.6M)"
     ],
-    stock: 15,
-    cogs: 72000,
-    lowStockThreshold: 3,
-    status: 'active',
-    slug: 'omniglide-motorized-smart-curtain-track',
+    "badge": "Lagos Corridor",
+    "desc": "Where every sunrise signals opportunity. Eden Crest is a premium residential development situated along the Ikorodu–Ogun State growth corridor, off Agbowa Ikosi. Designed to re-awaken heritage and luxury living, it delivers the strategic dual benefit of Lagos connectivity and exceptional land appreciation.",
+    "feat": [
+      "Title: C of O in View",
+      "Free Provisional Survey (in client’s name) & Deed of Assignment",
+      "Location: Off Agbowa Ikosi, Ikorodu–Ogun State Corridor",
+      "100% Dry Table Land with zero flood risk",
+      "Initial Deposit: ₦500,000",
+      "Sizes: 300 SQM (₦2.1M), 500 SQM (₦3.5M), 1000 SQM (₦7M), 1 Acre (₦12.6M)",
+      "Perimeter fencing & gated security architecture",
+      "Close proximity to proposed Lagos Fourth Mainland Bridge route",
+      "Instant allocation upon completion of initial commitments"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/IkRFbDpoMDnpxsbQDOf9zBhK8EQ.png",
+      "https://framerusercontent.com/images/dUZvASmZvj4xtZCZLjLr0yAXm4.png",
+      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp",
+      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png"
+    ],
+    "stock": 30,
+    "status": "active"
   },
   {
-    id: 4,
-    name: 'EVC Nexus Pro Smart Automation Hub',
-    cat: 'smart-living',
-    price: 95000,
-    art: 'securityhub',
-    colors: ['black', 'orange', 'navy'],
-    badge: 'Core',
-    desc: 'The central nervous system of your smart estate. Combines Zigbee 3.0, Thread, Matter, and dual-band Wi-Fi to orchestrate up to 256 smart devices with lightning-fast local automations.',
-    feat: [
-      'Local edge computing engine (automations run even during internet blackout)',
-      'Multi-protocol support: Zigbee 3.0, Thread, Matter, Bluetooth 5.2',
-      'Gigabit Ethernet WAN port + Wi-Fi 6 wireless uplink',
-      'Real-time siren alert speaker with backup internal capacitor',
+    "id": 4,
+    "name": "Idera Farm City",
+    "slug": "idera-farm-city",
+    "cat": "farmland-agricultural",
+    "price": 750000,
+    "was": 1000000,
+    "art": "farmland",
+    "colors": [
+      "gold",
+      "slate",
+      "orange",
+      "ivory"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "500 SQM (₦750K)",
+      "1,000 SQM (₦1.5M)",
+      "3,000 SQM (₦4.5M)",
+      "1 Acre (₦4.5M)",
+      "1 Hectare / 10,000 SQM (₦11.25M)"
     ],
-    stock: 30,
-    cogs: 50000,
-    lowStockThreshold: 6,
-    status: 'active',
-    slug: 'evc-nexus-pro-smart-automation-hub',
-  },
-
-  // --- Category: Solar & Clean Energy ---
-  {
-    id: 5,
-    name: 'EVC HelioMax 6.2kVA Hybrid Solar Inverter',
-    cat: 'solar-energy',
-    price: 940000,
-    was: 1080000,
-    art: 'inverter',
-    colors: ['orange', 'black', 'navy'],
-    badge: 'Best Seller',
-    desc: 'Pure sine wave 48V hybrid inverter with dual MPPT charge controllers (120-450VDC) and built-in Wi-Fi monitoring. Powers air conditioners, pumping machines, and sensitive enterprise electronics with zero millisecond transfer latency.',
-    feat: [
-      '6,200W continuous rated pure sine wave output',
-      'Dual 120A MPPT solar charge controller with 98.5% efficiency',
-      'Works with or without battery bank for daylight self-consumption',
-      'Real-time cloud analytics and remote firmware updates via EVC App',
+    "badge": "Farmland & Agro-City",
+    "desc": "“Idera” meaning Ease, Peace & Relief. Located in Ado Awaye, Iseyin, Oyo State, near the famed suspended lake. IDERA FARMS is more than farmland—it is an inter-generational gateway into food security wealth, commercial agriculture, and high land appreciation with functional water sources and solar street lighting.",
+    "feat": [
+      "Title: C of O in View & Surveyed Farmland Parcels",
+      "Free Provisional Survey (in client’s name) & Registered Deed",
+      "Location: Ado Awaye, Iseyin, Oyo State (Agro-tourism corridor)",
+      "Functional year-round agricultural water source & irrigation layout",
+      "Solar-powered perimeter lighting and security guard posts",
+      "Flexible sizes: 500 SQM to multi-hectare farm acquisitions",
+      "Initial Deposit: only ₦300,000",
+      "Ideal for crop farming, livestock, agro-processing, or land banking",
+      "Direct farm-to-market road access connecting Oyo and Ibadan"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=800&q=80',
+    "images": [
+      "https://framerusercontent.com/images/9fqTXq8yaPPUtZzQt6YuOIWa4.png",
+      "https://framerusercontent.com/images/t86q15iDhqlSTXV3YErgDQDegNE.png",
+      "https://framerusercontent.com/images/G9uTJ1zaMXb8x7hYRKfrQQlu8c.png",
+      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
     ],
-    stock: 12,
-    cogs: 680000,
-    lowStockThreshold: 2,
-    status: 'active',
-    slug: 'evc-heliomax-6k2va-hybrid-solar-inverter',
+    "stock": 45,
+    "status": "active"
   },
   {
-    id: 6,
-    name: 'EVC TitanCell 10.24kWh Lithium PowerWall',
-    cat: 'solar-energy',
-    price: 2650000,
-    was: 2950000,
-    art: 'powerwall',
-    colors: ['black', 'orange', 'ivory'],
-    sizes: ['5.12kWh', '10.24kWh', '15.36kWh'],
-    badge: 'Enterprise',
-    desc: 'Wall-mounted Grade-A LiFePO4 energy storage system. Rated for 6,000+ deep cycles at 80% DOD with intelligent BMS monitoring cell temperature, voltage balance, and overcurrent protections.',
-    feat: [
-      '51.2V 200Ah (10.24kWh) nominal storage capacity',
-      'Tier-1 automotive grade prismatic LiFePO4 cells',
-      'Integrated active balancer and color LCD status dashboard',
-      'CAN & RS485 communication protocols compatible with major inverters',
+    "id": 5,
+    "name": "The Providence — Alabata (Abeokuta)",
+    "slug": "the-providence-alabata",
+    "cat": "corridor-developments",
+    "price": 800000,
+    "was": 1100000,
+    "art": "estate",
+    "colors": [
+      "orange",
+      "slate",
+      "navy",
+      "gold"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1558441719-8b489c63f732?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "300 SQM (₦800K)",
+      "500 SQM (₦1.5M)",
+      "1000 SQM (₦3M)",
+      "1 Acre (₦4.8M)"
     ],
-    stock: 8,
-    cogs: 1980000,
-    lowStockThreshold: 2,
-    status: 'active',
-    slug: 'evc-titancell-10kwh-lithium-powerwall',
+    "badge": "100% Dry Land",
+    "desc": "Tucked between nature and promise. The Providence Alabata, Abeokuta (Ogun State) brings envisioned comfort into reality along the strategic Abeokuta-Ibadan expressway. An accessible investment corridor boasting 100% dry terrain, serene green views, and verified title documentation.",
+    "feat": [
+      "Title: C of O in View",
+      "Free Provisional Survey & Registered Deed of Assignment",
+      "Location: Alabata, Abeokuta, Ogun State",
+      "100% dry terrain with immediate layout demarcation",
+      "Sizes: 300 SQM (₦800K), 500 SQM (₦1.5M), 1000 SQM (₦3M)",
+      "Initial Deposit: ₦300,000 with 6 to 12 months spread",
+      "Acre option: 1 Acre (₦4.8M)",
+      "Direct connectivity to Abeokuta metropolitan center and federal highway"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
+      "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
+      "https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png",
+      "https://framerusercontent.com/images/sl5PcJHaYEnJk65qJjnFbJQPwhM.png"
+    ],
+    "stock": 20,
+    "status": "active"
   },
   {
-    id: 7,
-    name: 'EVC SunVolt 585W Bifacial Monocrystalline Panel',
-    cat: 'solar-energy',
-    price: 135000,
-    art: 'solarpanel',
-    colors: ['black', 'blue', 'slate'],
-    badge: 'Tier-1',
-    desc: 'High-density N-Type TOPCon bifacial monocrystalline panel engineered for high ambient temperatures in West Africa. Dual glass construction captures reflected ground radiation for up to 25% extra energy harvest.',
-    feat: [
-      '585W peak STC power with 22.8% module efficiency',
-      'Bifacial energy gain up to 25% from rear albedo reflection',
-      'Anodized black aluminum alloy frame resisting wind loads to 2400Pa',
-      '30-year linear performance warranty',
+    "id": 6,
+    "name": "The Providence — Moniya (Ibadan)",
+    "slug": "the-providence-moniya",
+    "cat": "corridor-developments",
+    "price": 1500000,
+    "was": 1900000,
+    "art": "estate",
+    "colors": [
+      "orange",
+      "navy",
+      "gold",
+      "ivory"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1508873696983-2df5293cb32f?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "300 SQM (₦1.5M)",
+      "450 SQM (₦2.25M)",
+      "600 SQM (₦3M)",
+      "1 Acre (₦9M)"
     ],
-    stock: 60,
-    cogs: 92000,
-    lowStockThreshold: 10,
-    status: 'active',
-    slug: 'evc-sunvolt-585w-bifacial-monocrystalline-panel',
+    "badge": "Train Station Hub",
+    "desc": "Planting your dreams on solid grounds! Situated in Moniya, Akinyele Local Government, Ibadan—the epicentre of Oyo State’s modern transportation network. Minutes from the Obafemi Awolowo Train Station, Inland Dry Port, and the Ibadan Circular Road.",
+    "feat": [
+      "Title: C of O in View",
+      "Free Provisional Survey & Deed of Assignment in client’s name",
+      "Location: Moniya, Akinyele LGA, Ibadan, Oyo State",
+      "Proximity to Moniya Train Terminal & Ibadan Circular Road",
+      "Sizes: 300 SQM (₦1.5M), 450 SQM (₦2.25M), 600 SQM (₦3M)",
+      "Commercial Acre packages from ₦9,000,000",
+      "Initial Deposit: ₦500,000",
+      "Fast-track capital appreciation backed by massive state infrastructure"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
+      "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
+      "https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png",
+      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png"
+    ],
+    "stock": 18,
+    "status": "active"
   },
   {
-    id: 8,
-    name: 'EVC Pulse 22kW Smart Commercial EV Charger',
-    cat: 'solar-energy',
-    price: 780000,
-    art: 'evcharger',
-    colors: ['black', 'orange', 'navy'],
-    badge: 'Green Tech',
-    desc: 'Type 2 AC fast charging station for commercial estates, executive residences, and retail premises. Features RFID authorization, dynamic load balancing with solar arrays, and OCPP 1.6J billing backend.',
-    feat: [
-      'Three-phase 32A (22kW) fast charging capability',
-      'Solar divert mode: charge your EV strictly from surplus solar',
-      'IP65 water and dust resistance with IK10 impact protection',
-      'RFID card tap or smartphone app session authorization',
+    "id": 7,
+    "name": "The Providence — Omu, Epe (Lagos)",
+    "slug": "the-providence-omu-epe",
+    "cat": "corridor-developments",
+    "price": 2250000,
+    "was": 2900000,
+    "art": "estate",
+    "colors": [
+      "orange",
+      "blue",
+      "navy",
+      "gold"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1558441719-8b489c63f732?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "300 SQM (₦2.25M)",
+      "500 SQM (₦3.75M)",
+      "1000 SQM (₦7.5M)",
+      "1 Acre (₦13.5M)"
     ],
-    stock: 10,
-    cogs: 520000,
-    lowStockThreshold: 2,
-    status: 'active',
-    slug: 'evc-pulse-22kw-smart-commercial-ev-charger',
-  },
-
-  // --- Category: Architectural Finishes ---
-  {
-    id: 9,
-    name: 'Carrara Statuario Italian Porcelain Tiles',
-    cat: 'architectural',
-    price: 38500,
-    was: 45000,
-    art: 'tiles',
-    colors: ['ivory', 'slate', 'black'],
-    sizes: ['60x120cm', '80x160cm', '120x240cm Slab'],
-    badge: 'Italian Import',
-    desc: 'Mirror-polished large-format rectified porcelain tiles imported directly from Sassuolo, Italy. Features authentic gray-veined Carrara marble veining with zero liquid absorption and extreme abrasion resistance.',
-    feat: [
-      'Continuous bookmatched pattern alignment available',
-      'Rectified edges for hairline 1mm grout joints',
-      'Water absorption rate < 0.05% (anti-stain and chemical proof)',
-      'Box covers 2.88 square meters (price per sqm)',
+    "badge": "Lagos Epe Hub",
+    "desc": "Enjoy Lagos access without the stress! Located in Omu, Epe—the emerging goldmine of new Lagos. Positioned within rapid reach of the Lekki-Epe expressway, the proposed Lekki International Airport, and major commercial logistics corridors.",
+    "feat": [
+      "Title: C of O in View & Registered Survey",
+      "Free Provisional Survey (in client’s name) & Deed of Assignment",
+      "Location: Omu, Epe Corridor, Lagos State",
+      "100% dry elevated table land with instant plot demarcation",
+      "Sizes: 300 SQM (₦2.25M), 500 SQM (₦3.75M), 1000 SQM (₦7.5M)",
+      "Initial Deposit: ₦500,000",
+      "Commercial Acre parcels available for institutional investors",
+      "High appreciation trajectory in Lagos State’s prime expansion axis"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
+    "images": [
+      "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
+      "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
+      "https://framerusercontent.com/images/dJ4DsaWLcjmQNZd18IOgK1IRCv4.png",
+      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
     ],
-    stock: 120,
-    cogs: 24000,
-    lowStockThreshold: 20,
-    status: 'active',
-    slug: 'carrara-statuario-italian-porcelain-tiles',
+    "stock": 22,
+    "status": "active"
   },
   {
-    id: 10,
-    name: 'Vero Matte Black Rimless Wall-Hung Sanitary Ware',
-    cat: 'architectural',
-    price: 245000,
-    art: 'sanitaryware',
-    colors: ['black', 'slate', 'ivory'],
-    badge: 'Designer',
-    desc: 'Architectural rimless wall-hung toilet bowl crafted from high-fired vitreous china coated in scratch-resistant satin matte black glaze. Includes concealed geberit-compatible frame kit and soft-close urea seat.',
-    feat: [
-      'Tornado flush hydrodynamic rimless bowl sanitation',
-      'Ultra-thin UF soft-closing seat and quick-release hinges',
-      'Concealed cistern mounting kit tested to 400kg load capacity',
-      'Easy-clean hydrophobic nano-glaze finish',
+    "id": 8,
+    "name": "The Providence Prime Portfolio",
+    "slug": "the-providence",
+    "cat": "corridor-developments",
+    "price": 800000,
+    "was": 1200000,
+    "art": "estate",
+    "colors": [
+      "orange",
+      "navy",
+      "gold",
+      "slate"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "Alabata 300 SQM (₦800K)",
+      "Moniya 300 SQM (₦1.5M)",
+      "Omu Epe 300 SQM (₦2.25M)",
+      "1 Acre Multi-Hub Options"
     ],
-    stock: 16,
-    cogs: 145000,
-    lowStockThreshold: 3,
-    status: 'active',
-    slug: 'vero-matte-black-rimless-wall-hung-sanitary-ware',
+    "badge": "Multi-State Corridor",
+    "desc": "The Providence is EVC Nigeria’s signature multi-state land development brand spanning strategic economic corridors across Lagos, Ibadan, and Ogun State. Unlocking accessibility, 100% dry land, and verified ownership for smart property investors.",
+    "feat": [
+      "Title: C of O in View across all three project hubs",
+      "Free Provisional Survey in client’s name & Registered Deed",
+      "Strategic locations in Lagos (Omu, Epe), Oyo (Moniya), and Ogun (Alabata)",
+      "100% Dry Land guarantee with physical verification visits",
+      "Entry pricing from ₦800,000 for 300 SQM",
+      "Initial deposits starting from ₦300,000",
+      "Flexible installment options: Outright, 3 Months, 6 Months, 12 Months",
+      "Scheduled weekly site inspections (Tuesdays, Thursdays, Saturdays)"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
+      "https://framerusercontent.com/images/XsagG8P20f1jElhw1uZ5YxltiE.webp",
+      "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
+      "https://framerusercontent.com/images/sl5PcJHaYEnJk65qJjnFbJQPwhM.png"
+    ],
+    "stock": 35,
+    "status": "active"
   },
   {
-    id: 11,
-    name: 'Nordic Halo Minimalist Chandelier Pendant Fixture',
-    cat: 'architectural',
-    price: 185000,
-    was: 215000,
-    art: 'pendant',
-    colors: ['gold', 'black', 'orange'],
-    badge: 'Sculptural',
-    desc: 'Brushed brass and obsidian architectural circular ring pendant. Features edge-lit silicone diffusers delivering glare-free 3000K warm ambience with triac & remote app dimming controls.',
-    feat: [
-      'Triple concentric rings (80cm, 60cm, 40cm) with adjustable drop cables',
-      'High CRI > 92 Cree LED arrays with flicker-free driver',
-      'Adjustable ceiling hanging height up to 3 meters',
-      'Smart home dimmable: warm candle glow to vibrant daylight',
+    "id": 9,
+    "name": "Vision Smart City (Phase 1 & 2)",
+    "slug": "vision-smart-city",
+    "cat": "smart-tech-cities",
+    "price": 1200000,
+    "was": 2400000,
+    "art": "city",
+    "colors": [
+      "black",
+      "orange",
+      "glow",
+      "slate"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "300 SQM (₦1.2M)",
+      "450 SQM (₦1.8M)",
+      "600 SQM (₦2.4M)",
+      "1 Acre (₦7.2M)"
     ],
-    stock: 14,
-    cogs: 95000,
-    lowStockThreshold: 3,
-    status: 'active',
-    slug: 'nordic-halo-minimalist-chandelier-pendant-fixture',
+    "badge": "SOLD OUT",
+    "desc": "SOLD OUT. A landmark project that set new standards for real estate excellence in Ibadan. Located in Ido, Ibadan, minutes from the railway terminal. Phase 1 & 2 sold out completely with 100% subscriber allocations and ongoing infrastructure realization.",
+    "feat": [
+      "Status: 100% SOLD OUT",
+      "Title: Certificate of Occupancy (C of O)",
+      "Location: Ido, Ibadan, Oyo State",
+      "Proximity to Ibadan Train Station and Ido Local Govt Secretariat",
+      "Historical Pricing: 300 SQM (₦1.2M) to 600 SQM (₦2.4M)",
+      "All plots allocated to verified subscribers",
+      "Internal drainage, perimeter wall, and solar streetlights active",
+      "Inquire with EVC sales desk for resale opportunities or Phase 3 alerts"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/AONfpWfc0Kh6HV9vx9KFwgjydxg.png",
+      "https://framerusercontent.com/images/JLOv3dBORetS3V2IQIKcbI589S0.webp",
+      "https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png",
+      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
+    ],
+    "stock": 0,
+    "status": "archived"
   },
   {
-    id: 12,
-    name: 'Linear Waterfall Deck-Mount Minimalist Faucet',
-    cat: 'architectural',
-    price: 68000,
-    art: 'faucet',
-    colors: ['black', 'gold', 'slate'],
-    badge: 'Popular',
-    desc: 'Solid DZR brass vessel basin faucet featuring an open-channel cascading laminar sheet flow. Finished in PVD electroplated matte black and electro-gold.',
-    feat: [
-      'Solid lead-free dezincification resistant brass construction',
-      'Sedal European ceramic disc cartridge tested to 500,000 cycles',
-      'Soothing sheet waterfall flow with aerated splash prevention',
-      'Includes stainless steel braided hot & cold flexible connectors',
+    "id": 10,
+    "name": "Riyadh Golf City",
+    "slug": "riyadh-golf-city",
+    "cat": "residential-estates",
+    "price": 1000000,
+    "was": 3000000,
+    "art": "estate",
+    "colors": [
+      "black",
+      "gold",
+      "orange",
+      "navy"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "150 SQM (₦1M)",
+      "300 SQM (₦3M)",
+      "450 SQM (₦4.5M)",
+      "600 SQM (₦6M)"
     ],
-    stock: 28,
-    cogs: 36000,
-    lowStockThreshold: 5,
-    status: 'active',
-    slug: 'linear-waterfall-deck-mount-minimalist-faucet',
-  },
-
-  // --- Category: Luxury Living & Furniture ---
-  {
-    id: 13,
-    name: 'Apex Dual-Motor Ergonomic Executive Desk',
-    cat: 'furniture',
-    price: 460000,
-    was: 520000,
-    art: 'desk',
-    colors: ['black', 'slate', 'ivory'],
-    sizes: ['160x80cm', '180x90cm', '200x100cm Executive'],
-    badge: 'Executive',
-    desc: 'Heavy-duty dual-motor motorized sit-stand executive desk with solid walnut-veneered bevelled desktop. Equipped with anti-collision gyroscope sensors, cable management spine, and digital LED memory keypad.',
-    feat: [
-      'Dual German-engineered motors with 140kg dynamic lift capacity',
-      'Height range from 62cm to 128cm with whisper 38dB movement',
-      '4 programmable height presets + integrated USB-A and USB-C fast ports',
-      'Integrated under-desk steel wire raceway & power strip bay',
+    "badge": "SOLD OUT",
+    "desc": "SOLD OUT. An embodiment of luxury residential living intertwined with waterfront serenity in prime Asa Dam, Ilorin, Kwara State. Featuring an executive mini golf course, pristine lakeshore calm, and high-status living that fully sold out to investors and homeowners.",
+    "feat": [
+      "Status: 100% SOLD OUT",
+      "Title: C of O in View & Registered Layout",
+      "Location: Asa Dam, Ilorin, Kwara State (High-end GRA Extension)",
+      "Waterfront views overlooking the calm waves of Asa Dam",
+      "Private executive Mini Golf Course for estate residents",
+      "Historical plot pricing: 150 SQM (₦1M) up to 600 SQM (₦6M)",
+      "Smart security gatehouse with automated access control",
+      "Completed subscription run—contact desk for secondary market inquiries"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80',
+    "images": [
+      "https://framerusercontent.com/images/0YhBffpM2P1Z00k96j40F2r9LpA.png",
+      "https://framerusercontent.com/images/e3GKNtNOB8XOLxxvzSmyD5xmvKc.png",
+      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png",
+      "https://framerusercontent.com/images/Ocs5ycFPrY1OrwO0VlsaYGvY.png"
     ],
-    stock: 9,
-    cogs: 290000,
-    lowStockThreshold: 2,
-    status: 'active',
-    slug: 'apex-dual-motor-ergonomic-executive-desk',
+    "stock": 0,
+    "status": "archived"
   },
   {
-    id: 14,
-    name: 'Elysian Architectural Sculptural Lounge Chair',
-    cat: 'furniture',
-    price: 320000,
-    art: 'loungechair',
-    colors: ['navy', 'orange', 'slate'],
-    badge: 'Handcrafted',
-    desc: 'An iconic silhouette conceived for modern private lounges and executive penthouses. Features hand-stitched top-grain aniline leather upholstery over a molded fiberglass frame and polished swivel base.',
-    feat: [
-      'Genuine full-grain Brazilian aniline leather upholstery',
-      '360-degree silent return swivel cast aluminum mechanism',
-      'High-resilience memory foam core providing lumbar relief',
-      'Comes with matching leather comfort ottoman',
+    "id": 11,
+    "name": "Almond Garden",
+    "slug": "almond-garden",
+    "cat": "residential-estates",
+    "price": 500000,
+    "was": 1500000,
+    "art": "estate",
+    "colors": [
+      "black",
+      "orange",
+      "slate",
+      "ivory"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "150 SQM (₦500K)",
+      "300 SQM (₦1M)",
+      "500 SQM (₦1.5M)"
     ],
-    stock: 11,
-    cogs: 195000,
-    lowStockThreshold: 2,
-    status: 'active',
-    slug: 'elysian-architectural-sculptural-lounge-chair',
+    "badge": "SOLD OUT",
+    "desc": "SOLD OUT. Affordability met high rental yield in the KWASU host community of Malete, Kwara State. Almond Gardens closed the housing deficit for students and faculty with secure gate housing, perimeter fencing, and verified survey allocations.",
+    "feat": [
+      "Status: 100% SOLD OUT",
+      "Title: Registered Survey & Deed of Assignment",
+      "Location: Malete, Kwara State (Kwara State University Community)",
+      "Gated housing estate with complete perimeter fencing",
+      "Historical plot entry from ₦500,000",
+      "Instant cornerpiece allocations completed",
+      "Delivered exponential capital growth to early subscribers",
+      "Contact EVC Nigeria for next Malete investment releases"
+    ],
+    "images": [
+      "https://framerusercontent.com/images/TNqXPeSRISpqi0P6YFPJkOyMqRs.png",
+      "https://framerusercontent.com/images/m2jRtVCT541asDOtKGlo39N0iU.jpeg",
+      "https://framerusercontent.com/images/tUq4UPMXnfD1GXrLOfcptyZmI.png",
+      "https://framerusercontent.com/images/sf1JeTDyOAcZMOUJ5vBsPHnKZ78.png"
+    ],
+    "stock": 0,
+    "status": "archived"
   },
   {
-    id: 15,
-    name: 'SilencePod Solo Acoustic Privacy Office Pod',
-    cat: 'furniture',
-    price: 1850000,
-    was: 2100000,
-    art: 'privacypod',
-    colors: ['slate', 'black', 'navy'],
-    badge: 'Enterprise Work',
-    desc: 'Sound-dampening acoustic isolation booth for focused executive calls, video conferences, and private workspace. Equipped with turbo air circulation, power sockets, Ethernet uplink, and tempered sound-laminated acoustic glass.',
-    feat: [
-      '32dB sound reduction index (certified acoustic felt & double glazing)',
-      'Automated silent cross-flow ventilation (exchanges air in 45 seconds)',
-      'Built-in solid oak laptop desk with wireless phone charger',
-      'Modular flat-pack installation assembled in 90 minutes',
+    "id": 12,
+    "name": "Riyadh Tech City",
+    "slug": "riyadh-tech-city",
+    "cat": "smart-tech-cities",
+    "price": 750000,
+    "was": 2250000,
+    "art": "city",
+    "colors": [
+      "black",
+      "blue",
+      "orange",
+      "slate"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "150 SQM (₦750K)",
+      "300 SQM (₦1.5M)",
+      "450 SQM (₦2.25M)",
+      "600 SQM (₦3M)"
     ],
-    stock: 5,
-    cogs: 1250000,
-    lowStockThreshold: 1,
-    status: 'active',
-    slug: 'silencepod-solo-acoustic-privacy-office-pod',
-  },
-
-  // --- Category: Building Tech & Infrastructure ---
-  {
-    id: 16,
-    name: 'EVC Starlink Enterprise Roof & Pole Mount Kit',
-    cat: 'infrastructure',
-    price: 72000,
-    art: 'starlinkmount',
-    colors: ['slate', 'black', 'orange'],
-    badge: 'Heavy-Duty',
-    desc: 'Heavy-gauge galvanized steel bracket custom-engineered for Starlink Standard and High Performance satellite dishes. Built to withstand tropical storm gust winds up to 130 km/h with zero signal dislocation.',
-    feat: [
-      'Compatible with Starlink Gen 2 & Gen 3 Standard Actuated and Flat High Performance',
-      'Hot-dip galvanized steel with UV-resistant electrostatic powder coating',
-      'Dual locking clamps with anti-vibration rubber gaskets',
-      'Includes stainless steel masonry anchor bolts & cable conduit clamps',
+    "badge": "SOLD OUT",
+    "desc": "SOLD OUT. The pioneering smart residential and business-friendly tech enclave in Asa Dam, Ilorin. Designed by EVC with fiber-conduit infrastructure and solar power integration, Riyadh Tech City was a resounding sellout success that inspired Riyadh Golf City.",
+    "feat": [
+      "Status: 100% SOLD OUT",
+      "Title: C of O in View & Registered Survey",
+      "Location: Asa Dam, Ilorin, Kwara State Capital",
+      "Tech-enabled layout with fiber broadband ducts and solar street lighting",
+      "Historical pricing from ₦750,000 for 150 SQM to ₦3,000,000 for 600 SQM",
+      "Fully subscribed and documented by EVC Legal & Survey Team",
+      "Rapid neighborhood appreciation among Kwara high-net-worth investors",
+      "View Broadway Residentials or Afonja Boulevard for active projects"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    "images": [
+      "https://framerusercontent.com/images/UsmupdXlDIirjWUi9CJhSJc9sA8.png",
+      "https://framerusercontent.com/images/MCM2PlCECWPqCN3voEfgTzmVwc.png",
+      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png",
+      "https://framerusercontent.com/images/Ocs5ycFPrY1OrwO0VlsaYGvY.png"
     ],
-    stock: 45,
-    cogs: 38000,
-    lowStockThreshold: 8,
-    status: 'active',
-    slug: 'evc-starlink-enterprise-roof-pole-mount-kit',
+    "stock": 0,
+    "status": "archived"
   },
   {
-    id: 17,
-    name: 'EVC SmartPulse IoT Multi-Tenant Sub-Meter',
-    cat: 'infrastructure',
-    price: 110000,
-    was: 125000,
-    art: 'submeter',
-    colors: ['black', 'blue', 'orange'],
-    badge: 'Smart Metering',
-    desc: 'Three-phase smart energy monitor with remote prepaid disconnect relay, Wi-Fi / RS485 Modbus, and automated tenant billing app. Prevents electricity theft and provides automated daily consumption reports.',
-    feat: [
-      'Direct measurement up to 100A per phase (Class 1.0 accuracy)',
-      'Remote motorized breaker disconnect via mobile app or cloud dashboard',
-      'Tracks kWh, instantaneous voltage, amperes, power factor, and frequency',
-      'Automated PDF invoice generation and prepaid credit management for landlords',
+    "id": 13,
+    "name": "The Castle",
+    "slug": "the-castle",
+    "cat": "residential-estates",
+    "price": 1800000,
+    "was": 2400000,
+    "art": "estate",
+    "colors": [
+      "black",
+      "gold",
+      "slate",
+      "orange"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1558441719-8b489c63f732?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+    "sizes": [
+      "450 SQM (₦1.8M)",
+      "600 SQM (₦2.4M)"
     ],
-    stock: 35,
-    cogs: 62000,
-    lowStockThreshold: 5,
-    status: 'active',
-    slug: 'evc-smartpulse-iot-multi-tenant-sub-meter',
-  },
-  {
-    id: 18,
-    name: 'EVC Atmos Precision IoT Climate & Gas Sensor',
-    cat: 'infrastructure',
-    price: 48000,
-    art: 'climatesensor',
-    colors: ['ivory', 'slate', 'orange'],
-    badge: 'Safety',
-    desc: 'Industrial-grade environmental sensor monitoring temperature, relative humidity, air quality (VOCs), and combustible gas leak detection. Alerts smartphones and triggers automatic extractor fans.',
-    feat: [
-      'Swiss Sensirion precision temperature & humidity sensor module',
-      'Real-time gas and air quality hazard buzzer alert (> 85dB)',
-      'Zigbee / Wi-Fi telemetry reporting to EVC Building Management System',
-      'Powered by USB-C with 72-hour lithium backup power cell',
+    "badge": "SOLD OUT",
+    "desc": "SOLD OUT. Experience the opulent lifestyle of a castle. The Castle was carefully planned as an exclusive, low-density residential enclave in Malete, Kwara State, under 30 minutes from the capital city of Ilorin. Fully subscribed and sold out.",
+    "feat": [
+      "Status: 100% SOLD OUT",
+      "Title: Registered Survey & Deed of Assignment",
+      "Location: Malete, Moro Local Government, Kwara State",
+      "Less than 30 minutes drive from Ilorin capital city",
+      "Historical plot pricing: 450 SQM (₦1.8M), 600 SQM (₦2.4M)",
+      "Cornerpiece and executive plot allocations finalized",
+      "All rights and provisional surveys handed over to subscribers",
+      "Contact sales desk for secondary resale verification"
     ],
-    images: [
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+    "images": [
+      "https://framerusercontent.com/images/UcPdwNlRTFuVV0vjo0FL5T6ic6w.jpg",
+      "https://framerusercontent.com/images/KHUGoOxeC7EAbTwjuB2I2x4L3o.png",
+      "https://framerusercontent.com/images/M4wgDNOJYbxlPkLINNrLRz4Xqw.png",
+      "https://framerusercontent.com/images/k2OwjUBlB76NyQVxznLcm7dwg0.png"
     ],
-    stock: 40,
-    cogs: 26000,
-    lowStockThreshold: 6,
-    status: 'active',
-    slug: 'evc-atmos-precision-iot-climate-gas-sensor',
-  },
-
-  // --- Category: EVC Lifestyle & Merch ---
-  {
-    id: 19,
-    name: 'EVC Executive Hardcover Smart Journal',
-    cat: 'lifestyle',
-    price: 24500,
-    art: 'journal',
-    colors: ['black', 'orange', 'gold'],
-    badge: 'Signature',
-    desc: 'Handcrafted vegan saffiano leather hardcover executive journal with gilded edges, magnetic clasp, ribbon bookmarks, and integrated 16GB USB drive inside the clasp.',
-    feat: [
-      '240 pages of 120gsm ink-proof fountain-pen friendly ivory paper',
-      'Waterproof textured vegan saffiano leather cover with debossed EVC crest',
-      'Integrated concealed high-speed 16GB USB drive in magnetic latch',
-      'Expandable inner back pocket for documents and business cards',
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80',
-    ],
-    stock: 75,
-    cogs: 11000,
-    lowStockThreshold: 15,
-    status: 'active',
-    slug: 'evc-executive-hardcover-smart-journal',
-  },
-  {
-    id: 20,
-    name: 'EVC TitanTrack Smart Health & NFC Ring',
-    cat: 'lifestyle',
-    price: 115000,
-    was: 135000,
-    art: 'smartring',
-    colors: ['black', 'gold', 'slate'],
-    sizes: ['Size 8', 'Size 9', 'Size 10', 'Size 11', 'Size 12'],
-    badge: 'Popular',
-    desc: 'Medical-grade titanium biometric smart ring tracking heart rate variability (HRV), blood oxygen (SpO2), sleep architecture, and stress recovery. Features built-in reprogrammable NFC for digital business card sharing and door access.',
-    feat: [
-      'Aerospace grade titanium exterior with hypoallergenic ceramic interior',
-      '7 days battery endurance on a single 45-minute magnetic drop charge',
-      '50-meter water resistance (swimming and shower safe)',
-      'NFC programmable: tap phones to share contact info or unlock your smart door',
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
-    ],
-    stock: 25,
-    cogs: 65000,
-    lowStockThreshold: 5,
-    status: 'active',
-    slug: 'evc-titantrack-smart-health-nfc-ring',
-  },
-  {
-    id: 21,
-    name: 'EVC Signature Pique Cotton Polo Shirt',
-    cat: 'lifestyle',
-    price: 28000,
-    art: 'polo',
-    colors: ['orange', 'black', 'navy'],
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: 'Apparel',
-    desc: 'Premium 240gsm mercerized combed pique cotton polo shirt featuring silicone high-density EVC monogram on the chest and contrasting under-collar tipping.',
-    feat: [
-      '100% long-staple mercerized combed cotton for silky breathable handfeel',
-      'Subtle high-density silicone micro-embossed EVC signature branding',
-      'Reinforced side vents and mother-of-pearl engraved buttons',
-      'Pre-shrunk fabric resisting wash fading and shrinkage',
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
-    ],
-    stock: 50,
-    cogs: 14000,
-    lowStockThreshold: 10,
-    status: 'active',
-    slug: 'evc-signature-pique-cotton-polo-shirt',
-  },
-  {
-    id: 22,
-    name: 'EVC Heritage Full-Grain Leather Document Folio',
-    cat: 'lifestyle',
-    price: 75000,
-    art: 'folio',
-    colors: ['black', 'orange', 'gold'],
-    badge: 'Luxury',
-    desc: 'Hand-stitched full-grain vegetable-tanned leather tech folio. Fits a 14-inch MacBook or iPad Pro, notepad, smart pen loops, and cards for board meetings and executive travel.',
-    feat: [
-      'Vegetable-tanned full-grain leather that patinas beautifully with age',
-      'Padded micro-suede sleeve fits up to 14.2-inch laptops or tablets',
-      'YKK Excella Japanese antique brass zipper hardware',
-      'Multiple slots for passport, credit cards, smartphone, and charging cables',
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-    ],
-    stock: 20,
-    cogs: 42000,
-    lowStockThreshold: 4,
-    status: 'active',
-    slug: 'evc-heritage-full-grain-leather-document-folio',
-  },
+    "stock": 0,
+    "status": "archived"
+  }
 ];
 
-export const byId = (id: number | string): Product | undefined => {
-  const numericId = typeof id === 'string' ? parseInt(id, 10) : id;
-  return PRODUCTS.find((p) => p.id === numericId);
-};
+export function byId(id: number): Product | undefined {
+  return PRODUCTS.find((p) => p.id === id);
+}
 
-export const catOf = (id: string): Category =>
-  CATS.find((c) => c.id === id) || {
-    id: 'all',
-    name: 'All Collections',
-    blurb: 'Explore intelligent products, clean solar power, luxury furnishings & building tech.',
-    art: ['doorbell'],
-    cols: ['orange'],
-  };
+export function bySlug(slug: string): Product | undefined {
+  return PRODUCTS.find((p) => p.slug === slug);
+}
+
+export function catOf(catId: string): Category {
+  const found = CATS.find((c) => c.id === catId);
+  return (
+    found || {
+      id: catId,
+      name: catId.replace('-', ' '),
+      blurb: 'Verified EVC Nigeria property investments and real estate developments.',
+      art: ['estate'],
+      cols: ['orange', 'navy'],
+      image: 'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png',
+    }
+  );
+}
+
+export function searchProducts(q: string, cat?: string): Product[] {
+  const query = q.toLowerCase().trim();
+  return PRODUCTS.filter((p) => {
+    const matchesCat =
+      !cat ||
+      cat === 'all' ||
+      p.cat === cat ||
+      (cat === 'sold-out' && (p.status === 'sold_out' || p.status === 'archived' || p.badge === 'SOLD OUT')) ||
+      (cat === 'active' && p.status === 'active');
+    if (!matchesCat) return false;
+    if (!query) return true;
+    return (
+      p.name.toLowerCase().includes(query) ||
+      p.desc.toLowerCase().includes(query) ||
+      p.feat.some((f) => f.toLowerCase().includes(query)) ||
+      (p.badge && p.badge.toLowerCase().includes(query)) ||
+      (p.sizes && p.sizes.some((s) => s.toLowerCase().includes(query)))
+    );
+  });
+}

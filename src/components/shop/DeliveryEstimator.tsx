@@ -160,12 +160,12 @@ export const DeliveryEstimator: React.FC<DeliveryEstimatorProps> = ({
       {remainingForFree > 0 ? (
         <p className="text-[11px] text-[var(--mute)] flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-brand" />
-          Add <b>{money(remainingForFree)}</b> more equipment to qualify for free nationwide dispatch.
+          Add <b>{money(remainingForFree)}</b> more to qualify for free courier dispatch of deeds.
         </p>
       ) : (
         <p className="text-[11px] text-emerald-500 font-semibold flex items-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5" />
-          Order exceeds ₦150,000 threshold — Free Delivery active!
+          Deed &amp; Contract of Sale express dispatch is 100% complimentary!
         </p>
       )}
     </div>

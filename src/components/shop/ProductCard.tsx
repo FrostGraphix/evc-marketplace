@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { Heart, Plus, Check } from 'lucide-react';
 import { Product } from '@/types';
-import { PAL } from '@/lib/products';
+import { PAL, catOf } from '@/lib/products';
 import { money } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
@@ -25,6 +25,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
   const cardImgRef = useRef<HTMLDivElement>(null);
 
   const isSaved = isInWishlist(product.id);
+  const isSoldOut = product.badge === 'SOLD OUT' || product.status === 'sold_out' || product.stock === 0;
   const primaryColor = product.colors[0];
   const alternateColor = product.colors[Math.min(1, product.colors.length - 1)];
 
@@ -34,6 +35,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isSoldOut) {
+      window.location.href = `/product/${product.slug || product.id}`;
+      return;
+    }
     addToCart(product.id, primaryColor, product.sizes ? product.sizes[0] : undefined);
 
     if (cardImgRef.current) {
@@ -65,7 +70,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
       >
         {/* Clickable Image Anchor (Navigates to detail page) */}
         <Link
-          href={`/product/${product.id}`}
+          href={`/product/${product.slug || product.id}`}
           className="absolute inset-0 z-0"
           aria-label={`View details for ${product.name}`}
         >
@@ -99,8 +104,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
           )}
         </Link>
 
-        {/* Badge: New / Sale / Popular / Bestseller */}
-        {product.badge && (
+        {/* Badge: Sold Out / Title / Status */}
+        {isSoldOut ? (
+          <span className="absolute left-3 top-3 px-3 py-1 rounded-full text-[10px] font-extrabold tracking-wider uppercase z-10 pointer-events-none border bg-rose-950/90 text-rose-300 border-rose-500/60 shadow-sm backdrop-blur-md flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+            SOLD OUT
+          </span>
+        ) : product.badge ? (
           <span
             className={`absolute left-3 top-3 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 pointer-events-none border ${
               product.badge === 'Sale'
@@ -110,6 +120,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
           >
             {product.badge}
           </span>
+        ) : null}
+
+        {/* Sold out banner overlay */}
+        {isSoldOut && (
+          <div className="absolute inset-0 bg-[#03090a]/40 backdrop-grayscale pointer-events-none flex items-center justify-center">
+            <span className="px-4 py-1.5 rounded-lg border border-rose-500/50 bg-[#03090a]/90 text-rose-400 font-display font-black text-xs tracking-widest uppercase rotate-[-8deg] shadow-lg">
+              100% Sold Out
+            </span>
+          </div>
         )}
 
         {/* Wishlist Heart Button with clean outline */}
@@ -125,30 +144,40 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
           <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
         </button>
 
-        {/* Mobile Quick Add Floating Button */}
+        {/* Mobile Quick Add / View Button */}
         <button
           onClick={handleQuickAdd}
           className={`md:hidden absolute right-3 bottom-3 z-10 w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md active:scale-90 transition-all border border-brand/30 ${
-            justAdded ? 'bg-emerald-600 text-white' : 'bg-brand text-white'
+            isSoldOut
+              ? 'bg-[#0a1628] text-rose-300 border-rose-500/40'
+              : justAdded
+              ? 'bg-emerald-600 text-white'
+              : 'bg-brand text-white'
           }`}
-          aria-label="Add to cart"
+          aria-label={isSoldOut ? 'View project' : 'Add to cart'}
         >
-          {justAdded ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+          {isSoldOut ? <span className="text-[10px] font-bold">INFO</span> : justAdded ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
         </button>
 
-        {/* Desktop Quick Add Button on Hover */}
+        {/* Desktop Quick Action Button on Hover */}
         <button
           onClick={handleQuickAdd}
-          className="hidden md:flex absolute left-3 right-3 bottom-3 z-10 items-center justify-center gap-2 py-2.5 rounded-full bg-brand hover:bg-brand-deep text-white text-xs font-semibold opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 border border-brand-light/30"
+          className={`hidden md:flex absolute left-3 right-3 bottom-3 z-10 items-center justify-center gap-2 py-2.5 rounded-full text-xs font-semibold opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 border ${
+            isSoldOut
+              ? 'bg-[#0a1628]/95 hover:bg-[#03090a] text-rose-300 border-rose-500/50'
+              : 'bg-brand hover:bg-brand-deep text-white border-brand-light/30'
+          }`}
         >
-          {justAdded ? (
+          {isSoldOut ? (
+            <span>View Sold Project Details</span>
+          ) : justAdded ? (
             <>
               <Check className="w-4 h-4 text-emerald-200" />
               <span>Added to Cart!</span>
             </>
           ) : (
             <>
-              <span>{product.sizes && product.sizes.length > 1 ? 'Quick Add' : 'Add to Cart'}</span>
+              <span>{product.sizes && product.sizes.length > 1 ? 'Quick Select Size' : 'Select Plot'}</span>
               <Plus className="w-4 h-4" />
             </>
           )}
@@ -158,11 +187,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) 
       {/* Product Meta Section */}
       <div className="flex flex-col gap-1 px-1">
         <span className="text-[11px] font-semibold tracking-wider uppercase text-brand">
-          {product.cat}
+          {catOf(product.cat).name}
         </span>
         <h3 className="font-display font-semibold text-sm sm:text-base leading-snug line-clamp-1">
           <Link
-            href={`/product/${product.id}`}
+            href={`/product/${product.slug || product.id}`}
             className="hover:text-brand transition-colors"
           >
             {product.name}

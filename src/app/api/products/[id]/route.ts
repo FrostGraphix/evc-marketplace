@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/supabase/client';
-import { PRODUCTS, byId } from '@/lib/products';
+import { PRODUCTS, byId, bySlug } from '@/lib/products';
 import { Product } from '@/types';
 
 function formatDbProduct(row: any): Product {
-  const staticMatch = byId(Number(row.id));
+  const staticMatch = byId(Number(row.id)) || (row.slug ? bySlug(row.slug) : undefined);
   return {
     id: Number(row.id),
     name: row.name || 'Untitled Product',
@@ -44,9 +44,9 @@ export async function GET(
       let query = supabase.from('products').select('*');
 
       if (!isNaN(numId)) {
-        query = query.or(`id.eq.${numId},id.eq.${idParam}`);
+        query = query.or(`id.eq.${numId},slug.eq.${idParam}`);
       } else {
-        query = query.eq('id', idParam);
+        query = query.eq('slug', idParam);
       }
 
       const { data, error } = await query.maybeSingle();
@@ -88,7 +88,8 @@ export async function GET(
     (globalThis as unknown as { __adminProducts?: Product[] }).__adminProducts || PRODUCTS;
 
   const fallbackProduct =
-    store.find((p) => String(p.id) === String(idParam)) || (!isNaN(numId) ? byId(numId) : undefined);
+    store.find((p) => String(p.id) === String(idParam) || p.slug === idParam) ||
+    (!isNaN(numId) ? byId(numId) : bySlug(idParam));
 
   if (!fallbackProduct) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 });

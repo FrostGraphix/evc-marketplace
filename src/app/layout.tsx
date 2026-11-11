@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Bricolage_Grotesque, Figtree, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { CartProvider } from '@/context/CartContext';
@@ -11,26 +10,6 @@ import { HeaderWrapper } from '@/components/layout/HeaderWrapper';
 import { Footer } from '@/components/layout/Footer';
 import { CartDrawer } from '@/components/shop/CartDrawer';
 import { WhatsAppWidget } from '@/components/shop/WhatsAppWidget';
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const figtree = Figtree({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-});
-
-const instrumentSerif = Instrument_Serif({
-  weight: '400',
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -45,24 +24,29 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://evcng.com'),
-  title: 'EVC Nigeria — Smart Living, Clean Energy & Architectural Finishes',
+  title: 'EVC Nigeria — Real Estate & Land Marketplace | Buy Verified Land & Estates',
   description:
-    'EVC Nigeria (evcng.com) is your premier marketplace for solar energy solutions, home automation, architectural finishes, and executive furniture. Offices in Ilorin, Ibadan, and Abuja. Fast nationwide delivery.',
+    'EVC Nigeria (evcng.com) is your premier marketplace for verified land, master-planned residential estates, highway corridors, student housing, and commercial agro-cities. Guaranteed C of O titles, 100% dry land, and weekly free site inspections in Kwara, Oyo, Lagos, Ogun, and Abuja.',
   keywords: [
     'EVC Nigeria',
     'evcng.com',
-    'Solar Inverter Nigeria',
-    'Lithium Battery Nigeria',
-    'Smart Locks Abuja',
-    'Home Automation Lagos',
-    'Architectural Finishes Ilorin',
-    'Ergonomic Chairs Nigeria',
-    'Clean Energy Marketplace',
+    'Buy Land Nigeria',
+    'Broadway Residentials Malete',
+    'Eden Crest Ikorodu',
+    'Afonja Boulevard Ilorin',
+    'Idera Farm City Iseyin',
+    'The Providence Alabata',
+    'The Providence Moniya',
+    'The Providence Omu Epe',
+    'Kwara State Land for Sale',
+    'Ibadan Estates C of O',
+    'Lagos Epe Land Investment',
+    'Real Estate Marketplace Nigeria',
   ],
   openGraph: {
-    title: 'EVC Nigeria — Smart Living, Clean Energy & Architectural Finishes',
+    title: 'EVC Nigeria — Real Estate & Land Marketplace | Buy Verified Land & Estates',
     description:
-      'Engineered solar systems, biometric smart tech, architectural finishes, and modern interiors. Nationwide delivery across Nigeria.',
+      'Buy verified land, residential estates, highway corridors, student housing, and agro-cities with guaranteed C of O titles. Weekly free physical inspections across Nigeria.',
     url: 'https://evcng.com',
     siteName: 'EVC Nigeria',
     type: 'website',
@@ -79,11 +63,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${bricolage.variable} ${figtree.variable} ${instrumentSerif.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-[#03090a] text-slate-100 transition-colors duration-300">
         <ThemeProvider>
           <AuthProvider>

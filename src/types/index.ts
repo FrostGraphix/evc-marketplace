@@ -26,6 +26,12 @@ export interface ColorDef {
 }
 
 export type ArtType =
+  // EVC Real Estate & Land
+  | 'estate'
+  | 'building'
+  | 'farmland'
+  | 'city'
+  | 'land'
   // EVC Core Categories
   | 'doorbell'
   | 'smartlock'
@@ -125,7 +131,7 @@ export interface Product {
   cogs?: number;
   stock?: number;
   lowStockThreshold?: number;
-  status?: 'active' | 'draft' | 'archived';
+  status?: 'active' | 'draft' | 'archived' | 'sold_out';
   slug?: string;
   createdAt?: string;
   updatedAt?: string;

@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CATS, PRODUCTS } from '@/lib/products';
 import { ProductArt } from '@/components/shop/ProductArt';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Building, MapPin } from 'lucide-react';
+import { money } from '@/lib/utils';
 
 interface MegaMenuProps {
   onClose?: () => void;
@@ -22,7 +23,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
     }
   }, [pathname]);
 
-  const featuredProduct = PRODUCTS[0]; // EVC Pro 5kW Hybrid Inverter
+  const featuredProduct = PRODUCTS[0]; // Broadway Residentials
 
   return (
     <div
@@ -61,7 +62,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
                     {cat.blurb}
                   </p>
                   <span className="inline-block text-[10px] font-semibold text-brand mt-1.5">
-                    {count > 0 ? `${count} items` : 'Explore catalog'} &rarr;
+                    {count > 0 ? `${count} ${count === 1 ? 'project' : 'projects'}` : 'Explore portfolio'} &rarr;
                   </span>
                 </div>
               </Link>
@@ -72,13 +73,13 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
         {/* Featured Promo Card with clean outline */}
         <div className="lg:col-span-4 xl:col-span-4">
           <Link
-            href={`/product/${featuredProduct.id}`}
+            href={`/product/${featuredProduct.slug || featuredProduct.id}`}
             onClick={onClose}
             className="group/card relative rounded-2xl p-5 border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 text-white overflow-hidden flex flex-col justify-between h-full min-h-[220px] transition-all duration-200 hover:-translate-y-0.5"
           >
             <div className="relative z-10 flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand text-white border border-brand-light/30">
-                <Sparkles className="w-3 h-3" /> Featured Innovation
+                <Sparkles className="w-3 h-3" /> Featured Master Plan
               </span>
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             </div>
@@ -94,7 +95,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
 
             <div className="relative z-10 flex items-center justify-between pt-3 border-t border-white/10">
               <span className="font-display font-extrabold text-base text-white">
-                From ₦485,000
+                From {money(featuredProduct.price)}
               </span>
               <span className="btn-primary text-xs py-1.5 px-3.5">
                 Explore <ArrowRight className="w-3.5 h-3.5" />

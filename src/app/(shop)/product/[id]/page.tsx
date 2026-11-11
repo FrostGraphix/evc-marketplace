@@ -17,10 +17,14 @@ import {
   X,
   Check,
   Zap,
-  Wrench,
+  MapPin,
+  Calendar,
+  FileCheck,
+  AlertTriangle,
   BadgeCheck,
+  Building,
 } from 'lucide-react';
-import { byId, catOf, PAL, PRODUCTS, CFG } from '@/lib/products';
+import { byId, bySlug, catOf, PAL, PRODUCTS, CFG } from '@/lib/products';
 import { money, waLink } from '@/lib/utils';
 import { ColorKey, Product } from '@/types';
 import { ProductImage } from '@/components/shop/ProductImage';
@@ -35,6 +39,19 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+function parsePriceFromSize(sizeStr: string): number | null {
+  if (!sizeStr) return null;
+  const match = sizeStr.match(/₦\s*([0-9.,]+)\s*([KkMmBb])/);
+  if (match) {
+    const val = parseFloat(match[1].replace(/,/g, ''));
+    const unit = match[2].toUpperCase();
+    if (unit === 'M') return Math.round(val * 1_000_000);
+    if (unit === 'K') return Math.round(val * 1_000);
+    if (unit === 'B') return Math.round(val * 1_000_000_000);
+  }
+  return null;
+}
+
 export default function ProductDetailPage({ params }: PageProps) {
   const resolvedParams = use(params);
   const idParam = String(resolvedParams?.id || '');
@@ -42,7 +59,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   const router = useRouter();
 
   // Initialize with static product if available for instant SSR/hydration
-  const initialStaticProduct = !isNaN(numId) ? byId(numId) : undefined;
+  const initialStaticProduct = !isNaN(numId) ? byId(numId) : bySlug(idParam);
 
   const [product, setProduct] = useState<Product | null>(initialStaticProduct || null);
   const [loading, setLoading] = useState<boolean>(!initialStaticProduct);
@@ -60,7 +77,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   const [selectedColor, setSelectedColor] = useState<ColorKey>(
-    initialStaticProduct?.colors?.[0] || 'black'
+    initialStaticProduct?.colors?.[0] || 'orange'
   );
   const [selectedSize, setSelectedSize] = useState<string>(
     initialStaticProduct?.sizes?.[0] || ''
@@ -175,7 +192,7 @@ export default function ProductDetailPage({ params }: PageProps) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-24 flex flex-col items-center justify-center min-h-[50vh]">
         <div className="w-10 h-10 border-3 border-brand border-t-transparent rounded-full animate-spin mb-4" />
-        <p className="text-sm text-[var(--mute)] font-medium">Loading hardware specifications...</p>
+        <p className="text-sm text-[var(--mute)] font-medium">Loading property portfolio details...</p>
       </div>
     );
   }
@@ -183,12 +200,12 @@ export default function ProductDetailPage({ params }: PageProps) {
   if (notFoundState || (!loading && !product)) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-24 text-center">
-        <h2 className="font-display text-3xl font-bold mb-3">Product Not Found</h2>
+        <h2 className="font-display text-3xl font-bold mb-3">Property Project Not Found</h2>
         <p className="text-sm text-[var(--mute)] max-w-md mx-auto mb-6">
-          The requested system or product might have been moved, updated, or is currently reserved.
+          The requested land estate or housing project might have been updated or archived.
         </p>
         <Link href="/shop" className="btn-primary text-xs py-2.5 px-6 inline-flex">
-          Return to Equipment Catalog
+          Return to Property Portfolio
         </Link>
       </div>
     );
@@ -197,21 +214,25 @@ export default function ProductDetailPage({ params }: PageProps) {
   const currentProduct = product!;
   const isSaved = isInWishlist(currentProduct.id);
   const category = catOf(currentProduct.cat);
+  const isSoldOut = currentProduct.status === 'sold_out' || currentProduct.badge === 'SOLD OUT';
 
   const activeColor: ColorKey =
     currentProduct.colors && currentProduct.colors.includes(selectedColor)
       ? selectedColor
-      : currentProduct.colors?.[0] || 'black';
+      : currentProduct.colors?.[0] || 'orange';
 
   const activeSize: string =
     currentProduct.sizes && selectedSize && currentProduct.sizes.includes(selectedSize)
       ? selectedSize
       : currentProduct.sizes?.[0] || '';
 
+  const dynamicPrice = parsePriceFromSize(activeSize) ?? currentProduct.price;
+
   const productImages =
     currentProduct.images && currentProduct.images.length > 0 ? currentProduct.images : [];
 
   const handleAddToCart = () => {
+    if (isSoldOut) return;
     addToCart(currentProduct.id, activeColor, activeSize, quantity);
     if (mainImgRef.current) {
       flyToCart(mainImgRef.current, productImages[activeGalleryView] || productImages[0]);
@@ -221,6 +242,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   };
 
   const handleBuyNow = () => {
+    if (isSoldOut) return;
     addToCart(currentProduct.id, activeColor, activeSize, quantity);
     router.push('/checkout');
   };
@@ -234,12 +256,14 @@ export default function ProductDetailPage({ params }: PageProps) {
     el.style.setProperty('--zy', `${zy}%`);
   };
 
-  const whatsappMessage = `Hello EVC Nigeria, I would like to order: ${quantity} x ${currentProduct.name} (${
-    PAL[activeColor]?.n || activeColor
-  }${activeSize ? ', Spec ' + activeSize : ''}) at ${money(currentProduct.price)} each.`;
+  const whatsappInquiryMessage = isSoldOut
+    ? `Hello EVC Nigeria, I am inquiring about secondary resale opportunities or upcoming phase releases for ${currentProduct.name}.`
+    : `Hello EVC Nigeria, I would like to reserve/order: ${quantity} x ${currentProduct.name} (${activeSize || 'Standard Plot'}) at ${money(dynamicPrice)} each.`;
+
+  const whatsappInspectionMessage = `Hello EVC Nigeria, I would like to schedule a physical site inspection for ${currentProduct.name} (${activeSize || 'Plot allocation'}). Please confirm available inspection days (Tuesdays, Thursdays, or Saturdays).`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 bg-[#03090a] text-slate-100 min-h-screen">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-[var(--mute)] mb-6 overflow-x-auto whitespace-nowrap">
         <Link href="/" className="hover:text-brand transition-colors">
@@ -278,7 +302,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                     src={thumbSrc}
                     alt={`${currentProduct.name} thumbnail ${idx + 1}`}
                     fallbackArt={{
-                      type: currentProduct.art || 'solar',
+                      type: currentProduct.art || 'estate',
                       color: activeColor,
                       view: idx as 0 | 1 | 2 | 3,
                     }}
@@ -299,16 +323,29 @@ export default function ProductDetailPage({ params }: PageProps) {
               alt={`${currentProduct.name} view ${activeGalleryView + 1}`}
               priority={true}
               fallbackArt={{
-                type: currentProduct.art || 'solar',
+                type: currentProduct.art || 'estate',
                 color: activeColor,
                 view: (activeGalleryView as 0 | 1 | 2 | 3) || 0,
               }}
             />
 
+            {/* Sold Out Watermark Overlay */}
+            {isSoldOut && (
+              <div className="absolute inset-0 bg-[#03090a]/75 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 text-center z-10">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/90 text-white font-extrabold text-sm uppercase tracking-widest border border-red-400 shadow-xl">
+                  <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
+                  100% SOLD OUT
+                </span>
+                <p className="text-xs sm:text-sm text-slate-300 mt-3 max-w-xs">
+                  All plots in this project have been fully allocated and deeded.
+                </p>
+              </div>
+            )}
+
             {/* Zoom / Lightbox Trigger */}
             <button
               onClick={() => setIsZoomOpen(true)}
-              className="absolute right-3.5 top-3.5 z-10 w-9 h-9 rounded-full bg-[var(--nav-bg)]/80 backdrop-blur-md border border-glow/25 flex items-center justify-center text-[var(--ink)] opacity-0 group-hover:opacity-100 hover:scale-110 active:scale-95 transition-all shadow-md"
+              className="absolute right-3.5 top-3.5 z-20 w-9 h-9 rounded-full bg-[var(--nav-bg)]/80 backdrop-blur-md border border-glow/25 flex items-center justify-center text-[var(--ink)] opacity-0 group-hover:opacity-100 hover:scale-110 active:scale-95 transition-all shadow-md"
               aria-label="Zoom image"
             >
               <Maximize2 className="w-4 h-4" />
@@ -316,14 +353,18 @@ export default function ProductDetailPage({ params }: PageProps) {
 
             {/* Badge */}
             {currentProduct.badge && (
-              <span className="absolute left-3.5 top-3.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand text-white shadow-md z-10">
+              <span
+                className={`absolute left-3.5 top-3.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md z-20 ${
+                  isSoldOut ? 'bg-red-600 text-white' : 'bg-brand text-white'
+                }`}
+              >
                 {currentProduct.badge}
               </span>
             )}
 
-            <div className="absolute right-3.5 bottom-3.5 px-3 py-1.5 rounded-full bg-[var(--nav-bg)]/80 backdrop-blur-md border border-glow/25 text-[11px] font-semibold text-[var(--ink2)] pointer-events-none z-10 flex items-center gap-1.5">
-              <Zap className="w-3 h-3 text-brand" />
-              EVC Verified Hardware
+            <div className="absolute right-3.5 bottom-3.5 px-3 py-1.5 rounded-full bg-[var(--nav-bg)]/80 backdrop-blur-md border border-glow/25 text-[11px] font-semibold text-[var(--ink2)] pointer-events-none z-20 flex items-center gap-1.5">
+              <BadgeCheck className="w-3.5 h-3.5 text-brand" />
+              Verified EVC Nigeria Title
             </div>
           </div>
         </div>
@@ -331,9 +372,14 @@ export default function ProductDetailPage({ params }: PageProps) {
         {/* Right Details Column */}
         <div className="lg:col-span-6 flex flex-col gap-6">
           <div>
-            <span className="text-xs font-semibold tracking-wider uppercase text-brand">
-              {category.name}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold tracking-wider uppercase text-brand">
+                {category.name}
+              </span>
+              <span className="text-xs text-slate-500">•</span>
+              <span className="text-xs text-slate-400 font-medium">Verified Master Plan</span>
+            </div>
+
             <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight mt-1 text-[var(--ink)]">
               {currentProduct.name}
             </h1>
@@ -341,29 +387,75 @@ export default function ProductDetailPage({ params }: PageProps) {
             {/* Price and Stock status */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-3">
               <span className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--ink)]">
-                {money(currentProduct.price)}
+                {money(dynamicPrice)}
               </span>
               {currentProduct.was && (
                 <s className="text-sm sm:text-base text-[var(--mute)] font-mono">
                   {money(currentProduct.was)}
                 </s>
               )}
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/20">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                Available across Ilorin, Ibadan &amp; Abuja Hubs
-              </span>
+
+              {isSoldOut ? (
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-red-400 bg-red-950/50 px-3 py-1 rounded-full border border-red-500/30">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  Phase Fully Sold Out
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/20">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Plots Available &bull; Instant Allocation
+                </span>
+              )}
             </div>
           </div>
+
+          {/* Sold Out Notice Box */}
+          {isSoldOut && (
+            <div className="p-4 rounded-2xl border border-red-500/30 bg-red-950/20 text-red-200 text-xs sm:text-sm leading-relaxed flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <b className="block text-red-100 font-bold mb-1">Notice: Project Fully Subscribed</b>
+                All plots in {currentProduct.name} have been acquired. You can inquire directly with our investment team for secondary market resales or secure priority allocation in the upcoming expansion phase.
+              </div>
+            </div>
+          )}
 
           <p className="text-sm sm:text-base text-[var(--ink2)] leading-relaxed">
             {currentProduct.desc}
           </p>
 
-          {/* Color / Variant Selector */}
-          {currentProduct.colors && currentProduct.colors.length > 0 && (
+          {/* Available Plot Size / Unit Selection */}
+          {currentProduct.sizes && currentProduct.sizes.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between mb-2.5">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--mute)]">
+                  Available Plot Sizes / Units:
+                </h4>
+                <span className="text-xs font-bold text-brand">{activeSize}</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {currentProduct.sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`min-h-[44px] px-4 py-2 rounded-xl text-xs font-semibold border transition-all text-left ${
+                      activeSize === size
+                        ? 'bg-brand text-white border-transparent shadow'
+                        : 'bg-[var(--surface)] border-glow/25 text-[var(--ink)] hover:border-brand'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Scheme / Palette Selector */}
+          {currentProduct.colors && currentProduct.colors.length > 1 && (
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-2.5">
-                Finish: <b className="text-[var(--ink)] capitalize">{PAL[activeColor]?.n || activeColor}</b>
+                Layout Scheme: <b className="text-[var(--ink)] capitalize">{PAL[activeColor]?.n || activeColor}</b>
               </h4>
               <div className="flex flex-wrap gap-2.5">
                 {currentProduct.colors.map((cKey) => {
@@ -391,85 +483,95 @@ export default function ProductDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Specification / Capacity Selector */}
-          {currentProduct.sizes && currentProduct.sizes.length > 0 && (
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-2.5">
-                System Spec / Capacity: <b className="text-[var(--ink)]">{activeSize}</b>
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {currentProduct.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`min-w-[54px] h-11 px-4 rounded-xl text-xs font-semibold border transition-all ${
-                      activeSize === size
-                        ? 'bg-brand text-white border-transparent shadow'
-                        : 'bg-[var(--surface)] border-glow/25 text-[var(--ink)] hover:border-brand'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Main Action CTAs */}
-          <div ref={mainCtaRef} className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center pt-2">
-            {/* Quantity Stepper */}
-            <div className="inline-flex items-center justify-between sm:justify-start border border-glow/25 rounded-full h-12 px-2 bg-[var(--surface)] w-full sm:w-auto">
-              <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-full flex items-center justify-center text-[var(--mute)] hover:text-brand active:scale-95"
-                aria-label="Decrease quantity"
-              >
-                <Minus className="w-4 h-4" />
-              </button>
-              <span className="w-12 text-center text-sm font-bold font-mono">
-                {quantity}
-              </span>
-              <button
-                onClick={() => setQuantity(Math.min(50, quantity + 1))}
-                className="w-10 h-full flex items-center justify-center text-[var(--mute)] hover:text-brand active:scale-95"
-                aria-label="Increase quantity"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
+          <div ref={mainCtaRef} className="flex flex-col gap-3 pt-2">
+            {isSoldOut ? (
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={waLink(whatsappInquiryMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary text-sm h-12 flex-1 justify-center items-center shadow-lg"
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" /> Inquire for Resale &amp; Next Phase
+                </a>
+                <Link
+                  href="/shop"
+                  className="h-12 px-6 rounded-full font-semibold text-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all flex items-center justify-center text-center"
+                >
+                  Browse Active Projects
+                </Link>
+              </div>
+            ) : (
+              <>
+                <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+                  {/* Quantity Stepper */}
+                  <div className="inline-flex items-center justify-between sm:justify-start border border-glow/25 rounded-full h-12 px-2 bg-[var(--surface)] w-full sm:w-auto">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-10 h-full flex items-center justify-center text-[var(--mute)] hover:text-brand active:scale-95"
+                      aria-label="Decrease plots"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="w-12 text-center text-sm font-bold font-mono">
+                      {quantity} {quantity === 1 ? 'Plot' : 'Plots'}
+                    </span>
+                    <button
+                      onClick={() => setQuantity(Math.min(50, quantity + 1))}
+                      className="w-10 h-full flex items-center justify-center text-[var(--mute)] hover:text-brand active:scale-95"
+                      aria-label="Increase plots"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
 
-            <button
-              onClick={handleAddToCart}
-              className="btn-primary text-sm flex-1 h-12 justify-center shadow-lg active:scale-98 transition-all"
-            >
-              {addedToast ? (
-                <>
-                  <Check className="w-4 h-4 text-emerald-300" /> Added to Order!
-                </>
-              ) : (
-                <>
-                  <ShoppingBag className="w-4 h-4" /> Add to cart
-                </>
-              )}
-            </button>
+                  <button
+                    onClick={handleAddToCart}
+                    className="btn-primary text-sm flex-1 h-12 justify-center shadow-lg active:scale-98 transition-all"
+                  >
+                    {addedToast ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-300 mr-2" /> Reserved to Order!
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingBag className="w-4 h-4 mr-2" /> Reserve Plot
+                      </>
+                    )}
+                  </button>
 
-            <button
-              onClick={handleBuyNow}
-              className="h-12 px-6 rounded-full font-semibold text-sm bg-white text-black hover:bg-neutral-200 active:scale-98 transition-all text-center flex items-center justify-center"
-            >
-              Instant Checkout
-            </button>
+                  <button
+                    onClick={handleBuyNow}
+                    className="h-12 px-6 rounded-full font-semibold text-sm bg-white text-black hover:bg-neutral-200 active:scale-98 transition-all text-center flex items-center justify-center"
+                  >
+                    Instant Allocation
+                  </button>
+                </div>
+
+                {/* Physical Inspection CTA */}
+                <a
+                  href={waLink(whatsappInspectionMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-12 px-6 rounded-2xl font-bold text-xs sm:text-sm bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 transition-all flex items-center justify-center gap-2 text-center shadow-md"
+                >
+                  <Calendar className="w-4 h-4 text-emerald-400" />
+                  Schedule Free Physical Site Inspection (Tue, Thu, Sat)
+                </a>
+              </>
+            )}
           </div>
 
           {/* Secondary Actions */}
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href={waLink(whatsappMessage)}
+              href={waLink(whatsappInquiryMessage)}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-wa text-xs py-2.5 px-4 flex-1 sm:flex-initial justify-center"
             >
-              <MessageSquare className="w-4 h-4" /> Order &amp; Consult on WhatsApp
+              <MessageSquare className="w-4 h-4" /> Chat with Property Advisor
             </a>
 
             <button
@@ -479,33 +581,33 @@ export default function ProductDetailPage({ params }: PageProps) {
               }`}
             >
               <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
-              {isSaved ? 'Saved in Wishlist' : 'Save for Project'}
+              {isSaved ? 'Saved in Portfolio' : 'Bookmark Property'}
             </button>
           </div>
 
-          {/* 3 Perks Row */}
+          {/* 3 Real Estate Perks Row */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
             <div className="p-3.5 rounded-2xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col gap-1 text-xs text-[var(--ink2)]">
-              <Truck className="w-5 h-5 text-brand" />
-              <b className="text-[var(--ink)]">Regional Hub Logistics</b>
-              <span>Ilorin, Ibadan, Abuja &amp; Nationwide</span>
+              <FileCheck className="w-5 h-5 text-brand" />
+              <b className="text-[var(--ink)]">Verified Title Documentation</b>
+              <span>C of O, C of O in View &amp; Survey Plans</span>
+            </div>
+            <div className="p-3.5 rounded-2xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col gap-1 text-xs text-[var(--ink2)]">
+              <Calendar className="w-5 h-5 text-brand" />
+              <b className="text-[var(--ink)]">Free Guided Site Tours</b>
+              <span>Tuesdays, Thursdays &amp; Saturdays</span>
             </div>
             <div className="p-3.5 rounded-2xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col gap-1 text-xs text-[var(--ink2)]">
               <BadgeCheck className="w-5 h-5 text-brand" />
-              <b className="text-[var(--ink)]">Certified Equipment</b>
-              <span>Tier-1 manufacturer warranty</span>
-            </div>
-            <div className="p-3.5 rounded-2xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col gap-1 text-xs text-[var(--ink2)]">
-              <Wrench className="w-5 h-5 text-brand" />
-              <b className="text-[var(--ink)]">Engineering Support</b>
-              <span>Installation &amp; commissioning advice</span>
+              <b className="text-[var(--ink)]">100% Dry Tableland</b>
+              <span>Instant deed of assignment dispatch</span>
             </div>
           </div>
 
-          {/* Live Doorstep Delivery Estimator */}
+          {/* Live Regional Hub Dispatch / Documentation Estimator */}
           <div className="pt-2">
             <DeliveryEstimator
-              cartTotal={currentProduct.price * quantity}
+              cartTotal={dynamicPrice * quantity}
               compact={false}
             />
           </div>
@@ -521,7 +623,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   }
                   className="w-full py-4 flex items-center justify-between text-left font-display font-semibold text-base hover:text-brand transition-colors text-[var(--ink)]"
                 >
-                  <span>Engineering Specifications &amp; Features</span>
+                  <span>Estate Infrastructure &amp; Features</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-300 ${
                       openAccordion === 'details' ? 'rotate-180' : ''
@@ -540,7 +642,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
             )}
 
-            {/* Delivery & Logistics Accordion */}
+            {/* Title & Documentation Accordion */}
             <div>
               <button
                 onClick={() =>
@@ -548,7 +650,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 }
                 className="w-full py-4 flex items-center justify-between text-left font-display font-semibold text-base hover:text-brand transition-colors text-[var(--ink)]"
               >
-                <span>Dispatch, Freight &amp; Hub Pickups</span>
+                <span>Title Documents, Allocation &amp; Dispatch</span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-300 ${
                     openAccordion === 'delivery' ? 'rotate-180' : ''
@@ -558,16 +660,16 @@ export default function ProductDetailPage({ params }: PageProps) {
               {openAccordion === 'delivery' && (
                 <div className="pb-4 text-xs sm:text-sm text-[var(--ink2)] leading-relaxed space-y-2">
                   <p>
-                    Same-day and 24-hour dispatch available from our Ilorin, Ibadan, and Abuja hubs. Nationwide freight delivery takes 2 to 4 working days with full consignment tracking.
+                    All documentation including Registered Deed of Assignment, Contract of Sale, and Survey Plans are processed and made available within 24 to 48 hours from EVC Regional Hubs (Ilorin Hub, Ibadan Experience Center, and Abuja Corporate Office).
                   </p>
                   <p>
-                    Heavy items such as commercial solar panels and powerwall lithium batteries are crated with shock absorption protection.
+                    Physical land demarcation and pegging are carried out immediately upon milestone verification. Secure courier dispatch of deeds is available nationwide and for diaspora investors.
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Warranty & Guarantee Accordion */}
+            {/* Physical Site Inspection Accordion */}
             <div>
               <button
                 onClick={() =>
@@ -575,7 +677,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 }
                 className="w-full py-4 flex items-center justify-between text-left font-display font-semibold text-base hover:text-brand transition-colors text-[var(--ink)]"
               >
-                <span>Warranty &amp; Installation Guarantee</span>
+                <span>Physical Site Inspection Schedule</span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-300 ${
                     openAccordion === 'warranty' ? 'rotate-180' : ''
@@ -585,10 +687,10 @@ export default function ProductDetailPage({ params }: PageProps) {
               {openAccordion === 'warranty' && (
                 <div className="pb-4 text-xs sm:text-sm text-[var(--ink2)] leading-relaxed space-y-2">
                   <p>
-                    All power systems come with manufacturer warranties (up to 10 years on lithium batteries and 25 years on Tier-1 panels).
+                    Free physical site inspections are conducted every <b>Tuesday, Thursday, and Saturday</b> starting at 10:00 AM.
                   </p>
                   <p>
-                    Our certified field engineers can be booked for installation and commissioning in Kwara, Oyo, Lagos, and Abuja.
+                    Chauffeur-driven inspection vehicles depart directly from EVC Hubs in Ilorin (Kajo Mall, Fate Road / Bodunde St Flower Garden) and Ibadan (Plot 11, Oluyoro Avenue, Bodija). Virtual live video tours are available for diaspora subscribers.
                   </p>
                 </div>
               )}
@@ -602,10 +704,10 @@ export default function ProductDetailPage({ params }: PageProps) {
         <section className="mt-16 sm:mt-24 pt-10 border-t border-glow/15">
           <div className="mb-8">
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-              Recommended Systems
+              Complementary Projects
             </span>
             <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight mt-1 text-[var(--ink)]">
-              Complementary infrastructure &amp; smart hardware
+              Explore more verified real estate developments
             </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
@@ -627,7 +729,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Product Image Zoom"
+          aria-label="Property Layout Zoom"
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setIsZoomOpen(false)}
         >
@@ -644,7 +746,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               alt={currentProduct.name}
               priority={true}
               fallbackArt={{
-                type: currentProduct.art || 'solar',
+                type: currentProduct.art || 'estate',
                 color: activeColor,
                 view: (activeGalleryView as 0 | 1 | 2 | 3) || 0,
               }}
@@ -668,7 +770,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               <ProductImage
                 src={productImages[0]}
                 alt={currentProduct.name}
-                fallbackArt={{ type: currentProduct.art || 'solar', color: activeColor, view: 0 }}
+                fallbackArt={{ type: currentProduct.art || 'estate', color: activeColor, view: 0 }}
               />
             </div>
             <div className="min-w-0">
@@ -676,26 +778,39 @@ export default function ProductDetailPage({ params }: PageProps) {
                 {currentProduct.name}
               </h4>
               <span className="font-display font-bold text-xs text-brand">
-                {money(currentProduct.price)}
+                {money(dynamicPrice)}
               </span>
             </div>
           </div>
 
           {/* Quick CTA */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={handleAddToCart}
-              className="btn-primary text-xs py-2.5 px-4 h-10 shadow"
-            >
-              <ShoppingBag className="w-3.5 h-3.5" />
-              <span>Add</span>
-            </button>
-            <button
-              onClick={handleBuyNow}
-              className="h-10 px-3.5 rounded-full font-semibold text-xs bg-white text-black"
-            >
-              Buy
-            </button>
+            {isSoldOut ? (
+              <a
+                href={waLink(whatsappInquiryMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-xs py-2 px-3 h-10 shadow"
+              >
+                Inquire
+              </a>
+            ) : (
+              <>
+                <button
+                  onClick={handleAddToCart}
+                  className="btn-primary text-xs py-2.5 px-4 h-10 shadow"
+                >
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>Reserve</span>
+                </button>
+                <button
+                  onClick={handleBuyNow}
+                  className="h-10 px-3.5 rounded-full font-semibold text-xs bg-white text-black"
+                >
+                  Buy
+                </button>
+              </>
+            )}
           </div>
         </div>
       </aside>

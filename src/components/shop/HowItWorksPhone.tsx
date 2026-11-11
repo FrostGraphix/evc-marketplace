@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Check, ShieldCheck, Zap } from 'lucide-react';
+import { Check, ShieldCheck, MapPin, Calendar, FileCheck } from 'lucide-react';
 import { money } from '@/lib/utils';
 
 export const HowItWorksPhone: React.FC = () => {
@@ -32,20 +32,20 @@ export const HowItWorksPhone: React.FC = () => {
 
   const steps = [
     {
-      title: 'Select Equipment or Request Custom Design',
-      desc: 'Browse our catalog of Tier-1 solar systems, smart locks, and acoustic finishes, or share your floor plan / energy load requirement directly.',
+      title: 'Select Project & Choose Plot Size',
+      desc: 'Browse master-planned estates across Ilorin, Ibadan, Epe, and Abeokuta. Select residential, commercial corridor, student housing, or agricultural hectare sizes.',
     },
     {
-      title: 'Consult with Engineering & Quotation Desk',
-      desc: 'Our certified energy auditors and automation specialists confirm exact load sizing, warranty options, and dispatch schedule.',
+      title: 'Book a Free Guided Site Inspection',
+      desc: 'Join our weekly inspection tours (every Tuesday, Thursday, and Saturday) from EVC Regional Hubs in Ilorin and Ibadan, or request a virtual video inspection.',
     },
     {
-      title: 'Secure Settlement & Official Documentation',
-      desc: 'Pay safely via instant card link, verified bank transfer, or corporate invoice. Comprehensive manufacturer warranty paperwork included.',
+      title: 'Transparent Settlement & Deed Preparation',
+      desc: 'Pay directly via official channels or structured milestone instalments. Our legal department drafts your Contract of Sale and Registered Deed of Assignment.',
     },
     {
-      title: 'Direct Delivery & Certified Installation',
-      desc: 'Fast hub delivery from our Ilorin, Ibadan, and Abuja facilities, plus tracked nationwide delivery and expert on-site commissioning.',
+      title: 'Physical Demarcation & Deed Dispatch',
+      desc: 'Participate in physical corner-piece pegging on site and receive registered survey documents and deed package at your home or nearest EVC hub within 24 to 48 hours.',
     },
   ];
 
@@ -69,9 +69,9 @@ export const HowItWorksPhone: React.FC = () => {
                 />
               </div>
               <div>
-                <strong className="block font-medium text-sm text-white">EVC Nigeria</strong>
+                <strong className="block font-medium text-sm text-white">EVC Property Advisory</strong>
                 <small className="text-emerald-400 text-xs flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Technical Desk Active
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Advisory Desk Active
                 </small>
               </div>
             </div>
@@ -80,20 +80,20 @@ export const HowItWorksPhone: React.FC = () => {
             <div className="flex-1 p-4 flex flex-col justify-end gap-2.5 overflow-hidden bg-gradient-to-b from-[#0a1219] to-[#03090a]">
               {/* Message 1 (Step 0) */}
               <div className="self-end bg-brand text-white text-xs py-2 px-3.5 rounded-2xl rounded-br-sm max-w-[85%] animate-in fade-in slide-in-from-bottom-2">
-                Hi! Is the 5kW pure sine hybrid inverter available for site delivery?
+                Hello! Is 500 SQM still available at Afonja Boulevard District 1?
               </div>
               <div className="self-start bg-[#182633] text-slate-200 text-xs py-2 px-3.5 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/10 animate-in fade-in slide-in-from-bottom-2">
-                Yes, in stock at our Ilorin, Ibadan, and Abuja hubs. {money(485000)} with 24-month warranty.
+                Yes! 500 SQM is available at {money(1800000)} with C of O in View. Free site inspection is this Thursday.
               </div>
 
               {/* Message 2 (Step 1) */}
               {activeStep >= 1 && (
                 <>
                   <div className="self-end bg-brand text-white text-xs py-2 px-3.5 rounded-2xl rounded-br-sm max-w-[85%] animate-in fade-in slide-in-from-bottom-2">
-                    Dispatch to Bodija, Ibadan with installation engineer.
+                    Book inspection pickup for Thursday 10:00 AM from Fate Road Hub.
                   </div>
                   <div className="self-start bg-[#182633] text-slate-200 text-xs py-2 px-3.5 rounded-2xl rounded-bl-sm max-w-[85%] border border-white/10 animate-in fade-in slide-in-from-bottom-2">
-                    Noted! Total with Ibadan direct fleet courier: {money(487500)}.
+                    Confirmed! Chauffeur vehicle reserved. Chaperone: EVC Surveyor team.
                   </div>
                 </>
               )}
@@ -101,14 +101,14 @@ export const HowItWorksPhone: React.FC = () => {
               {/* Message 3 (Step 2) */}
               {activeStep >= 2 && (
                 <div className="self-start bg-emerald-950/80 text-emerald-200 border border-emerald-700/60 text-xs py-2 px-3.5 rounded-2xl flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
-                  <Check className="w-4 h-4 text-emerald-400" /> Settlement confirmed &amp; Invoice generated
+                  <Check className="w-4 h-4 text-emerald-400" /> Allocation Letter &amp; Contract Drafted
                 </div>
               )}
 
               {/* Message 4 (Step 3) */}
               {activeStep >= 3 && (
                 <div className="self-start bg-sky-950/80 text-sky-200 border border-sky-700/60 text-xs py-2 px-3.5 rounded-2xl flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
-                  <Zap className="w-4 h-4 text-sky-400" /> Regional fleet dispatched • Tracking live
+                  <FileCheck className="w-4 h-4 text-sky-400" /> Deed of Assignment Dispatched • Tracking Active
                 </div>
               )}
             </div>

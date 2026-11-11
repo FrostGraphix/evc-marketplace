@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Zap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Sparkles } from 'lucide-react';
 import { PRODUCTS } from '@/lib/products';
 import { ProductCard } from './ProductCard';
 
@@ -9,8 +9,8 @@ export const BudgetShelf: React.FC = () => {
   const shelfRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  // Products under ₦50,000 or sorted by price for accessible equipment
-  const accessibleProducts = PRODUCTS.filter((p) => p.price <= 60000).sort(
+  // High-yield entry properties under ₦2,000,000 or sorted by price for accessible plots
+  const accessibleProducts = PRODUCTS.filter((p) => p.price <= 2000000).sort(
     (a, b) => a.price - b.price
   );
 
@@ -80,10 +80,10 @@ export const BudgetShelf: React.FC = () => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <span className="text-xs font-bold uppercase tracking-wider text-brand flex items-center gap-1.5">
-            <Zap className="w-3.5 h-3.5" /> Essential Automation &amp; Finishes
+            <Sparkles className="w-3.5 h-3.5" /> High-Yield Entry Opportunities
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink)] mt-1">
-            Smart Upgrades under ₦50,000
+            Prime Plots Under ₦2,000,000
           </h2>
         </div>
 
@@ -91,14 +91,14 @@ export const BudgetShelf: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => scroll('left')}
-            className="w-10 h-10 rounded-full border border-[var(--line)] flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all active:scale-95 text-[var(--ink)]"
+            className="w-10 h-10 rounded-full border border-glow/25 flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all active:scale-95 text-[var(--ink)]"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => scroll('right')}
-            className="w-10 h-10 rounded-full border border-[var(--line)] flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all active:scale-95 text-[var(--ink)]"
+            className="w-10 h-10 rounded-full border border-glow/25 flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all active:scale-95 text-[var(--ink)]"
             aria-label="Scroll right"
           >
             <ChevronRight className="w-5 h-5" />
@@ -106,18 +106,18 @@ export const BudgetShelf: React.FC = () => {
         </div>
       </div>
 
-      {/* Horizontal Scroll Shelf */}
       <div
         ref={shelfRef}
-        className="flex gap-4 overflow-x-auto pb-4 pt-1 scrollbar-none snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className={`flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-none scroll-smooth select-none ${
+          isDragging ? 'cursor-grabbing' : 'cursor-grab'
+        }`}
       >
-        {accessibleProducts.map((product, idx) => (
+        {accessibleProducts.map((p) => (
           <div
-            key={product.id}
-            className="w-[240px] sm:w-[280px] flex-shrink-0 snap-start"
+            key={p.id}
+            className="w-[260px] sm:w-[280px] md:w-[300px] flex-shrink-0"
           >
-            <ProductCard product={product} index={idx} />
+            <ProductCard product={p} />
           </div>
         ))}
       </div>

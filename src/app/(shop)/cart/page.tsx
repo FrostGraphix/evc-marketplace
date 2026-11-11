@@ -53,8 +53,8 @@ function CartContent() {
       if (decoded.length > 0) {
         replaceCart(decoded);
         setRestoredBanner(
-          `Loaded ${decoded.length} shared equipment ${
-            decoded.length === 1 ? 'item' : 'items'
+          `Loaded ${decoded.length} shared property ${
+            decoded.length === 1 ? 'allocation' : 'allocations'
           } from quote link!`
         );
         setTimeout(() => setRestoredBanner(null), 8000);
@@ -82,14 +82,14 @@ function CartContent() {
           <Zap className="w-12 h-12" />
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--ink)]">
-          Your project cart is <em className="serif-italic">empty</em>
+          Your property reservation cart is <em className="serif-italic">empty</em>
         </h1>
         <p className="text-sm text-[var(--mute)] max-w-sm mx-auto">
-          Explore our clean energy systems, smart living devices, and architectural collections to build your order.
+          Explore our master-planned residential estates, highway corridors, and farmland projects to reserve your plots.
         </p>
         <div>
           <Link href="/shop" className="btn-primary text-xs py-3 px-8">
-            Explore Equipment <ArrowRight className="w-4 h-4 ml-1.5" />
+            Explore Properties <ArrowRight className="w-4 h-4 ml-1.5" />
           </Link>
         </div>
       </div>
@@ -105,7 +105,7 @@ function CartContent() {
         </Link>
         <span>/</span>
         <Link href="/shop" className="hover:text-brand transition-colors">
-          Catalog
+          Properties
         </Link>
         <span>/</span>
         <span className="text-[var(--ink)] font-semibold">Cart</span>
@@ -126,10 +126,10 @@ function CartContent() {
 
       <div className="mb-8">
         <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--ink)]">
-          Equipment &amp; <em className="serif-italic">System Order</em>
+          Property &amp; <em className="serif-italic">Plot Allocation</em>
         </h1>
         <p className="text-xs sm:text-sm text-[var(--mute)] mt-1">
-          Review your chosen hardware, apply enterprise discounts, or share this bill with your procurement team.
+          Review your selected plots, apply corporate allocation codes, or share this summary with your investment partners.
         </p>
       </div>
 
@@ -139,12 +139,12 @@ function CartContent() {
           <span className="text-[var(--ink)]">
             {amountLeft === 0 ? (
               <strong className="text-emerald-400 font-bold">
-                🎉 Free regional logistics unlocked for your order!
+                🎉 Free express courier deed dispatch unlocked for your order!
               </strong>
             ) : (
               <>
-                Add <b className="text-brand">{money(amountLeft)}</b> more equipment to qualify for{' '}
-                <strong className="text-[var(--ink)]">free regional freight</strong>!
+                Add <b className="text-brand">{money(amountLeft)}</b> more property value to qualify for{' '}
+                <strong className="text-[var(--ink)]">free express deed courier dispatch</strong>!
               </>
             )}
           </span>
@@ -265,7 +265,7 @@ function CartContent() {
               href="/shop"
               className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--mute)] hover:text-brand transition-colors"
             >
-              <ArrowLeft className="w-3.5 h-3.5" /> Add More Equipment
+              <ArrowLeft className="w-3.5 h-3.5" /> Add More Properties
             </Link>
 
             <button

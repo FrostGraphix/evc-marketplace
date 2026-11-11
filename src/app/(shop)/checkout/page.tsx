@@ -273,9 +273,9 @@ export default function CheckoutPage() {
     return (
       <div className="max-w-4xl mx-auto px-6 py-20 text-center space-y-4">
         <h2 className="font-display text-2xl font-bold text-[var(--ink)]">Your Cart is Empty</h2>
-        <p className="text-sm text-[var(--mute)]">Add hardware or systems before checking out.</p>
+        <p className="text-sm text-[var(--mute)]">Add land plots or housing units before checking out.</p>
         <Link href="/shop" className="btn-primary text-xs py-2.5 px-6 inline-flex">
-          Browse Equipment
+          Browse Properties
         </Link>
       </div>
     );

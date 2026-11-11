@@ -416,6 +416,77 @@ export const ProductArt: React.FC<ProductArtProps> = ({
           </>
         );
 
+      // EVC Real Estate, Land & Estates
+      case 'estate':
+      case 'land':
+        return (
+          <>
+            <defs>
+              {lin('a' + u, '#0a1924', '#03090a')}
+              {lin('b' + u, c.light, c.main)}
+            </defs>
+            {/* Estate Perimeter / Land Plot Map */}
+            <polygon points="200,90 320,160 280,310 120,310 80,160" fill={`url(#a${u})`} stroke={c.main} strokeWidth="3" />
+            <polygon points="200,120 290,170 260,280 140,280 110,170" fill="none" stroke={c.light} strokeWidth="1.5" strokeDasharray="4 4" />
+            {/* Central Landmark / Geolocation Pin */}
+            <path d="M200 150 C185 150 175 162 175 178 C175 200 200 225 200 225 C200 225 225 200 225 178 C225 162 215 150 200 150 Z" fill={`url(#b${u})`} />
+            <circle cx="200" cy="175" r="7" fill="#03090a" />
+            {/* Survey Grid & Compass */}
+            <line x1="80" y1="230" x2="320" y2="230" stroke={c.main} strokeWidth="1" opacity="0.4" />
+            <line x1="200" y1="90" x2="200" y2="310" stroke={c.main} strokeWidth="1" opacity="0.4" />
+            <text x="200" y="270" fill={c.light} fontSize="13" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">
+              VERIFIED C OF O PLOT
+            </text>
+          </>
+        );
+
+      case 'building':
+        return (
+          <>
+            <defs>
+              {lin('a' + u, '#1e293b', '#0a1628')}
+              {lin('b' + u, c.light, c.main)}
+            </defs>
+            {/* Modern Residential Villa / Architectural Building */}
+            <rect x="110" y="160" width="180" height="140" rx="8" fill={`url(#a${u})`} stroke={c.main} strokeWidth="2.5" />
+            <polygon points="90,160 200,90 310,160" fill={c.main} opacity="0.9" />
+            <rect x="140" y="190" width="40" height="40" rx="4" fill="#38bdf8" opacity="0.8" />
+            <rect x="220" y="190" width="40" height="40" rx="4" fill="#38bdf8" opacity="0.8" />
+            <rect x="175" y="240" width="50" height="60" rx="4" fill="#03090a" stroke={c.light} strokeWidth="1.5" />
+            {/* Solar Roof Panels */}
+            <polygon points="120,150 160,120 185,120 145,150" fill="#38bdf8" opacity="0.7" />
+            <polygon points="150,150 190,120 215,120 175,150" fill="#38bdf8" opacity="0.7" />
+          </>
+        );
+
+      case 'farmland':
+        return (
+          <>
+            <defs>
+              {lin('a' + u, '#14251a', '#03090a')}
+            </defs>
+            <rect x="90" y="100" width="220" height="200" rx="16" fill={`url(#a${u})`} stroke="#10b981" strokeWidth="2.5" />
+            {/* Crop Contours */}
+            <path d="M100 240 Q 200 200 300 240" stroke="#10b981" strokeWidth="3" fill="none" />
+            <path d="M100 210 Q 200 170 300 210" stroke="#10b981" strokeWidth="2.5" fill="none" opacity="0.7" />
+            <path d="M100 180 Q 200 140 300 180" stroke="#10b981" strokeWidth="2" fill="none" opacity="0.5" />
+            <circle cx="200" cy="140" r="20" fill="#f59e0b" opacity="0.8" />
+            <text x="200" y="280" fill="#34d399" fontSize="12" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">
+              EVC AGRO CITY
+            </text>
+          </>
+        );
+
+      case 'city':
+        return (
+          <>
+            <rect x="100" y="150" width="50" height="150" fill="#0f172a" stroke={c.main} strokeWidth="2" />
+            <rect x="160" y="110" width="80" height="190" fill="#1e293b" stroke={c.light} strokeWidth="2" />
+            <rect x="250" y="170" width="50" height="130" fill="#0f172a" stroke={c.main} strokeWidth="2" />
+            <circle cx="200" cy="90" r="4" fill="#ef4444" />
+          </>
+        );
+
       // Default Fallback
       default:
         return (

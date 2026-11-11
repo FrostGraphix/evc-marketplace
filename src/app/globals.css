@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+  /* Font Families */
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-body: 'Figtree', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
   /* Canvas & Surfaces (Light Theme) */
   --bg: #f8fafc;
   --surface: #ffffff;

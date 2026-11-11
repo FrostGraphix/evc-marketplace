@@ -11,12 +11,12 @@ export const AnnouncementBar: React.FC = () => {
   }
 
   const items = [
-    'EVC Nigeria — Smart Living, Clean Energy & Architectural Finishes',
-    'Corporate Offices: Ilorin • Ibadan • Abuja',
-    'Nationwide Site Delivery & Professional Installation',
-    `WhatsApp Support & Instant Inquiries: ${CFG.phoneDisp}`,
-    'Tier-1 Solar Inverters, Biometric Smart Locks & Acoustic Paneling',
-    'Warranty Backed & Verified Authentic Tech',
+    'EVC Nigeria — Verified Real Estate, Land & Master-Planned Estates (evcng.com)',
+    'Experience Hubs: Ilorin (Fate / Flower Garden GRA) • Ibadan (Bodija) • Abuja',
+    'Free Guided Site Tours: Tuesdays, Thursdays & Saturdays (10:00 AM)',
+    `WhatsApp Advisory & Site Inspection Booking: ${CFG.phoneDisp}`,
+    'Guaranteed Titles: C of O, C of O in View, Registered Surveys & Zero Encumbrance',
+    '100% Dry Tableland with Immediate Corner-Piece Allocation',
   ];
 
   return (

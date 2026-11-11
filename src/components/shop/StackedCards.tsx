@@ -74,7 +74,7 @@ export const StackedCards: React.FC = () => {
             <div className="md:col-span-7 p-6 sm:p-10 md:p-12 flex flex-col justify-between gap-6 relative z-10">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
                 <span className="px-3 py-1 rounded-full border border-white/20 backdrop-blur-sm">
-                  {items.length} Systems Available
+                  {items.length} {items.length === 1 ? 'Project Listed' : 'Projects Listed'}
                 </span>
                 <span className="px-3 py-1 rounded-full border border-brand/50 text-brand-light backdrop-blur-sm">
                   From {money(fromPrice)}
@@ -95,10 +95,10 @@ export const StackedCards: React.FC = () => {
                   href={`/shop?cat=${cat.id}`}
                   className="btn-primary text-xs py-3 px-6"
                 >
-                  Explore Category <ArrowRight className="w-4 h-4" />
+                  Explore Portfolio <ArrowRight className="w-4 h-4" />
                 </Link>
                 <span className="text-xs text-slate-400">
-                  Backed by EVC Warranty & Certified Installation
+                  Backed by EVC Title Guarantee &amp; Physical Allocation
                 </span>
               </div>
             </div>

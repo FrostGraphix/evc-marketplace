@@ -59,10 +59,10 @@ export const Footer: React.FC = () => {
               Stay Ahead with EVC
             </span>
             <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">
-              Smart Energy & Architectural Finishes for Africa
+              Verified Land &amp; Master-Planned Communities Across Nigeria
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl leading-relaxed">
-              Subscribe to technical bulletins, seasonal equipment promos, and smart building insights delivered straight to your inbox.
+              Subscribe to project launch alerts, upcoming phase releases, and verified title updates delivered straight to your inbox.
             </p>
           </div>
           <div className="lg:col-span-5">
@@ -114,7 +114,7 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Nigeria&apos;s premier destination for hybrid solar inverters, lithium energy storage, smart automation, biometric security, and architectural wall finishes.
+              Nigeria&apos;s premier developer for master-planned residential estates, strategic highway growth corridors, student housing, and commercial agro-cities.
             </p>
             <a
               href={waLink('Hello EVC Nigeria, I would like to request a quotation.')}
@@ -267,7 +267,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <span>&copy; {new Date().getFullYear()} EVC Nigeria Limited. All rights reserved.</span>
-          <span className="text-slate-500 text-[11px]">Clean Energy • Smart Automation • Architectural Finishes</span>
+          <span className="text-slate-500 text-[11px]">Master-Planned Estates • Guaranteed Titles • Physical Demarcation</span>
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1.5 hover:text-white font-semibold transition-colors"

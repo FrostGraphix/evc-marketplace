@@ -127,7 +127,15 @@ export async function GET(request: Request) {
 
   if (cat && cat !== 'all') {
     const catLower = cat.toLowerCase();
-    result = result.filter((p) => p.cat?.toLowerCase() === catLower);
+    if (catLower === 'sold-out') {
+      result = result.filter(
+        (p) => p.cat === 'sold-out' || p.status === 'sold_out' || p.badge === 'SOLD OUT'
+      );
+    } else if (catLower === 'active') {
+      result = result.filter((p) => p.status !== 'sold_out' && p.badge !== 'SOLD OUT');
+    } else {
+      result = result.filter((p) => p.cat?.toLowerCase() === catLower);
+    }
   }
 
   if (minPrice !== undefined && !isNaN(minPrice)) {

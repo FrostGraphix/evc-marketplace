@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Search, RotateCcw, MessageSquare, SlidersHorizontal } from 'lucide-react';
+import { Search, RotateCcw, MessageSquare, SlidersHorizontal, MapPin, Building, ShieldCheck } from 'lucide-react';
 import { CATS, PRODUCTS } from '@/lib/products';
 import { Product, Category } from '@/types';
 import { money, waLink } from '@/lib/utils';
@@ -19,13 +19,13 @@ function ShopContent() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [selectedCat, setSelectedCat] = useState<string>(initialCat);
-  const [maxPrice, setMaxPrice] = useState<number>(1000000);
+  const [maxPrice, setMaxPrice] = useState<number>(50000000);
   const [searchQuery, setSearchQuery] = useState<string>(initialQ);
   const [sortBy, setSortBy] = useState<'featured' | 'low' | 'high' | 'az'>('featured');
   const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false);
 
   const maxCatalogPrice = useMemo(() => {
-    return Math.max(1000000, ...products.map((p) => p.price || 0));
+    return Math.max(50000000, ...products.map((p) => p.price || 0));
   }, [products]);
 
   useEffect(() => {
@@ -76,11 +76,28 @@ function ShopContent() {
 
   const filteredProducts = useMemo(() => {
     let result = products.filter((p) => {
-      const matchCat = selectedCat === 'all' || p.cat === selectedCat;
+      let matchCat = false;
+      if (selectedCat === 'all') {
+        matchCat = true;
+      } else if (selectedCat === 'sold-out') {
+        matchCat = p.cat === 'sold-out' || p.status === 'sold_out' || p.badge === 'SOLD OUT';
+      } else if (selectedCat === 'active') {
+        matchCat = p.status !== 'sold_out' && p.badge !== 'SOLD OUT';
+      } else {
+        matchCat = p.cat === selectedCat;
+      }
+
       const matchPrice = p.price <= maxPrice;
+      const query = searchQuery.trim().toLowerCase();
       const matchQuery =
-        !searchQuery.trim() ||
-        `${p.name} ${p.desc} ${p.cat}`.toLowerCase().includes(searchQuery.toLowerCase());
+        !query ||
+        p.name.toLowerCase().includes(query) ||
+        p.desc.toLowerCase().includes(query) ||
+        p.cat.toLowerCase().includes(query) ||
+        (p.badge && p.badge.toLowerCase().includes(query)) ||
+        (p.sizes && p.sizes.some((s) => s.toLowerCase().includes(query))) ||
+        (p.feat && p.feat.some((f) => f.toLowerCase().includes(query)));
+
       return matchCat && matchPrice && matchQuery;
     });
 
@@ -103,7 +120,7 @@ function ShopContent() {
   };
 
   const currentCategory = useMemo(() => {
-    return categories.find((c) => c.id === selectedCat) || { name: 'Catalog', id: 'all' };
+    return categories.find((c) => c.id === selectedCat) || { name: 'All Land Projects', id: 'all' };
   }, [categories, selectedCat]);
 
   return (
@@ -114,7 +131,7 @@ function ShopContent() {
           Home
         </Link>
         <span>/</span>
-        <span className="text-white font-semibold">Shop</span>
+        <span className="text-white font-semibold">Properties &amp; Land</span>
       </nav>
 
       {/* Header */}
@@ -122,14 +139,14 @@ function ShopContent() {
         <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
           {selectedCat === 'all' ? (
             <>
-              All <em className="serif-italic text-brand">Solutions</em>
+              All <em className="serif-italic text-brand">Land &amp; Projects</em>
             </>
           ) : (
             currentCategory.name
           )}
         </h1>
         <p className="text-sm text-slate-400 max-w-xl mt-2 leading-relaxed">
-          Engineered solar inverters, lithium powerwalls, biometric locks, smart switches, and architectural finishes across Nigeria.
+          Explore official master-planned estates, highway corridors, farmland cities, and housing developments from EVC Nigeria (evcng.com/buy-land).
         </p>
       </div>
 
@@ -166,7 +183,7 @@ function ShopContent() {
         <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-6 rounded-3xl bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-sm space-y-6">
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-              Categories
+              Portfolios &amp; Sectors
             </h4>
             <div className="flex flex-col gap-1">
               <button
@@ -177,7 +194,7 @@ function ShopContent() {
                     : 'text-slate-300 hover:bg-slate-800/60'
                 }`}
               >
-                <span>All Products</span>
+                <span>All Projects</span>
                 <span className="opacity-70 font-mono">{products.length}</span>
               </button>
               {categories.map((cat) => {
@@ -202,21 +219,31 @@ function ShopContent() {
 
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
-              Max Price
+              Max Plot Price
             </h4>
             <input
               type="range"
-              min="5000"
+              min="500000"
               max={maxCatalogPrice}
-              step="5000"
+              step="500000"
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="w-full accent-brand cursor-pointer"
             />
             <div className="flex items-center justify-between text-xs text-slate-400 mt-2 font-mono">
-              <span>₦5,000</span>
+              <span>₦500K</span>
               <span className="font-bold text-brand">{money(maxPrice)}</span>
             </div>
+          </div>
+
+          {/* Site Inspection Callout */}
+          <div className="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/20 text-xs text-emerald-200 space-y-1">
+            <span className="font-bold flex items-center gap-1.5 text-emerald-300">
+              <ShieldCheck className="w-4 h-4" /> Free Site Inspections
+            </span>
+            <p className="text-[11px] leading-relaxed">
+              Every Tuesday, Thursday, and Saturday from Ilorin &amp; Ibadan hubs.
+            </p>
           </div>
 
           <div className="pt-2 border-t border-slate-800">
@@ -238,7 +265,7 @@ function ShopContent() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search solar, smart locks, finishes..."
+                placeholder="Search land, estate name, SQM size, or state..."
                 className="w-full h-10 pl-10 pr-4 rounded-xl bg-[#03090a] border border-slate-800 text-xs text-white placeholder:text-slate-500 outline-none focus:border-brand transition-all"
               />
             </div>
@@ -269,18 +296,18 @@ function ShopContent() {
           {showMobileFilters && (
             <div className="lg:hidden p-5 rounded-2xl bg-[#03090a] border border-glow/25 space-y-4">
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-2">Max Price</label>
+                <label className="text-xs font-semibold text-slate-300 block mb-2">Max Plot Price</label>
                 <input
                   type="range"
-                  min="5000"
+                  min="500000"
                   max={maxCatalogPrice}
-                  step="5000"
+                  step="500000"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
                   className="w-full accent-brand"
                 />
                 <div className="flex justify-between text-xs text-slate-400 mt-1 font-mono">
-                  <span>₦5,000</span>
+                  <span>₦500K</span>
                   <span className="font-bold text-brand">{money(maxPrice)}</span>
                 </div>
               </div>
@@ -296,16 +323,16 @@ function ShopContent() {
 
           {/* Results Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
             </div>
           ) : (
             <div className="py-20 text-center space-y-4 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 p-8">
-              <h3 className="font-display text-2xl font-bold text-white">No products found</h3>
+              <h3 className="font-display text-2xl font-bold text-white">No properties found</h3>
               <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                No items match your selected filter criteria. Try adjusting the price range or search keywords.
+                No land or housing developments match your selected criteria. Try adjusting the price range or search terms.
               </p>
               <div className="flex flex-wrap gap-3 justify-center pt-2">
                 <button
@@ -315,12 +342,12 @@ function ShopContent() {
                   <RotateCcw className="w-3.5 h-3.5" /> Clear Filters
                 </button>
                 <a
-                  href={waLink('Hello EVC Nigeria, I am looking for a specific solar or smart tech item.')}
+                  href={waLink('Hello EVC Nigeria, I am looking for a specific land or property investment.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary text-xs py-2.5 px-5 inline-flex items-center gap-1.5"
                 >
-                  <MessageSquare className="w-3.5 h-3.5" /> Ask on WhatsApp
+                  <MessageSquare className="w-3.5 h-3.5" /> Consult on WhatsApp
                 </a>
               </div>
             </div>
@@ -333,7 +360,7 @@ function ShopContent() {
 
 export default function ShopPage() {
   return (
-    <Suspense fallback={<div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 text-slate-400">Loading EVC catalog...</div>}>
+    <Suspense fallback={<div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 text-slate-400">Loading EVC property portfolio...</div>}>
       <ShopContent />
     </Suspense>
   );

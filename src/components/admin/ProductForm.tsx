@@ -88,7 +88,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialProduct, mode }
     initialProduct?.lowStockThreshold?.toString() || '3'
   );
   const [imageUrl, setImageUrl] = useState(initialProduct?.images?.[0] || '');
-  const [status, setStatus] = useState<'active' | 'draft' | 'archived'>(initialProduct?.status || 'active');
+  const [status, setStatus] = useState<'active' | 'draft' | 'archived' | 'sold_out'>(
+    initialProduct?.status || 'active'
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toggleColor = (c: ColorKey) => {
@@ -421,19 +423,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialProduct, mode }
             <h3 className="font-display font-bold text-base text-[var(--ink)]">
               Marketplace Visibility
             </h3>
-            <div className="grid grid-cols-3 gap-2">
-              {(['active', 'draft', 'archived'] as const).map((s) => (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {(['active', 'draft', 'archived', 'sold_out'] as const).map((s) => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => setStatus(s)}
-                  className={`py-2 px-2 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all ${
+                  className={`py-2 px-2 rounded-xl text-[11px] font-bold uppercase tracking-wider border transition-all text-center ${
                     status === s
-                      ? 'bg-brand text-white border-brand'
+                      ? s === 'sold_out'
+                        ? 'bg-rose-700 text-white border-rose-600'
+                        : 'bg-brand text-white border-brand'
                       : 'border-[var(--line)] text-[var(--mute)] bg-[var(--surface2)]'
                   }`}
                 >
-                  {s}
+                  {s.replace('_', ' ')}
                 </button>
               ))}
             </div>
