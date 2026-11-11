@@ -276,32 +276,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
             isScrolled ? 'h-14' : 'h-16'
           }`}
         >
-          {/* Header Logo (Rule 3: Light -> /images/evc-logo-light.png, Dark -> /images/evc-logo-dark.png, Mark -> /images/evc-mark.png) */}
+          {/* Header Logo: Single official EVC logo with letters & 3D mark */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5 flex-shrink-0"
+            className="group flex items-center flex-shrink-0"
             aria-label="EVC Nigeria Homepage"
           >
-            {/* Logo Mark with clean outline */}
-            <div className="relative w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex items-center justify-center p-0.5 transition-transform duration-200 group-hover:scale-105">
-              <Image
-                src="/images/evc-mark.png"
-                alt="EVC Mark"
-                width={32}
-                height={32}
-                className="w-full h-full object-contain"
-                priority
-              />
-            </div>
-
-            {/* Wordmark rendered smoothly for light and dark themes */}
-            <div className="relative h-7 w-28 sm:w-32 hidden xs:block">
+            <div className="relative h-8 sm:h-9 w-28 sm:w-32 transition-transform duration-200 group-hover:scale-[1.02]">
               {/* Light Theme Logo */}
               <Image
                 src="/images/evc-logo-light.png"
                 alt="EVC Nigeria"
                 fill
-                sizes="128px"
+                sizes="(max-width: 640px) 112px, 128px"
                 className="object-contain object-left dark:hidden"
                 priority
               />
@@ -310,7 +297,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
                 src="/images/evc-logo-dark.png"
                 alt="EVC Nigeria"
                 fill
-                sizes="128px"
+                sizes="(max-width: 640px) 112px, 128px"
                 className="object-contain object-left hidden dark:block"
                 priority
               />
@@ -586,91 +573,126 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
           </div>
         )}
 
-        {/* Mobile Fullscreen Navigation Drawer */}
+        {/* Mobile Backdrop Overlay */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 top-[72px] bg-[var(--bg)] z-40 p-6 flex flex-col justify-between overflow-y-auto border-t border-[var(--line)]">
-            <div className="space-y-4">
-              <nav className="flex flex-col gap-2">
-                <Link
-                  href="/shop"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-2xl bg-[var(--surface)] border border-[var(--line)] font-display font-bold text-lg text-[var(--ink)]"
-                >
-                  Shop Catalog
-                </Link>
+          <div
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
 
-                {/* Mobile Categories Accordion */}
-                <div className="rounded-2xl bg-[var(--surface)] border border-[var(--line)] overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => setMobileCategoriesExpanded(!mobileCategoriesExpanded)}
-                    className="w-full flex items-center justify-between px-4 py-3 font-display font-bold text-lg text-[var(--ink)]"
-                  >
-                    <span>Categories</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileCategoriesExpanded ? 'rotate-180 text-brand' : ''}`} />
-                  </button>
-                  {mobileCategoriesExpanded && (
-                    <div className="px-4 pb-3 grid grid-cols-1 gap-2 pt-1 border-t border-[var(--line)]">
-                      {CATS.map((c) => (
-                        <Link
-                          key={c.id}
-                          href={`/shop?cat=${c.id}`}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className="flex items-center gap-2.5 text-xs font-semibold text-[var(--mute)] hover:text-brand py-1.5"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-                          <span>{c.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+        {/* Mobile Hamburger Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-[calc(100%+8px)] left-0 right-0 w-full max-h-[calc(100vh-100px)] overflow-y-auto rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-2xl p-4 sm:p-5 z-50 animate-in fade-in slide-in-from-top-3 duration-200">
+            <nav className="flex flex-col gap-1.5">
+              <Link
+                href="/shop"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-between px-4 py-3 rounded-2xl bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
+              >
+                <span>Shop Catalog</span>
+                <span className="text-xs text-brand font-semibold">All Land &rarr;</span>
+              </Link>
 
-                <Link
-                  href="/why-us"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-2xl bg-[var(--surface)] border border-[var(--line)] font-display font-bold text-lg text-[var(--ink)]"
+              {/* Mobile Categories Accordion */}
+              <div className="rounded-2xl bg-[var(--surface2)] overflow-hidden border border-[var(--line)]">
+                <button
+                  type="button"
+                  onClick={() => setMobileCategoriesExpanded(!mobileCategoriesExpanded)}
+                  className="w-full flex items-center justify-between px-4 py-3 font-display font-bold text-base text-[var(--ink)]"
                 >
-                  Why Us
-                </Link>
-                <Link
-                  href="/track"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-2xl bg-[var(--surface)] border border-[var(--line)] font-display font-bold text-lg text-[var(--ink)]"
-                >
-                  Track Order
-                </Link>
-                <Link
-                  href="/about"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-2xl bg-[var(--surface)] border border-[var(--line)] font-display font-bold text-lg text-[var(--ink)]"
-                >
-                  About EVC
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-2xl bg-[var(--surface)] border border-[var(--line)] font-display font-bold text-lg text-[var(--ink)]"
-                >
-                  Contact & Offices
-                </Link>
-              </nav>
+                  <span>Land Categories</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileCategoriesExpanded ? 'rotate-180 text-brand' : 'text-[var(--mute)]'}`} />
+                </button>
+                {mobileCategoriesExpanded && (
+                  <div className="px-3 pb-3 grid grid-cols-1 gap-1.5 pt-1 border-t border-[var(--line)]">
+                    {CATS.map((c) => (
+                      <Link
+                        key={c.id}
+                        href={`/shop?cat=${c.id}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[var(--ink)] hover:text-brand hover:bg-[var(--surface)] transition-all"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-brand flex-shrink-0" />
+                        <span>{c.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-              {/* Direct WhatsApp Callout */}
+              <Link
+                href="/why-us"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
+              >
+                Why Choose EVC
+              </Link>
+              <Link
+                href="/track"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
+              >
+                Track Allocation / Deed
+              </Link>
+              <Link
+                href="/about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
+              >
+                About EVC Nigeria
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
+              >
+                Contact & Regional Offices
+              </Link>
+            </nav>
+
+            {/* Direct WhatsApp Callout */}
+            <div className="pt-3 mt-3 border-t border-[var(--line)] space-y-2">
               <a
                 href={`https://wa.me/${CFG.phone}?text=Hello%20EVC%20Nigeria`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-wa w-full py-3 text-xs justify-center"
+                className="btn-wa w-full py-2.5 text-xs justify-center"
               >
                 <Phone className="w-4 h-4" />
                 <span>Chat on WhatsApp: {CFG.phoneDisp}</span>
               </a>
-            </div>
 
-            {/* Footer details in mobile menu */}
-            <div className="pt-6 border-t border-[var(--line)] text-center text-xs text-[var(--mute)]">
-              &copy; {new Date().getFullYear()} EVC Nigeria. All rights reserved.
+              {/* Account Quick Links */}
+              <div className="flex items-center gap-2 pt-1">
+                {activeUser ? (
+                  <Link
+                    href="/account"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 text-center py-2 px-3 rounded-xl bg-[var(--surface2)] text-xs font-semibold text-[var(--ink)] hover:text-brand"
+                  >
+                    My Account ({firstName})
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1 text-center py-2 px-3 rounded-xl bg-[var(--surface2)] text-xs font-semibold text-[var(--ink)] hover:text-brand"
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      href="/register"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1 text-center py-2 px-3 rounded-xl border border-brand/40 text-brand text-xs font-semibold hover:bg-brand/10"
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}

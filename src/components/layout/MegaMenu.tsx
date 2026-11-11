@@ -29,7 +29,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
     <div
       role="region"
       aria-label="Shop categories menu"
-      className="absolute left-4 right-4 top-[calc(100%+12px)] p-5 md:p-6 rounded-3xl bg-[var(--surface)]/95 backdrop-blur-2xl border border-[var(--line)] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-200"
+      className="absolute left-0 right-0 top-[calc(100%+8px)] p-5 md:p-6 rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-200"
     >
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Category Grid */}

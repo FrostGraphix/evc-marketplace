@@ -10,8 +10,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Clock,
-  ArrowUp,
   MessageSquare,
   Send,
   CheckCircle2,
@@ -27,10 +25,6 @@ export const Footer: React.FC = () => {
     return null;
   }
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (newsletterEmail.trim()) {
@@ -41,16 +35,72 @@ export const Footer: React.FC = () => {
   };
 
   const socialLinks = [
-    { name: 'Instagram', handle: '@evc_ng', url: CFG.socials.instagram },
-    { name: 'X (Twitter)', handle: '@evcnigeria', url: CFG.socials.x },
-    { name: 'LinkedIn', handle: 'EVC Nigeria', url: CFG.socials.linkedin },
-    { name: 'YouTube', handle: '@evcnigeria', url: CFG.socials.youtube },
-    { name: 'Facebook', handle: '@evcnigeria', url: CFG.socials.facebook },
-    { name: 'TikTok', handle: '@evcnigeria', url: CFG.socials.tiktok },
+    {
+      name: 'Instagram',
+      handle: '@evc_ng',
+      url: CFG.socials.instagram,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+        </svg>
+      ),
+    },
+    {
+      name: 'X (Twitter)',
+      handle: '@evcnigeria',
+      url: CFG.socials.x,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'LinkedIn',
+      handle: 'EVC Nigeria',
+      url: CFG.socials.linkedin,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.62 1.62 0 1 0 0-3.24 1.62 1.62 0 0 0 0 3.24m1.39 9.74v-8.37H5.07v8.37h2.78z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'YouTube',
+      handle: '@evcnigeria',
+      url: CFG.socials.youtube,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'Facebook',
+      handle: '@evcnigeria',
+      url: CFG.socials.facebook,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'TikTok',
+      handle: '@evcnigeria',
+      url: CFG.socials.tiktok,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.11V9.42a6.33 6.33 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.16 8.16 0 0 0 4.77 1.52V6.82a4.84 4.84 0 0 1-1-.13z" />
+        </svg>
+      ),
+    },
   ];
 
   return (
-    <footer className="bg-[var(--inv)] text-[var(--inv-ink)] pt-16 md:pt-20 mt-20 rounded-t-[40px] overflow-hidden relative border-t border-white/10">
+    <footer className="mt-auto bg-[var(--inv)] text-[var(--inv-ink)] pt-16 md:pt-20 rounded-t-[40px] overflow-hidden relative border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Top Newsletter & Quote Banner */}
         <div className="pb-12 mb-12 border-b border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -94,21 +144,13 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-16 border-b border-white/10">
           {/* Brand Info */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex items-center justify-center p-0.5">
-                <Image
-                  src="/images/evc-mark.png"
-                  alt="EVC Mark"
-                  width={32}
-                  height={32}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="relative h-7 w-28">
+            <Link href="/" className="flex items-center" aria-label="EVC Nigeria Homepage">
+              <div className="relative h-8 w-32">
                 <Image
                   src="/images/evc-logo-dark.png"
                   alt="EVC Nigeria"
                   fill
+                  sizes="128px"
                   className="object-contain object-left"
                 />
               </div>
@@ -197,7 +239,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Corporate Offices (Rule 4) */}
+          {/* Corporate Offices */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-brand mb-4">
               Corporate Offices
@@ -249,36 +291,31 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Verified Socials Dock (Rule 4) */}
+        {/* Verified Socials Dock - Icons Only */}
         <div className="py-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
             Official Verified Channels:
           </span>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3">
             {socialLinks.map((s) => (
               <a
                 key={s.name}
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 hover:border-brand hover:text-brand text-xs text-slate-300 transition-all duration-200"
+                title={`${s.name} (${s.handle})`}
+                aria-label={`${s.name} (${s.handle})`}
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/15 bg-white/5 hover:border-brand hover:bg-brand/10 hover:text-brand text-slate-300 flex items-center justify-center transition-all duration-200 hover:scale-110"
               >
-                <span className="font-semibold">{s.name}:</span> <span className="opacity-75">{s.handle}</span>
+                {s.icon}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Back to Top */}
-        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        {/* Bottom Bar: Clean Copyright */}
+        <div className="py-6 flex items-center justify-center text-center text-xs text-slate-400">
           <span>&copy; {new Date().getFullYear()} EVC Nigeria Limited. All rights reserved.</span>
-          <span className="text-slate-500 text-[11px]">Master-Planned Estates • Guaranteed Titles • Physical Demarcation</span>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 hover:text-white font-semibold transition-colors"
-          >
-            Back to top <ArrowUp className="w-3.5 h-3.5" />
-          </button>
         </div>
       </div>
 
