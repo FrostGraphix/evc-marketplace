@@ -197,10 +197,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
     };
   }, []);
 
-  // Specified nav links: Shop, Categories, Track Order, About, Contact
+  // Specified nav links: Shop, Categories, Why Us, Track Order, About, Contact
   const navLinks = [
     { label: 'Shop', href: '/shop' },
     { label: 'Categories', href: '/shop#categories', hasMega: true },
+    { label: 'Why Us', href: '/why-us' },
     { label: 'Track Order', href: '/track' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
@@ -625,6 +626,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
                   )}
                 </div>
 
+                <Link
+                  href="/why-us"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-4 py-3 rounded-2xl bg-[var(--surface)] border border-[var(--line)] font-display font-bold text-lg text-[var(--ink)]"
+                >
+                  Why Us
+                </Link>
                 <Link
                   href="/track"
                   onClick={() => setIsMobileMenuOpen(false)}

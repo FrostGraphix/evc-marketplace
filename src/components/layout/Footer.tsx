@@ -165,6 +165,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/why-us" className="hover:text-brand transition-colors font-semibold text-brand">
+                  Why Us &amp; Core Pillars
+                </Link>
+              </li>
+              <li>
                 <Link href="/track" className="hover:text-brand transition-colors font-medium text-brand-light">
                   Track Consignment
                 </Link>

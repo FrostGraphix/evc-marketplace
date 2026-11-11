@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, ShieldCheck, Truck, Zap, Building2, MapPin, CheckCircle2, FileCheck, Calendar } from 'lucide-react';
+import { ArrowRight, Sparkles, ShieldCheck, Truck, Zap, Building2, MapPin, CheckCircle2, FileCheck, Calendar, Users, Award, Compass } from 'lucide-react';
 import { CFG } from '@/lib/products';
 import Image from 'next/image';
 
@@ -78,12 +78,45 @@ export default function AboutPage() {
             <Link href="/shop" className="btn-primary text-sm">
               Explore Property Portfolio <ArrowRight className="w-4 h-4 ml-1.5" />
             </Link>
-            <Link href="/contact" className="btn-ghost text-sm border border-glow/25">
-              Contact Property Advisory Team
+            <Link href="/why-us" className="btn-ghost text-sm border border-glow/25">
+              Why EVC Nigeria (4 Pillars) &rarr;
             </Link>
           </div>
         </div>
       </div>
+
+      {/* Vision & Mission from evcng.com/why-us */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="p-8 sm:p-10 rounded-[32px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center text-brand">
+              <Compass className="w-5 h-5" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand">Our Vision</span>
+          </div>
+          <h3 className="font-display text-2xl font-bold text-white leading-snug">
+            {CFG.whyUs.vision}
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Propelled by architectural crafts, meticulous surveyor expertise, and modern community design to lead Nigeria&apos;s property transformation.
+          </p>
+        </div>
+
+        <div className="p-8 sm:p-10 rounded-[32px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center text-brand">
+              <Award className="w-5 h-5" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand">Our Mission</span>
+          </div>
+          <h3 className="font-display text-2xl font-bold text-white leading-snug">
+            {CFG.whyUs.mission}
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Delivering accessible, budget-friendly installment structures alongside premium master-planned standards across every Nigerian state.
+          </p>
+        </div>
+      </section>
 
       {/* 3 Core Pillars */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -117,6 +150,45 @@ export default function AboutPage() {
           </p>
         </div>
       </div>
+
+      {/* Leadership Directorate from evcng.com/why-us */}
+      <section className="space-y-8">
+        <div className="text-center max-w-xl mx-auto">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand">
+            Operational Team
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">
+            Leadership &amp; Directorate
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400 mt-2">
+            The experienced professionals guiding your land allocations and development projects.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {CFG.whyUs.leadership.map((leader, idx) => (
+            <div
+              key={idx}
+              className="p-6 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col gap-3 text-center items-center"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-brand/15 border border-brand/30 flex items-center justify-center text-brand font-display font-bold text-xl">
+                {leader.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
+              </div>
+              <div>
+                <strong className="block font-display text-base font-bold text-white">
+                  {leader.name}
+                </strong>
+                <span className="text-xs font-semibold text-brand block mt-0.5">
+                  {leader.role}
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed mt-1">
+                {leader.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Regional Hubs Section */}
       <section className="p-8 sm:p-12 rounded-[40px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10">

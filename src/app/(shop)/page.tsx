@@ -377,6 +377,78 @@ export default function HomePage() {
         <BudgetShelf />
       </section>
 
+      {/* Why Choose EVC Nigeria: 4 Pillars & Luxury Owners Testimonials (from evcng.com/why-us) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand">
+              The EVC Standard &bull; evcng.com/why-us
+            </span>
+            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white mt-1">
+              Why Investors Choose EVC Nigeria
+            </h2>
+          </div>
+          <Link
+            href="/why-us"
+            className="btn-ghost text-xs py-2.5 px-5 border border-glow/25 inline-flex items-center gap-1.5 w-fit"
+          >
+            Learn More on Why Us <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* 4 Pillars Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {CFG.whyUs.pillars.map((pillar) => (
+            <div
+              key={pillar.id}
+              className="p-6 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col justify-between gap-3"
+            >
+              <h3 className="font-display font-bold text-base text-white">
+                {pillar.title}
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {pillar.desc}
+              </p>
+              <Link href="/why-us" className="text-[11px] font-semibold text-brand hover:underline mt-2 inline-block">
+                Explore pillar &rarr;
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        {/* Testimonials Shelf: Trusted by Luxury Owners */}
+        <div className="p-8 sm:p-10 rounded-[36px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-brand">
+                Trusted by Luxury Owners &amp; Tech Founders
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mt-0.5">
+                Take our word for it.
+              </h3>
+            </div>
+            <span className="text-xs text-slate-400 hidden sm:inline-block">Verified investor reviews</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {CFG.whyUs.testimonials.slice(0, 2).map((t, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-[#03090a]/80 border border-glow/25 flex flex-col justify-between gap-4"
+              >
+                <p className="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs">
+                  <strong className="text-white font-semibold">{t.author}</strong>
+                  <span className="text-brand text-[11px] font-mono">{t.role}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Custom Procurement Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full pb-16">
         <div className="rounded-[40px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 text-white p-8 sm:p-12 md:p-16 relative overflow-hidden grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-2xl">

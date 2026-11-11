@@ -6,10 +6,82 @@ export const CFG = {
   tagline: 'Experience Vision Creations — Real Estate & Land Marketplace',
   url: 'https://evcng.com',
   buyLandUrl: 'https://evcng.com/buy-land',
+  whyUsUrl: 'https://evcng.com/why-us',
   phone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '2347082938870',
   phoneDisp: process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '+234 708 293 8870',
   email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'contact@evcng.com',
   freeOver: 10000000,
+  whyUs: {
+    vision: 'To be a Real Estate Magnate in the Nigerian industry propelled by Crafts, Expertise & innovation.',
+    mission: 'To redefine the concepts of comfort and expertise locally through a global compass bearing in mind luxury and affordability.',
+    allInOne: 'EVC excels as a Land and Construction company due to our unique blend of expertise in property acquisition, development and building, providing clients with a seamless, all-in-one solution for their real estate needs.',
+    pillars: [
+      {
+        id: 'affordability',
+        title: 'Affordability & Flexible Installments',
+        desc: 'Begin your home ownership journey on a budget and ease you have never seen before with our structured installment plans and convenient payment methods tailored for both young and old.',
+      },
+      {
+        id: 'expert-engagements',
+        title: 'Expert Engagements',
+        desc: 'With the help of our trained and experienced property consultants, be assured you are in safe, verified hands every step of the way.',
+      },
+      {
+        id: 'valuable-information',
+        title: 'Valuable Information & Market Trends',
+        desc: 'Our professionals have the nose for details and a penchant for the next big growth wave. Deep industry insights and corridor trends will surely be at your advantage with EVC on board.',
+      },
+      {
+        id: 'strategic-investments',
+        title: 'Strategic Investments & Prime Locations',
+        desc: 'Location is indispensable in real estate. We understand growth corridors and play strictly by the rules always to guarantee your fulfillment and assured prosperity.',
+      },
+    ],
+    leadership: [
+      {
+        name: 'Engr. Fola Oyedeji',
+        role: 'Executive Directorate',
+        desc: 'Pioneering strategic infrastructure and high-yield real estate acquisitions.',
+      },
+      {
+        name: 'Babatunde Mahmud',
+        role: 'Operations Manager',
+        desc: 'Directing estate layout demarcations, site operations, and logistical excellence.',
+      },
+      {
+        name: 'Olumide Olubori',
+        role: 'Property & Procurement Manager',
+        desc: 'Securing prime acreage, legal title verifications, and development materials.',
+      },
+      {
+        name: 'Oluwaseun Akinola',
+        role: 'Sales Team Lead',
+        desc: 'Guiding clients through transparent allocations, investment matching, and deed dispatch.',
+      },
+    ],
+    testimonials: [
+      {
+        quote: 'EVC’s payment plan is transparent, effective and accommodative, and also feasible to both young and old. It has helped a lot of people become landowners and reduced the rate of homelessness. Thank you, EVC!',
+        author: 'CEO',
+        role: 'Tech Innovations',
+      },
+      {
+        quote: '‘You no get property for yourself ke? Oya rush to EVC and you will never regret it’. EVC is the best when it comes to real estate. I love the fact that they make the real estate market easy for everyone. The go-to brand when it comes to everything investment.',
+        author: 'Hussaini Khadijat',
+        role: 'Private Investor',
+      },
+      {
+        quote: 'EVC exhibits leading qualities in their field which makes them stand out with their expertise and reputation in real estate, reflecting high standards and reliability which makes them an exceptional brand to reckon with.',
+        author: 'Lead Designer',
+        role: 'Dynamics Agency',
+      },
+      {
+        quote: 'EVC stands out for their commitment to excellence and I’m a huge fan of their work! EVC truly deserves recognition for their hard work and dedication to making lives better. I’m excited to see what the future holds for this exceptional brand.',
+        author: 'Founder',
+        role: 'Mobile Dynamics Startup',
+      },
+    ],
+  },
   socials: {
     instagram: 'https://www.instagram.com/evc_ng/',
     x: 'https://x.com/evcnigeria',
