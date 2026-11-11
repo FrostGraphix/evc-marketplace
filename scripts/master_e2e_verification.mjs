@@ -1,5 +1,5 @@
 /**
- * Master End-to-End Verification Runner for MiCollections
+ * Master End-to-End Verification Runner for EVC Marketplace
  * 
  * Executes:
  * 1. Complete REST API Pipeline (Products, Orders, Tracking, Analytics, CRM, Paystack, Notifications, Email)
@@ -12,11 +12,11 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-const BASE_URL = process.env.TEST_BASE_URL || 'https://micollection.vercel.app';
+const BASE_URL = process.env.TEST_BASE_URL || 'https://evc-marketplace.vercel.app';
 const ARTIFACTS_DIR = 'C:\\Users\\ACOB\\.gemini\\antigravity\\brain\\4b97d14b-e5d5-4a99-b99e-0d59d7a04aa2';
 
 console.log('========================================================================');
-console.log('🚀 MICOLLECTIONS END-TO-END MASTER VERIFICATION SUITE');
+console.log('🚀 EVC MARKETPLACE END-TO-END MASTER VERIFICATION SUITE');
 console.log(`🌐 Target Base URL: ${BASE_URL}`);
 console.log(`⏱️ Timestamp: ${new Date().toISOString()}`);
 console.log('========================================================================\n');
@@ -65,7 +65,7 @@ async function runApiTests() {
   // 3. POST /api/orders (Simulate Customer Order Creation)
   let createdOrderId = null;
   const testPhone = '0814' + Math.floor(1000000 + Math.random() * 9000000);
-  const testEmail = `test.e2e.${Date.now()}@micollections.com`;
+  const testEmail = `test.e2e.${Date.now()}@evcng.com`;
 
   try {
     const payload = {
@@ -130,7 +130,7 @@ async function runApiTests() {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Cookie': 'mc_admin_session=%7B%22role%22%3A%22super_admin%22%2C%22email%22%3A%22admin%40micollections.com%22%7D;',
+        'Cookie': 'mc_admin_session=%7B%22role%22%3A%22super_admin%22%2C%22email%22%3A%22admin%40evcng.com%22%7D;',
       },
       body: JSON.stringify(patchPayload)
     });
@@ -153,7 +153,7 @@ async function runApiTests() {
 
   const adminHeaders = {
     'Content-Type': 'application/json',
-    'Cookie': 'mc_admin_session=%7B%22role%22%3A%22super_admin%22%2C%22email%22%3A%22admin%40micollections.com%22%7D;',
+    'Cookie': 'mc_admin_session=%7B%22role%22%3A%22super_admin%22%2C%22email%22%3A%22admin%40evcng.com%22%7D;',
   };
 
   // 6. GET /api/admin/analytics (Executive Business Intelligence)
@@ -299,7 +299,7 @@ async function runMobileAndAdbTests() {
 
   // Generate automated PowerShell script for 1-click ADB execution
   const adbScriptContent = `# =========================================================================
-# MiCollections - 1-Click ADB Mobile Test Runner
+# EVC Marketplace - 1-Click ADB Mobile Test Runner
 # =========================================================================
 
 Write-Host "🔍 Checking ADB connection..." -ForegroundColor Cyan
@@ -312,11 +312,11 @@ if (-not $deviceList) {
     Exit 0
 }
 
-Write-Host "📱 Connected device found! Launching MiCollections mobile tests..." -ForegroundColor Green
+Write-Host "📱 Connected device found! Launching EVC Marketplace mobile tests..." -ForegroundColor Green
 
 # 1. Open live store in mobile Chrome
 Write-Host "🌐 Launching Storefront on Android Chrome..." -ForegroundColor Cyan
-adb shell am start -n com.android.chrome/com.google.android.apps.chrome.Main -d "https://micollection.vercel.app"
+adb shell am start -n com.android.chrome/com.google.android.apps.chrome.Main -d "https://evc-marketplace.vercel.app"
 Start-Sleep -Seconds 3
 
 # 2. Forward Chrome DevTools port for remote PC inspection
@@ -335,9 +335,9 @@ Start-Sleep -Seconds 1
 
 # 4. Capture screenshot from device
 Write-Host "📸 Capturing live device screenshot..." -ForegroundColor Cyan
-adb shell screencap -p /sdcard/micollection_device.png
-adb pull /sdcard/micollection_device.png .
-Write-Host "✅ Saved micollection_device.png to current folder!" -ForegroundColor Green
+adb shell screencap -p /sdcard/evc_device.png
+adb pull /sdcard/evc_device.png .
+Write-Host "✅ Saved evc_device.png to current folder!" -ForegroundColor Green
 `;
 
   const scriptPath = path.join(process.cwd(), 'scripts', 'run_adb_mobile_tests.ps1');

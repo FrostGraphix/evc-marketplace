@@ -4,7 +4,7 @@ const { Client } = pg;
 const client = new Client({
   host: process.env.SUPABASE_DB_HOST || 'aws-1-eu-central-1.pooler.supabase.com',
   port: parseInt(process.env.SUPABASE_DB_PORT || '5432', 10),
-  user: process.env.SUPABASE_DB_USER || 'postgres.yixzvnwerwcfzdhmjgyi',
+  user: process.env.SUPABASE_DB_USER || 'postgres.unuhnhknczcgxqaekzrh',
   password: process.env.SUPABASE_DB_PASSWORD || process.env.DATABASE_PASSWORD || '',
   database: process.env.SUPABASE_DB_NAME || 'postgres',
   ssl: { rejectUnauthorized: false }

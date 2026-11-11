@@ -1,5 +1,5 @@
 # =========================================================================
-# MiCollections - 1-Click ADB Mobile Test Runner
+# EVC Marketplace - 1-Click ADB Mobile Test Runner
 # =========================================================================
 
 Write-Host "🔍 Checking ADB connection..." -ForegroundColor Cyan
@@ -12,11 +12,11 @@ if (-not $deviceList) {
     Exit 0
 }
 
-Write-Host "📱 Connected device found! Launching MiCollections mobile tests..." -ForegroundColor Green
+Write-Host "📱 Connected device found! Launching EVC Marketplace mobile tests..." -ForegroundColor Green
 
 # 1. Open live store in mobile Chrome
 Write-Host "🌐 Launching Storefront on Android Chrome..." -ForegroundColor Cyan
-adb shell am start -n com.android.chrome/com.google.android.apps.chrome.Main -d "https://micollection.vercel.app"
+adb shell am start -n com.android.chrome/com.google.android.apps.chrome.Main -d "https://evc-marketplace.vercel.app"
 Start-Sleep -Seconds 3
 
 # 2. Forward Chrome DevTools port for remote PC inspection
@@ -35,6 +35,6 @@ Start-Sleep -Seconds 1
 
 # 4. Capture screenshot from device
 Write-Host "📸 Capturing live device screenshot..." -ForegroundColor Cyan
-adb shell screencap -p /sdcard/micollection_device.png
-adb pull /sdcard/micollection_device.png .
-Write-Host "✅ Saved micollection_device.png to current folder!" -ForegroundColor Green
+adb shell screencap -p /sdcard/evc_device.png
+adb pull /sdcard/evc_device.png .
+Write-Host "✅ Saved evc_device.png to current folder!" -ForegroundColor Green

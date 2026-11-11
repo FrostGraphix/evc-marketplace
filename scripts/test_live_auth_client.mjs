@@ -9,10 +9,10 @@ async function testAuth() {
   console.log('--- Testing Live Supabase Authentication via Client SDK ---');
   
   // 1. Test valid credentials
-  console.log('Attempting sign in with admin@micollections.com...');
+  console.log('Attempting sign in with admin@evcng.com...');
   const { data: loginData, error: loginError } = await client.auth.signInWithPassword({
-    email: 'admin@micollections.com',
-    password: 'admin123@MiCollection'
+    email: 'admin@evcng.com',
+    password: process.env.ADMIN_DEFAULT_PASSWORD || ''
   });
 
   if (loginError) {
@@ -42,7 +42,7 @@ async function testAuth() {
   // 3. Test invalid credentials
   console.log('\nTesting invalid credentials (should be rejected by Supabase)...');
   const { data: badData, error: badError } = await client.auth.signInWithPassword({
-    email: 'admin@micollections.com',
+    email: 'admin@evcng.com',
     password: 'wrongpassword'
   });
 

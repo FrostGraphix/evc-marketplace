@@ -17,7 +17,7 @@ const adminClient = createClient(supabaseUrl, serviceKey, {
 
 let staffToken = null;
 const adminCookie = `mc_admin_session=${encodeURIComponent(
-  JSON.stringify({ role: 'super_admin', email: 'admin@micollections.com', name: 'Mariam Siyaka' })
+  JSON.stringify({ role: 'super_admin', email: 'admin@evcng.com', name: 'Mariam Siyaka' })
 )}`;
 
 function assert(condition, message) {
@@ -48,8 +48,8 @@ async function run() {
   console.log('[Phase 0] Acquiring Live Staff Authentication...');
   try {
     const { data, error } = await anonClient.auth.signInWithPassword({
-      email: process.env.ADMIN_EMAIL || 'admin@micollections.com',
-      password: process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection',
+      email: process.env.ADMIN_EMAIL || 'admin@evcng.com',
+      password: process.env.ADMIN_DEFAULT_PASSWORD || '',
     });
     if (!error && data?.session?.access_token) {
       staffToken = data.session.access_token;
@@ -175,7 +175,7 @@ async function run() {
   // ====================================================================
   console.log('\n[Phase 3] Verifying Orders CRUD Operations End-to-End...');
   const testOrderId = `MC-CRUD-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-  const testOrderEmail = `crud.shopper.${Date.now()}@micollections.com`;
+  const testOrderEmail = `crud.shopper.${Date.now()}@evcng.com`;
 
   // 3.1 CREATE (POST /api/orders)
   console.log('  -> Testing Order CREATE...');
@@ -298,7 +298,7 @@ async function run() {
   // PHASE 4: CUSTOMERS / PROFILES CRUD VERIFICATION
   // ====================================================================
   console.log('\n[Phase 4] Verifying Customers / Profiles CRUD Operations End-to-End...');
-  const testCustomerEmail = `test.crud.shopper.${Date.now()}@micollections.com`;
+  const testCustomerEmail = `test.crud.shopper.${Date.now()}@evcng.com`;
   const testCustomerPassword = 'Password123!@#Test';
   let createdUserId = null;
   let customerToken = null;

@@ -126,8 +126,8 @@ async function runSecurityTests() {
   let staffToken = null;
   try {
     const { data: staffAuth, error: staffErr } = await client.auth.signInWithPassword({
-      email: process.env.ADMIN_EMAIL || 'admin@micollections.com',
-      password: process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection',
+      email: process.env.ADMIN_EMAIL || 'admin@evcng.com',
+      password: process.env.ADMIN_DEFAULT_PASSWORD || '',
     });
     if (!staffErr && staffAuth?.session?.access_token) {
       staffToken = staffAuth.session.access_token;

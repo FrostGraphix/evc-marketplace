@@ -16,7 +16,7 @@ const adminClient = createClient(supabaseUrl, serviceKey, {
 
 async function runAuthTests() {
   console.log('================================================================');
-  console.log('🔐 MiCollections: Comprehensive Live Supabase Auth Pipeline Verification');
+  console.log('🔐 EVC Marketplace: Comprehensive Live Supabase Auth Pipeline Verification');
   console.log('================================================================\n');
 
   let passed = 0;
@@ -37,14 +37,14 @@ async function runAuthTests() {
   // -------------------------------------------------------------
   console.log('--- Test Suite 1: Staff & Admin Live Supabase Sign In ---');
 
-  const defaultAdminPass = process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection';
-  const defaultManagerPass = process.env.MANAGER_DEFAULT_PASSWORD || 'manager123@MiCollection';
-  const defaultDispatchPass = process.env.DISPATCH_DEFAULT_PASSWORD || 'dispatch123@MiCollection';
+  const defaultAdminPass = process.env.ADMIN_DEFAULT_PASSWORD || '';
+  const defaultManagerPass = process.env.MANAGER_DEFAULT_PASSWORD || '';
+  const defaultDispatchPass = process.env.DISPATCH_DEFAULT_PASSWORD || '';
 
   const staffRoles = [
-    { email: process.env.ADMIN_EMAIL || 'admin@micollections.com', pass: defaultAdminPass, expectedRole: 'super_admin' },
-    { email: process.env.MANAGER_EMAIL || 'manager@micollections.com', pass: defaultManagerPass, expectedRole: 'store_manager' },
-    { email: process.env.DISPATCH_EMAIL || 'dispatch@micollections.com', pass: defaultDispatchPass, expectedRole: 'dispatcher' },
+    { email: process.env.ADMIN_EMAIL || 'admin@evcng.com', pass: defaultAdminPass, expectedRole: 'super_admin' },
+    { email: process.env.MANAGER_EMAIL || 'manager@evcng.com', pass: defaultManagerPass, expectedRole: 'store_manager' },
+    { email: process.env.DISPATCH_EMAIL || 'dispatch@evcng.com', pass: defaultDispatchPass, expectedRole: 'dispatcher' },
   ];
 
   for (const staff of staffRoles) {
@@ -79,7 +79,7 @@ async function runAuthTests() {
   console.log('\n--- Test Suite 2: Security Rejection & Bad Passwords ---');
   {
     const { data: badData, error: badErr } = await client.auth.signInWithPassword({
-      email: 'admin@micollections.com',
+      email: 'admin@evcng.com',
       password: 'completely_wrong_pass',
     });
     assert(
@@ -91,7 +91,7 @@ async function runAuthTests() {
 
   {
     const { data: ghostData, error: ghostErr } = await client.auth.signInWithPassword({
-      email: 'nonexistent_user_999@micollections.com',
+      email: 'nonexistent_user_999@evcng.com',
       password: 'password123',
     });
     assert(
@@ -105,7 +105,7 @@ async function runAuthTests() {
   // Test Suite 3: Customer Registration & Auto-Profile Sync Trigger
   // -------------------------------------------------------------
   console.log('\n--- Test Suite 3: Customer Registration & Database Trigger ---');
-  const testCustomerEmail = `test_customer_${Date.now()}@test.micollections.com`;
+  const testCustomerEmail = `test_customer_${Date.now()}@test.evcng.com`;
   const testPassword = 'Password123!';
   const testName = 'Halima Abubakar';
   const testPhone = '08012345678';

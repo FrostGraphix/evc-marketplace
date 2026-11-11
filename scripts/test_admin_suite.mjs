@@ -26,15 +26,15 @@ const routes = [
 ];
 
 async function checkAll() {
-  console.log('--- Checking MiCollections Admin Suite Routes ---');
+  console.log('--- Checking EVC Marketplace Admin Suite Routes ---');
 
   let staffToken = null;
   if (supabaseUrl && anonKey) {
     try {
       const client = createClient(supabaseUrl, anonKey);
       const { data, error } = await client.auth.signInWithPassword({
-        email: process.env.ADMIN_EMAIL || 'admin@micollections.com',
-        password: process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection',
+        email: process.env.ADMIN_EMAIL || 'admin@evcng.com',
+        password: process.env.ADMIN_DEFAULT_PASSWORD || '',
       });
       if (!error && data?.session?.access_token) {
         staffToken = data.session.access_token;
@@ -51,7 +51,7 @@ async function checkAll() {
       const headers = {};
       if (staffToken && isProtected) {
         headers['Authorization'] = `Bearer ${staffToken}`;
-        headers['Cookie'] = `mc_admin_session=${encodeURIComponent(JSON.stringify({ role: 'super_admin', email: 'admin@micollections.com' }))}`;
+        headers['Cookie'] = `mc_admin_session=${encodeURIComponent(JSON.stringify({ role: 'super_admin', email: 'admin@evcng.com' }))}`;
       }
 
       const res = await fetch(r, { headers });

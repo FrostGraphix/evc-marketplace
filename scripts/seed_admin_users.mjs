@@ -7,10 +7,12 @@ const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey, {
   auth: { autoRefreshToken: false, persistSession: false }
 });
 
+const defaultStaffPassword = process.env.STAFF_DEFAULT_PASSWORD || process.env.ADMIN_DEFAULT_PASSWORD || '';
+
 const staff = [
   {
-    email: 'admin@micollections.com',
-    password: 'admin123@MiCollection',
+    email: 'admin@evcng.com',
+    password: defaultStaffPassword,
     name: 'Mariam Siyaka',
     role: 'super_admin',
     roleTitle: 'Super Admin',
@@ -18,8 +20,8 @@ const staff = [
     phone: '08145736483',
   },
   {
-    email: 'manager@micollections.com',
-    password: 'manager123@MiCollection',
+    email: 'manager@evcng.com',
+    password: defaultStaffPassword,
     name: 'Aminu Bello',
     role: 'store_manager',
     roleTitle: 'Store Manager',
@@ -27,8 +29,8 @@ const staff = [
     phone: '08031234567',
   },
   {
-    email: 'dispatch@micollections.com',
-    password: 'dispatch123@MiCollection',
+    email: 'dispatch@evcng.com',
+    password: defaultStaffPassword,
     name: 'Chidi Okafor',
     role: 'dispatcher',
     roleTitle: 'Dispatcher',

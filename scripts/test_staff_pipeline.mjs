@@ -26,8 +26,8 @@ async function runStaffPipelineTest() {
   // 1. Acquire Super Admin Token
   console.log('[Phase 1] Acquiring Live Super Admin Authentication...');
   const { data: superAuth, error: superAuthErr } = await anonClient.auth.signInWithPassword({
-    email: process.env.ADMIN_EMAIL || 'admin@micollections.com',
-    password: process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection',
+    email: process.env.ADMIN_EMAIL || 'admin@evcng.com',
+    password: process.env.ADMIN_DEFAULT_PASSWORD || '',
   });
   assert(!superAuthErr && superAuth?.session?.access_token, 'Super Admin authenticated with live Supabase');
   const superToken = superAuth.session.access_token;
@@ -43,8 +43,8 @@ async function runStaffPipelineTest() {
   // 2. Acquire Dispatcher Token (to test permission denial)
   console.log('\n[Phase 2] Acquiring Non-Super-Admin (Dispatcher) Credentials...');
   const { data: dispatchAuth, error: dispatchErr } = await anonClient.auth.signInWithPassword({
-    email: process.env.DISPATCH_EMAIL || 'dispatch@micollections.com',
-    password: process.env.DISPATCH_DEFAULT_PASSWORD || 'dispatch123@MiCollection',
+    email: process.env.DISPATCH_EMAIL || 'dispatch@evcng.com',
+    password: process.env.DISPATCH_DEFAULT_PASSWORD || '',
   });
   assert(!dispatchErr && dispatchAuth?.session?.access_token, 'Dispatcher authenticated with live Supabase');
   const dispatchToken = dispatchAuth.session.access_token;
@@ -82,7 +82,7 @@ async function runStaffPipelineTest() {
 
   // 4. Staff Creation by Super Admin
   console.log('\n[Phase 4] Executing Staff Creation via POST /api/admin/staff...');
-  const testEmail = `staff.e2e.${Date.now()}@micollections.com`;
+  const testEmail = `staff.e2e.${Date.now()}@evcng.com`;
   const staffPayload = {
     name: 'Amina Danjuma-Sule',
     email: testEmail,

@@ -60,7 +60,7 @@ async function runTests() {
   assert(placeholderUrlCheck === false, 'isSupabaseConfigured() rejects placeholder project URL');
 
   const placeholderKeyCheck = isSupabaseConfigured(
-    'https://yixzvnwerwcfzdhmjgyi.supabase.co',
+    'https://unuhnhknczcgxqaekzrh.supabase.co',
     'placeholder-anon-key'
   );
   assert(placeholderKeyCheck === false, 'isSupabaseConfigured() rejects placeholder anon key');

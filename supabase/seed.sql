@@ -1,39 +1,562 @@
 -- =========================================================================
--- EVC Nigeria Marketplace Seed Data
+-- EVC Nigeria Marketplace — Official Supabase Seed Data
+-- Database: unuhnhknczcgxqaekzrh
+-- URL: https://unuhnhknczcgxqaekzrh.supabase.co
+-- Extracted directly from evcng.com/buy-land and evcng.com/why-us
 -- =========================================================================
 
--- Insert Categories
-insert into public.categories (id, name, blurb, art, colors) values
-('smart-living', 'Smart Living & Automation', 'Intelligent video doorbells, biometric locks, automated curtains & unified security hubs for connected spaces.', array['doorbell','smartlock','curtain','securityhub'], array['orange','black','navy']),
-('solar-energy', 'Solar & Clean Energy', 'High-efficiency hybrid inverters, tier-1 lithium storage powerwalls, monocrystalline solar arrays & EV chargers.', array['inverter','powerwall','solarpanel','evcharger'], array['orange','glow','blue']),
-('architectural', 'Architectural Finishes', 'Imported large-format porcelain tiles, matte black designer sanitaryware & luxury minimalist fixtures.', array['tiles','sanitaryware','pendant','faucet'], array['black','gold','ivory']),
-('furniture', 'Luxury Living & Furniture', 'Executive motorized ergonomic workstations, architectural lounge chairs & acoustic soundproof pods.', array['desk','loungechair','privacypod'], array['slate','navy','gold']),
-('infrastructure', 'Building Tech & Infrastructure', 'Enterprise Starlink satellite brackets, smart IoT sub-meters, and precision environmental climate sensors.', array['starlinkmount','submeter','climatesensor'], array['blue','slate','black']),
-('lifestyle', 'EVC Lifestyle & Merch', 'Curated executive tech lifestyle gear, titanium smart health rings, branded apparel & luxury leather folios.', array['journal','smartring','polo','folio'], array['orange','black','gold'])
-on conflict (id) do nothing;
+-- 1. Insert Categories
+INSERT INTO public.categories (id, name, blurb, art, colors, image) VALUES (
+  'residential-estates',
+  'Residential Land Estates',
+  'Master-planned residential communities, serviced land plots, perimeter fencing, and verified C of O documentation in Ilorin, Lagos & Ibadan.',
+  array['estate', 'land', 'city'],
+  array['orange', 'navy', 'gold'],
+  'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png'
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  blurb = EXCLUDED.blurb,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  image = EXCLUDED.image;
 
--- Insert Products
-insert into public.products (id, name, cat, price, was, art, colors, sizes, badge, "desc", feat) values
-(1, 'EVC Vision AI Smart Video Doorbell', 'smart-living', 88500, 105000, 'doorbell', array['black','slate','orange'], null, 'Popular', '2K HDR ultra-wide angle video doorbell equipped with local AI facial recognition, crisp two-way audio, and infrared night vision. Integrates directly with EVC Smart Home hubs and smartphones.', array['2K HDR resolution with 160° diagonal FOV','Local on-device AI person & package recognition','Rechargeable 6,500mAh lithium battery or hardwired 12-24V','Dual-band Wi-Fi (2.4GHz / 5GHz) with IP65 weather rating']),
-(2, 'AeroLock Biometric Digital Mortise Lock', 'smart-living', 165000, 185000, 'smartlock', array['black','gold','slate'], null, 'Flagship', 'Military-grade semiconductor 3D fingerprint recognition mortise lock. Features encrypted digital keypad, RFID smart card swipe, mechanical backup key, and Zigbee remote app access.', array['3D live fingerprint scanner (under 0.3s unlock speed)','Anti-peep touch keypad with one-time guest passcode generator','Heavy-duty stainless steel 6068 lock body mortise','Micro-USB emergency power terminal and low-battery warning']),
-(3, 'OmniGlide Motorized Smart Curtain Track', 'smart-living', 125000, null, 'curtain', array['ivory','black','slate'], array['3.2m','4.2m','5.2m','Custom'], 'New', 'Whisper-quiet motorized smart drapery system. Features customizable telescopic aluminum track, smooth manual tug trigger, smartphone scheduling, and Tuya / Matter voice assistant integration.', array['Ultra-silent brushless motor (< 30dB operating noise)','Telescopic length adjustable track without custom cutting','Touch-to-start gentle pull automatic opening & closing','App timing schedules synced to sunrise & sunset in Nigeria']),
-(4, 'EVC Nexus Pro Smart Automation Hub', 'smart-living', 95000, null, 'securityhub', array['black','orange','navy'], null, 'Core', 'The central nervous system of your smart estate. Combines Zigbee 3.0, Thread, Matter, and dual-band Wi-Fi to orchestrate up to 256 smart devices with lightning-fast local automations.', array['Local edge computing engine (automations run even during internet blackout)','Multi-protocol support: Zigbee 3.0, Thread, Matter, Bluetooth 5.2','Gigabit Ethernet WAN port + Wi-Fi 6 wireless uplink','Real-time siren alert speaker with backup internal capacitor']),
-(5, 'EVC HelioMax 6.2kVA Hybrid Solar Inverter', 'solar-energy', 940000, 1080000, 'inverter', array['orange','black','navy'], null, 'Best Seller', 'Pure sine wave 48V hybrid inverter with dual MPPT charge controllers (120-450VDC) and built-in Wi-Fi monitoring. Powers air conditioners, pumping machines, and sensitive enterprise electronics with zero millisecond transfer latency.', array['6,200W continuous rated pure sine wave output','Dual 120A MPPT solar charge controller with 98.5% efficiency','Works with or without battery bank for daylight self-consumption','Real-time cloud analytics and remote firmware updates via EVC App']),
-(6, 'EVC TitanCell 10.24kWh Lithium PowerWall', 'solar-energy', 2650000, 2950000, 'powerwall', array['black','orange','ivory'], array['5.12kWh','10.24kWh','15.36kWh'], 'Enterprise', 'Wall-mounted Grade-A LiFePO4 energy storage system. Rated for 6,000+ deep cycles at 80% DOD with intelligent BMS monitoring cell temperature, voltage balance, and overcurrent protections.', array['51.2V 200Ah (10.24kWh) nominal storage capacity','Tier-1 automotive grade prismatic LiFePO4 cells','Integrated active balancer and color LCD status dashboard','CAN & RS485 communication protocols compatible with major inverters']),
-(7, 'EVC SunVolt 585W Bifacial Monocrystalline Panel', 'solar-energy', 135000, null, 'solarpanel', array['black','blue','slate'], null, 'Tier-1', 'High-density N-Type TOPCon bifacial monocrystalline panel engineered for high ambient temperatures in West Africa. Dual glass construction captures reflected ground radiation for up to 25% extra energy harvest.', array['585W peak STC power with 22.8% module efficiency','Bifacial energy gain up to 25% from rear albedo reflection','Anodized black aluminum alloy frame resisting wind loads to 2400Pa','30-year linear performance warranty']),
-(8, 'EVC Pulse 22kW Smart Commercial EV Charger', 'solar-energy', 780000, null, 'evcharger', array['black','orange','navy'], null, 'Green Tech', 'Type 2 AC fast charging station for commercial estates, executive residences, and retail premises. Features RFID authorization, dynamic load balancing with solar arrays, and OCPP 1.6J billing backend.', array['Three-phase 32A (22kW) fast charging capability','Solar divert mode: charge your EV strictly from surplus solar','IP65 water and dust resistance with IK10 impact protection','RFID card tap or smartphone app session authorization']),
-(9, 'Carrara Statuario Italian Porcelain Tiles', 'architectural', 38500, 45000, 'tiles', array['ivory','slate','black'], array['60x120cm','80x160cm','120x240cm Slab'], 'Italian Import', 'Mirror-polished large-format rectified porcelain tiles imported directly from Sassuolo, Italy. Features authentic gray-veined Carrara marble veining with zero liquid absorption and extreme abrasion resistance.', array['Continuous bookmatched pattern alignment available','Rectified edges for hairline 1mm grout joints','Water absorption rate < 0.05% (anti-stain and chemical proof)','Box covers 2.88 square meters (price per sqm)']),
-(10, 'Vero Matte Black Rimless Wall-Hung Sanitary Ware', 'architectural', 245000, null, 'sanitaryware', array['black','slate','ivory'], null, 'Designer', 'Architectural rimless wall-hung toilet bowl crafted from high-fired vitreous china coated in scratch-resistant satin matte black glaze. Includes concealed geberit-compatible frame kit and soft-close urea seat.', array['Tornado flush hydrodynamic rimless bowl sanitation','Ultra-thin UF soft-closing seat and quick-release hinges','Concealed cistern mounting kit tested to 400kg load capacity','Easy-clean hydrophobic nano-glaze finish']),
-(11, 'Nordic Halo Minimalist Chandelier Pendant Fixture', 'architectural', 185000, 215000, 'pendant', array['gold','black','orange'], null, 'Sculptural', 'Brushed brass and obsidian architectural circular ring pendant. Features edge-lit silicone diffusers delivering glare-free 3000K warm ambience with triac & remote app dimming controls.', array['Triple concentric rings (80cm, 60cm, 40cm) with adjustable drop cables','High CRI > 92 Cree LED arrays with flicker-free driver','Adjustable ceiling hanging height up to 3 meters','Smart home dimmable: warm candle glow to vibrant daylight']),
-(12, 'Linear Waterfall Deck-Mount Minimalist Faucet', 'architectural', 68000, null, 'faucet', array['black','gold','slate'], null, 'Popular', 'Solid DZR brass vessel basin faucet featuring an open-channel cascading laminar sheet flow. Finished in PVD electroplated matte black and electro-gold.', array['Solid lead-free dezincification resistant brass construction','Sedal European ceramic disc cartridge tested to 500,000 cycles','Soothing sheet waterfall flow with aerated splash prevention','Includes stainless steel braided hot & cold flexible connectors']),
-(13, 'Apex Dual-Motor Ergonomic Executive Desk', 'furniture', 460000, 520000, 'desk', array['black','slate','ivory'], array['160x80cm','180x90cm','200x100cm Executive'], 'Executive', 'Heavy-duty dual-motor motorized sit-stand executive desk with solid walnut-veneered bevelled desktop. Equipped with anti-collision gyroscope sensors, cable management spine, and digital LED memory keypad.', array['Dual German-engineered motors with 140kg dynamic lift capacity','Height range from 62cm to 128cm with whisper 38dB movement','4 programmable height presets + integrated USB-A and USB-C fast ports','Integrated under-desk steel wire raceway & power strip bay']),
-(14, 'Elysian Architectural Sculptural Lounge Chair', 'furniture', 320000, null, 'loungechair', array['navy','orange','slate'], null, 'Handcrafted', 'An iconic silhouette conceived for modern private lounges and executive penthouses. Features hand-stitched top-grain aniline leather upholstery over a molded fiberglass frame and polished swivel base.', array['Genuine full-grain Brazilian aniline leather upholstery','360-degree silent return swivel cast aluminum mechanism','High-resilience memory foam core providing lumbar relief','Comes with matching leather comfort ottoman']),
-(15, 'SilencePod Solo Acoustic Privacy Office Pod', 'furniture', 1850000, 2100000, 'privacypod', array['slate','black','navy'], null, 'Enterprise Work', 'Sound-dampening acoustic isolation booth for focused executive calls, video conferences, and private workspace. Equipped with turbo air circulation, power sockets, Ethernet uplink, and tempered sound-laminated acoustic glass.', array['32dB sound reduction index (certified acoustic felt & double glazing)','Automated silent cross-flow ventilation (exchanges air in 45 seconds)','Built-in solid oak laptop desk with wireless phone charger','Modular flat-pack installation assembled in 90 minutes']),
-(16, 'EVC Starlink Enterprise Roof & Pole Mount Kit', 'infrastructure', 72000, null, 'starlinkmount', array['slate','black','orange'], null, 'Heavy-Duty', 'Heavy-gauge galvanized steel bracket custom-engineered for Starlink Standard and High Performance satellite dishes. Built to withstand tropical storm gust winds up to 130 km/h with zero signal dislocation.', array['Compatible with Starlink Gen 2 & Gen 3 Standard Actuated and Flat High Performance','Hot-dip galvanized steel with UV-resistant electrostatic powder coating','Dual locking clamps with anti-vibration rubber gaskets','Includes stainless steel masonry anchor bolts & cable conduit clamps']),
-(17, 'EVC SmartPulse IoT Multi-Tenant Sub-Meter', 'infrastructure', 110000, 125000, 'submeter', array['black','blue','orange'], null, 'Smart Metering', 'Three-phase smart energy monitor with remote prepaid disconnect relay, Wi-Fi / RS485 Modbus, and automated tenant billing app. Prevents electricity theft and provides automated daily consumption reports.', array['Direct measurement up to 100A per phase (Class 1.0 accuracy)','Remote motorized breaker disconnect via mobile app or cloud dashboard','Tracks kWh, instantaneous voltage, amperes, power factor, and frequency','Automated PDF invoice generation and prepaid credit management for landlords']),
-(18, 'EVC Atmos Precision IoT Climate & Gas Sensor', 'infrastructure', 48000, null, 'climatesensor', array['ivory','slate','orange'], null, 'Safety', 'Industrial-grade environmental sensor monitoring temperature, relative humidity, air quality (VOCs), and combustible gas leak detection. Alerts smartphones and triggers automatic extractor fans.', array['Swiss Sensirion precision temperature & humidity sensor module','Real-time gas and air quality hazard buzzer alert (> 85dB)','Zigbee / Wi-Fi telemetry reporting to EVC Building Management System','Powered by USB-C with 72-hour lithium backup power cell']),
-(19, 'EVC Executive Hardcover Smart Journal', 'lifestyle', 24500, null, 'journal', array['black','orange','gold'], null, 'Signature', 'Handcrafted vegan saffiano leather hardcover executive journal with gilded edges, magnetic clasp, ribbon bookmarks, and integrated 16GB USB drive inside the clasp.', array['240 pages of 120gsm ink-proof fountain-pen friendly ivory paper','Waterproof textured vegan saffiano leather cover with debossed EVC crest','Integrated concealed high-speed 16GB USB drive in magnetic latch','Expandable inner back pocket for documents and business cards']),
-(20, 'EVC TitanTrack Smart Health & NFC Ring', 'lifestyle', 115000, 135000, 'smartring', array['black','gold','slate'], array['Size 8','Size 9','Size 10','Size 11','Size 12'], 'Popular', 'Medical-grade titanium biometric smart ring tracking heart rate variability (HRV), blood oxygen (SpO2), sleep architecture, and stress recovery. Features built-in reprogrammable NFC for digital business card sharing and door access.', array['Aerospace grade titanium exterior with hypoallergenic ceramic interior','7 days battery endurance on a single 45-minute magnetic drop charge','50-meter water resistance (swimming and shower safe)','NFC programmable: tap phones to share contact info or unlock your smart door']),
-(21, 'EVC Signature Pique Cotton Polo Shirt', 'lifestyle', 28000, null, 'polo', array['orange','black','navy'], array['S','M','L','XL','XXL'], 'Apparel', 'Premium 240gsm mercerized combed pique cotton polo shirt featuring silicone high-density EVC monogram on the chest and contrasting under-collar tipping.', array['100% long-staple mercerized combed cotton for silky breathable handfeel','Subtle high-density silicone micro-embossed EVC signature branding','Reinforced side vents and mother-of-pearl engraved buttons','Pre-shrunk fabric resisting wash fading and shrinkage']),
-(22, 'EVC Heritage Full-Grain Leather Document Folio', 'lifestyle', 75000, null, 'folio', array['black','orange','gold'], null, 'Luxury', 'Hand-stitched full-grain vegetable-tanned leather tech folio. Fits a 14-inch MacBook or iPad Pro, notepad, smart pen loops, and cards for board meetings and executive travel.', array['Vegetable-tanned full-grain leather that patinas beautifully with age','Padded micro-suede sleeve fits up to 14.2-inch laptops or tablets','YKK Excella Japanese antique brass zipper hardware','Multiple slots for passport, credit cards, smartphone, and charging cables'])
-on conflict (id) do nothing;
+INSERT INTO public.categories (id, name, blurb, art, colors, image) VALUES (
+  'corridor-developments',
+  'Strategic Corridors',
+  'Prime economic corridors connecting Lagos, Ibadan, Ogun and Epe with massive upcoming road infrastructure and high capital appreciation.',
+  array['estate', 'land', 'building'],
+  array['orange', 'glow', 'blue'],
+  'https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png'
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  blurb = EXCLUDED.blurb,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  image = EXCLUDED.image;
+
+INSERT INTO public.categories (id, name, blurb, art, colors, image) VALUES (
+  'farmland-agricultural',
+  'Farmland & Agro-Cities',
+  'Large-scale surveyed agricultural farmland parcels with functional water sources, solar illumination, and agro-tourism appreciation in Oyo State.',
+  array['farmland', 'estate'],
+  array['gold', 'slate', 'orange'],
+  'https://framerusercontent.com/images/9fqTXq8yaPPUtZzQt6YuOIWa4.png'
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  blurb = EXCLUDED.blurb,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  image = EXCLUDED.image;
+
+INSERT INTO public.categories (id, name, blurb, art, colors, image) VALUES (
+  'housing-developments',
+  'Smart Housing & Apartments',
+  'Architectural residential developments, luxury modern bungalows, and serviced smart duplexes equipped with solar microgrids.',
+  array['building', 'estate'],
+  array['orange', 'slate', 'black'],
+  'https://framerusercontent.com/images/blOJPGX0VAy46Sr0PkBkZ0Bh30.png'
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  blurb = EXCLUDED.blurb,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  image = EXCLUDED.image;
+
+INSERT INTO public.categories (id, name, blurb, art, colors, image) VALUES (
+  'smart-tech-cities',
+  'Smart Cities & Tech Enclaves',
+  'High-tech residential and innovation districts planned for technology professionals, renewable power, and fiber optic connectivity.',
+  array['city', 'building'],
+  array['blue', 'orange', 'navy'],
+  'https://framerusercontent.com/images/T6j9XjxzmbLmuO8ygeXmh8pJNEM.png'
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  blurb = EXCLUDED.blurb,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  image = EXCLUDED.image;
+
+INSERT INTO public.categories (id, name, blurb, art, colors, image) VALUES (
+  'sold-out',
+  'Sold Out Developments',
+  'Completed and fully allocated landmark estates reflecting EVC’s proven track record of timely delivery and exponential value appreciation.',
+  array['estate', 'city'],
+  array['slate', 'black', 'orange'],
+  'https://framerusercontent.com/images/wi76o9N6YnJ4vWkK4i4N30o3L10.png'
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  blurb = EXCLUDED.blurb,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  image = EXCLUDED.image;
+
+
+-- 2. Insert Canonical Land Products & Developments
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  1,
+  'Afonja Boulevard District 1',
+  'afonja-boulevard',
+  'residential-estates',
+  650000,
+  900000,
+  'estate',
+  array['orange', 'navy', 'gold', 'slate'],
+  array['150 SQM (₦650K)', '300 SQM (₦1.3M)', '500 SQM (₦1.8M)', '1 Acre / 6 Plots (₦10.8M)'],
+  'C of O in View',
+  'Embodying the future of urban lifestyle where visionary design and cutting-edge infrastructure converge. Afonja Boulevard District 1 is strategically located in Oke Oyi, Ilorin, offering 100% dry table land, modern road networks, commercial zones, and rapid capital appreciation in the Kwara State growth corridor.',
+  array['Title: C of O in View', 'Free Provisional Survey (in client’s name)', 'Registered Deed of Assignment', 'Location: Oke Oyi, Ilorin, Kwara State', '100% Dry Table Land ready for immediate building', 'Initial Deposit from only ₦200,000', 'Flexible payment plans up to 12 months', 'Perimeter fencing & modern gatehouse layout', 'Dedicated green community recreation & commercial spaces'],
+  array['https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png', 'https://framerusercontent.com/images/blOJPGX0VAy46Sr0PkBkZ0Bh30.png', 'https://framerusercontent.com/images/T6j9XjxzmbLmuO8ygeXmh8pJNEM.png', 'https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png'],
+  24,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  2,
+  'Broadway Residentials',
+  'broadway-residentials',
+  'housing-developments',
+  2000000,
+  2500000,
+  'building',
+  array['orange', 'glow', 'navy', 'black'],
+  array['300 SQM Land (₦2M)', '500 SQM Land (₦3.2M)', 'Studio Apartment (₦18M)', '2 Bedroom Flat (₦35M)', '3 Bedroom Flat (₦40M)'],
+  'Solar Powered Estate',
+  'Granting access to smarter communal living in the high-demand host community of Kwara State University (KWASU), Malete. Broadway Residentials combines serviced residential plots with turn-key, solar-powered apartments (Studio, 2-Bedroom, and 3-Bedroom units) delivering guaranteed high student and executive rental yields.',
+  array['Title: Certificate of Occupancy (C of O)', 'Free Provisional Survey (in client’s name) & Deed of Assignment', 'Location: Malete, Kwara State University (KWASU Corridor)', 'Solar-powered uninterrupted clean electricity estate grid', 'Land Plots: 300 SQM (₦2M), 500 SQM (₦3.2M)', 'Apartments: Studio (₦18M), 2-Bed (₦35M), 3-Bed (₦40M)', 'Initial deposit: ₦2,000,000 for housing units', 'High rental yield from university student & faculty influx', 'Paved access roads, drainage systems, and 24/7 security patrol'],
+  array['https://framerusercontent.com/images/kbRFYh9OoPZpzrl0d7cY7dJZGk8.png', 'https://framerusercontent.com/images/4Tb7BuM5ZXAEoaIlC9k8xdoug.png', 'https://framerusercontent.com/images/RbQbI6tcH466lV1Ac7bijsLVw.png', 'https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp'],
+  15,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  3,
+  'Eden Crest',
+  'eden-crest',
+  'residential-estates',
+  2100000,
+  2800000,
+  'estate',
+  array['gold', 'orange', 'navy', 'ivory'],
+  array['300 SQM (₦2.1M)', '500 SQM (₦3.5M)', '1000 SQM (₦7M)', '1 Acre / 6 Plots (₦12.6M)'],
+  'Lagos Corridor',
+  'Where every sunrise signals opportunity. Eden Crest is a premium residential development situated along the Ikorodu–Ogun State growth corridor, off Agbowa Ikosi. Designed to re-awaken heritage and luxury living, it delivers the strategic dual benefit of Lagos connectivity and exceptional land appreciation.',
+  array['Title: C of O in View', 'Free Provisional Survey (in client’s name) & Deed of Assignment', 'Location: Off Agbowa Ikosi, Ikorodu–Ogun State Corridor', '100% Dry Table Land with zero flood risk', 'Initial Deposit: ₦500,000', 'Sizes: 300 SQM (₦2.1M), 500 SQM (₦3.5M), 1000 SQM (₦7M), 1 Acre (₦12.6M)', 'Perimeter fencing & gated security architecture', 'Close proximity to proposed Lagos Fourth Mainland Bridge route', 'Instant allocation upon completion of initial commitments'],
+  array['https://framerusercontent.com/images/IkRFbDpoMDnpxsbQDOf9zBhK8EQ.png', 'https://framerusercontent.com/images/dUZvASmZvj4xtZCZLjLr0yAXm4.png', 'https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp', 'https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png'],
+  30,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  4,
+  'Idera Farm City',
+  'idera-farm-city',
+  'farmland-agricultural',
+  750000,
+  1000000,
+  'farmland',
+  array['gold', 'slate', 'orange', 'ivory'],
+  array['500 SQM (₦750K)', '1,000 SQM (₦1.5M)', '3,000 SQM (₦4.5M)', '1 Acre (₦4.5M)', '1 Hectare / 10,000 SQM (₦11.25M)'],
+  'Farmland & Agro-City',
+  '“Idera” meaning Ease, Peace & Relief. Located in Ado Awaye, Iseyin, Oyo State, near the famed suspended lake. IDERA FARMS is more than farmland—it is an inter-generational gateway into food security wealth, commercial agriculture, and high land appreciation with functional water sources and solar street lighting.',
+  array['Title: C of O in View & Surveyed Farmland Parcels', 'Free Provisional Survey (in client’s name) & Registered Deed', 'Location: Ado Awaye, Iseyin, Oyo State (Agro-tourism corridor)', 'Functional year-round agricultural water source & irrigation layout', 'Solar-powered perimeter lighting and security guard posts', 'Flexible sizes: 500 SQM to multi-hectare farm acquisitions', 'Initial Deposit: only ₦300,000', 'Ideal for crop farming, livestock, agro-processing, or land banking', 'Direct farm-to-market road access connecting Oyo and Ibadan'],
+  array['https://framerusercontent.com/images/9fqTXq8yaPPUtZzQt6YuOIWa4.png', 'https://framerusercontent.com/images/t86q15iDhqlSTXV3YErgDQDegNE.png', 'https://framerusercontent.com/images/G9uTJ1zaMXb8x7hYRKfrQQlu8c.png', 'https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp'],
+  45,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  5,
+  'The Providence — Alabata (Abeokuta)',
+  'the-providence-alabata',
+  'corridor-developments',
+  800000,
+  1100000,
+  'estate',
+  array['orange', 'slate', 'navy', 'gold'],
+  array['300 SQM (₦800K)', '500 SQM (₦1.5M)', '1000 SQM (₦3M)', '1 Acre (₦4.8M)'],
+  '100% Dry Land',
+  'Tucked between nature and promise. The Providence Alabata, Abeokuta (Ogun State) brings envisioned comfort into reality along the strategic Abeokuta-Ibadan expressway. An accessible investment corridor boasting 100% dry terrain, serene green views, and verified title documentation.',
+  array['Title: C of O in View', 'Free Provisional Survey & Registered Deed of Assignment', 'Location: Alabata, Abeokuta, Ogun State', '100% dry terrain with immediate layout demarcation', 'Sizes: 300 SQM (₦800K), 500 SQM (₦1.5M), 1000 SQM (₦3M)', 'Initial Deposit: ₦300,000 with 6 to 12 months spread', 'Acre option: 1 Acre (₦4.8M)', 'Direct connectivity to Abeokuta metropolitan center and federal highway'],
+  array['https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png', 'https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png', 'https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png', 'https://framerusercontent.com/images/sl5PcJHaYEnJk65qJjnFbJQPwhM.png'],
+  20,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  6,
+  'The Providence — Moniya (Ibadan)',
+  'the-providence-moniya',
+  'corridor-developments',
+  1500000,
+  1900000,
+  'estate',
+  array['orange', 'navy', 'gold', 'ivory'],
+  array['300 SQM (₦1.5M)', '450 SQM (₦2.25M)', '600 SQM (₦3M)', '1 Acre (₦9M)'],
+  'Train Station Hub',
+  'Planting your dreams on solid grounds! Situated in Moniya, Akinyele Local Government, Ibadan—the epicentre of Oyo State’s modern transportation network. Minutes from the Obafemi Awolowo Train Station, Inland Dry Port, and the Ibadan Circular Road.',
+  array['Title: C of O in View', 'Free Provisional Survey & Deed of Assignment in client’s name', 'Location: Moniya, Akinyele LGA, Ibadan, Oyo State', 'Proximity to Moniya Train Terminal & Ibadan Circular Road', 'Sizes: 300 SQM (₦1.5M), 450 SQM (₦2.25M), 600 SQM (₦3M)', 'Commercial Acre packages from ₦9,000,000', 'Initial Deposit: ₦500,000', 'Fast-track capital appreciation backed by massive state infrastructure'],
+  array['https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png', 'https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png', 'https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png', 'https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png'],
+  18,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  7,
+  'The Providence — Omu, Epe (Lagos)',
+  'the-providence-omu-epe',
+  'corridor-developments',
+  2250000,
+  2900000,
+  'estate',
+  array['orange', 'blue', 'navy', 'gold'],
+  array['300 SQM (₦2.25M)', '500 SQM (₦3.75M)', '1000 SQM (₦7.5M)', '1 Acre (₦13.5M)'],
+  'Lagos Epe Hub',
+  'Enjoy Lagos access without the stress! Located in Omu, Epe—the emerging goldmine of new Lagos. Positioned within rapid reach of the Lekki-Epe expressway, the proposed Lekki International Airport, and major commercial logistics corridors.',
+  array['Title: C of O in View & Registered Survey', 'Free Provisional Survey (in client’s name) & Deed of Assignment', 'Location: Omu, Epe Corridor, Lagos State', '100% dry elevated table land with instant plot demarcation', 'Sizes: 300 SQM (₦2.25M), 500 SQM (₦3.75M), 1000 SQM (₦7.5M)', 'Initial Deposit: ₦500,000', 'Commercial Acre parcels available for institutional investors', 'High appreciation trajectory in Lagos State’s prime expansion axis'],
+  array['https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png', 'https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png', 'https://framerusercontent.com/images/dJ4DsaWLcjmQNZd18IOgK1IRCv4.png', 'https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp'],
+  22,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  8,
+  'The Providence Prime Portfolio',
+  'the-providence',
+  'corridor-developments',
+  800000,
+  1200000,
+  'estate',
+  array['orange', 'navy', 'gold', 'slate'],
+  array['Alabata 300 SQM (₦800K)', 'Moniya 300 SQM (₦1.5M)', 'Omu Epe 300 SQM (₦2.25M)', '1 Acre Multi-Hub Options'],
+  'Multi-State Corridor',
+  'The Providence is EVC Nigeria’s signature multi-state land development brand spanning strategic economic corridors across Lagos, Ibadan, and Ogun State. Unlocking accessibility, 100% dry land, and verified ownership for smart property investors.',
+  array['Title: C of O in View across all three project hubs', 'Free Provisional Survey in client’s name & Registered Deed', 'Strategic locations in Lagos (Omu, Epe), Oyo (Moniya), and Ogun (Alabata)', '100% Dry Land guarantee with physical verification visits', 'Entry pricing from ₦800,000 for 300 SQM', 'Initial deposits starting from ₦300,000', 'Flexible installment options: Outright, 3 Months, 6 Months, 12 Months', 'Scheduled weekly site inspections (Tuesdays, Thursdays, Saturdays)'],
+  array['https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png', 'https://framerusercontent.com/images/XsagG8P20f1jElhw1uZ5YxltiE.webp', 'https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png', 'https://framerusercontent.com/images/sl5PcJHaYEnJk65qJjnFbJQPwhM.png'],
+  35,
+  'active',
+  true
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  9,
+  'Vision Smart City (Phase 1 & 2)',
+  'vision-smart-city',
+  'smart-tech-cities',
+  1200000,
+  2400000,
+  'city',
+  array['black', 'orange', 'glow', 'slate'],
+  array['300 SQM (₦1.2M)', '450 SQM (₦1.8M)', '600 SQM (₦2.4M)', '1 Acre (₦7.2M)'],
+  'SOLD OUT',
+  'SOLD OUT. A landmark project that set new standards for real estate excellence in Ibadan. Located in Ido, Ibadan, minutes from the railway terminal. Phase 1 & 2 sold out completely with 100% subscriber allocations and ongoing infrastructure realization.',
+  array['Status: 100% SOLD OUT', 'Title: Certificate of Occupancy (C of O)', 'Location: Ido, Ibadan, Oyo State', 'Proximity to Ibadan Train Station and Ido Local Govt Secretariat', 'Historical Pricing: 300 SQM (₦1.2M) to 600 SQM (₦2.4M)', 'All plots allocated to verified subscribers', 'Internal drainage, perimeter wall, and solar streetlights active', 'Inquire with EVC sales desk for resale opportunities or Phase 3 alerts'],
+  array['https://framerusercontent.com/images/AONfpWfc0Kh6HV9vx9KFwgjydxg.png', 'https://framerusercontent.com/images/JLOv3dBORetS3V2IQIKcbI589S0.webp', 'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png', 'https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp'],
+  20,
+  'archived',
+  false
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  10,
+  'Riyadh Golf City',
+  'riyadh-golf-city',
+  'residential-estates',
+  1000000,
+  3000000,
+  'estate',
+  array['black', 'gold', 'orange', 'navy'],
+  array['150 SQM (₦1M)', '300 SQM (₦3M)', '450 SQM (₦4.5M)', '600 SQM (₦6M)'],
+  'SOLD OUT',
+  'SOLD OUT. An embodiment of luxury residential living intertwined with waterfront serenity in prime Asa Dam, Ilorin, Kwara State. Featuring an executive mini golf course, pristine lakeshore calm, and high-status living that fully sold out to investors and homeowners.',
+  array['Status: 100% SOLD OUT', 'Title: C of O in View & Registered Layout', 'Location: Asa Dam, Ilorin, Kwara State (High-end GRA Extension)', 'Waterfront views overlooking the calm waves of Asa Dam', 'Private executive Mini Golf Course for estate residents', 'Historical plot pricing: 150 SQM (₦1M) up to 600 SQM (₦6M)', 'Smart security gatehouse with automated access control', 'Completed subscription run—contact desk for secondary market inquiries'],
+  array['https://framerusercontent.com/images/0YhBffpM2P1Z00k96j40F2r9LpA.png', 'https://framerusercontent.com/images/e3GKNtNOB8XOLxxvzSmyD5xmvKc.png', 'https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png', 'https://framerusercontent.com/images/Ocs5ycFPrY1OrwO0VlsaYGvY.png'],
+  20,
+  'archived',
+  false
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  11,
+  'Almond Garden',
+  'almond-garden',
+  'residential-estates',
+  500000,
+  1500000,
+  'estate',
+  array['black', 'orange', 'slate', 'ivory'],
+  array['150 SQM (₦500K)', '300 SQM (₦1M)', '500 SQM (₦1.5M)'],
+  'SOLD OUT',
+  'SOLD OUT. Affordability met high rental yield in the KWASU host community of Malete, Kwara State. Almond Gardens closed the housing deficit for students and faculty with secure gate housing, perimeter fencing, and verified survey allocations.',
+  array['Status: 100% SOLD OUT', 'Title: Registered Survey & Deed of Assignment', 'Location: Malete, Kwara State (Kwara State University Community)', 'Gated housing estate with complete perimeter fencing', 'Historical plot entry from ₦500,000', 'Instant cornerpiece allocations completed', 'Delivered exponential capital growth to early subscribers', 'Contact EVC Nigeria for next Malete investment releases'],
+  array['https://framerusercontent.com/images/TNqXPeSRISpqi0P6YFPJkOyMqRs.png', 'https://framerusercontent.com/images/m2jRtVCT541asDOtKGlo39N0iU.jpeg', 'https://framerusercontent.com/images/tUq4UPMXnfD1GXrLOfcptyZmI.png', 'https://framerusercontent.com/images/sf1JeTDyOAcZMOUJ5vBsPHnKZ78.png'],
+  20,
+  'archived',
+  false
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  12,
+  'Riyadh Tech City',
+  'riyadh-tech-city',
+  'smart-tech-cities',
+  750000,
+  2250000,
+  'city',
+  array['black', 'blue', 'orange', 'slate'],
+  array['150 SQM (₦750K)', '300 SQM (₦1.5M)', '450 SQM (₦2.25M)', '600 SQM (₦3M)'],
+  'SOLD OUT',
+  'SOLD OUT. The pioneering smart residential and business-friendly tech enclave in Asa Dam, Ilorin. Designed by EVC with fiber-conduit infrastructure and solar power integration, Riyadh Tech City was a resounding sellout success that inspired Riyadh Golf City.',
+  array['Status: 100% SOLD OUT', 'Title: C of O in View & Registered Survey', 'Location: Asa Dam, Ilorin, Kwara State Capital', 'Tech-enabled layout with fiber broadband ducts and solar street lighting', 'Historical pricing from ₦750,000 for 150 SQM to ₦3,000,000 for 600 SQM', 'Fully subscribed and documented by EVC Legal & Survey Team', 'Rapid neighborhood appreciation among Kwara high-net-worth investors', 'View Broadway Residentials or Afonja Boulevard for active projects'],
+  array['https://framerusercontent.com/images/UsmupdXlDIirjWUi9CJhSJc9sA8.png', 'https://framerusercontent.com/images/MCM2PlCECWPqCN3voEfgTzmVwc.png', 'https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png', 'https://framerusercontent.com/images/Ocs5ycFPrY1OrwO0VlsaYGvY.png'],
+  20,
+  'archived',
+  false
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products (
+  id, name, slug, cat, price, was, art, colors, sizes, badge, "desc", feat, images, stock, status, is_active
+) VALUES (
+  13,
+  'The Castle',
+  'the-castle',
+  'residential-estates',
+  1800000,
+  2400000,
+  'estate',
+  array['black', 'gold', 'slate', 'orange'],
+  array['450 SQM (₦1.8M)', '600 SQM (₦2.4M)'],
+  'SOLD OUT',
+  'SOLD OUT. Experience the opulent lifestyle of a castle. The Castle was carefully planned as an exclusive, low-density residential enclave in Malete, Kwara State, under 30 minutes from the capital city of Ilorin. Fully subscribed and sold out.',
+  array['Status: 100% SOLD OUT', 'Title: Registered Survey & Deed of Assignment', 'Location: Malete, Moro Local Government, Kwara State', 'Less than 30 minutes drive from Ilorin capital city', 'Historical plot pricing: 450 SQM (₦1.8M), 600 SQM (₦2.4M)', 'Cornerpiece and executive plot allocations finalized', 'All rights and provisional surveys handed over to subscribers', 'Contact sales desk for secondary resale verification'],
+  array['https://framerusercontent.com/images/UcPdwNlRTFuVV0vjo0FL5T6ic6w.jpg', 'https://framerusercontent.com/images/KHUGoOxeC7EAbTwjuB2I2x4L3o.png', 'https://framerusercontent.com/images/M4wgDNOJYbxlPkLINNrLRz4Xqw.png', 'https://framerusercontent.com/images/k2OwjUBlB76NyQVxznLcm7dwg0.png'],
+  20,
+  'archived',
+  false
+) ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  slug = EXCLUDED.slug,
+  cat = EXCLUDED.cat,
+  price = EXCLUDED.price,
+  was = EXCLUDED.was,
+  art = EXCLUDED.art,
+  colors = EXCLUDED.colors,
+  sizes = EXCLUDED.sizes,
+  badge = EXCLUDED.badge,
+  "desc" = EXCLUDED."desc",
+  feat = EXCLUDED.feat,
+  images = EXCLUDED.images,
+  stock = EXCLUDED.stock,
+  status = EXCLUDED.status,
+  is_active = EXCLUDED.is_active;
+

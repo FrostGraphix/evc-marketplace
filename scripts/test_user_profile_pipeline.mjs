@@ -5,7 +5,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://yixzvnwerwcfzdhmjgyi.supabase.co';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://unuhnhknczcgxqaekzrh.supabase.co';
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -22,7 +22,7 @@ const clientSupabase = createClient(SUPABASE_URL, ANON_KEY, {
   auth: { autoRefreshToken: false, persistSession: false },
 });
 
-const TEST_EMAIL = `shopper.profile.${Date.now()}@micollections.com`;
+const TEST_EMAIL = `shopper.profile.${Date.now()}@evcng.com`;
 const INITIAL_PWD = 'InitPassword123!';
 const UPDATED_PWD = 'UpdatedSecret999!';
 

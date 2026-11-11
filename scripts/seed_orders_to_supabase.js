@@ -4,11 +4,11 @@ const path = require('path');
 
 // Read mockOrders to extract INITIAL_ORDERS
 async function seedOrders() {
-  console.log('Connecting to Supabase PostgreSQL at aws-1-eu-central-1.pooler.supabase.com:5432...');
+  console.log('Connecting to Supabase PostgreSQL at db.unuhnhknczcgxqaekzrh.supabase.co:5432...');
   const client = new Client({
-    host: process.env.SUPABASE_DB_HOST || 'aws-1-eu-central-1.pooler.supabase.com',
+    host: process.env.SUPABASE_DB_HOST || 'db.unuhnhknczcgxqaekzrh.supabase.co',
     port: parseInt(process.env.SUPABASE_DB_PORT || '5432', 10),
-    user: process.env.SUPABASE_DB_USER || 'postgres.yixzvnwerwcfzdhmjgyi',
+    user: process.env.SUPABASE_DB_USER || 'postgres.unuhnhknczcgxqaekzrh',
     password: process.env.SUPABASE_DB_PASSWORD || process.env.DATABASE_PASSWORD || '',
     database: process.env.SUPABASE_DB_NAME || 'postgres',
     ssl: { rejectUnauthorized: false }

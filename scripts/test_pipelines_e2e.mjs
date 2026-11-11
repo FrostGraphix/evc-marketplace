@@ -1,5 +1,5 @@
 /**
- * Comprehensive E2E Verification Suite for MiCollections:
+ * Comprehensive E2E Verification Suite for EVC Marketplace:
  * 1. Customer Auth Pipeline (Supabase Auth + public.profiles)
  * 2. Orders Pipeline (POST, GET by ID/userId/email, PATCH status in Supabase)
  * 3. Customers CRM Pipeline (Live aggregation of profiles & orders)
@@ -7,7 +7,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://yixzvnwerwcfzdhmjgyi.supabase.co';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://unuhnhknczcgxqaekzrh.supabase.co';
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -24,7 +24,7 @@ const clientSupabase = createClient(SUPABASE_URL, ANON_KEY, {
   auth: { autoRefreshToken: false, persistSession: false },
 });
 
-const TEST_EMAIL = `test.shopper.${Date.now()}@micollections.com`;
+const TEST_EMAIL = `test.shopper.${Date.now()}@evcng.com`;
 const TEST_PASSWORD = 'TestPassword123!';
 const TEST_NAME = 'Halima Abubakar';
 const TEST_PHONE = '08149998877';
@@ -233,8 +233,8 @@ async function runTest() {
 
   // Acquire staff token for admin actions
   const { data: staffAuth } = await clientSupabase.auth.signInWithPassword({
-    email: process.env.ADMIN_EMAIL || 'admin@micollections.com',
-    password: process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection',
+    email: process.env.ADMIN_EMAIL || 'admin@evcng.com',
+    password: process.env.ADMIN_DEFAULT_PASSWORD || '',
   });
   const staffToken = staffAuth?.session?.access_token;
 

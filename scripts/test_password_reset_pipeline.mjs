@@ -35,7 +35,7 @@ async function runPasswordResetSuite() {
   console.log('====================================================\n');
 
   let testUserId = null;
-  const testEmail = `recovery.shopper.${Date.now()}@micollections.com`;
+  const testEmail = `recovery.shopper.${Date.now()}@evcng.com`;
   const initialPassword = 'InitialSecret123!';
   const updatedPassword = 'BrandNewSecurePassword456!';
 

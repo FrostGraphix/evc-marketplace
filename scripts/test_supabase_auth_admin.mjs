@@ -25,14 +25,14 @@ async function run() {
   console.log('Existing users count:', users.users.length);
 
   // If admin user doesn't exist, create it
-  const adminEmail = 'admin@micollections.com';
+  const adminEmail = 'admin@evcng.com';
   const existingAdmin = users.users.find(u => u.email === adminEmail);
 
   if (!existingAdmin) {
     console.log(`Creating live admin user in Supabase: ${adminEmail}`);
     const { data: newAdmin, error: createErr } = await supabaseAdmin.auth.admin.createUser({
       email: adminEmail,
-      password: 'admin123@MiCollection', // Strong real password
+      password: process.env.ADMIN_DEFAULT_PASSWORD || '',
       email_confirm: true,
       user_metadata: {
         full_name: 'Mariam Siyaka',

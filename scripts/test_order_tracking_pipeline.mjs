@@ -42,7 +42,7 @@ async function runOrderTrackingSuite() {
 
   let testUserId = null;
   let testOrderId = null;
-  const testEmail = `track.customer.${Date.now()}@micollections.com`;
+  const testEmail = `track.customer.${Date.now()}@evcng.com`;
   const testPassword = 'SecureTrackingPass123!';
   const testPhone = '08099887766';
 
@@ -208,8 +208,8 @@ async function runOrderTrackingSuite() {
     // ----------------------------------------------------
     console.log('\n[Test 9] Testing staff admin tracking without guest email...');
     const { data: adminAuthData, error: adminAuthErr } = await anonSupabase.auth.signInWithPassword({
-      email: process.env.ADMIN_EMAIL || 'admin@micollections.com',
-      password: process.env.ADMIN_DEFAULT_PASSWORD || 'admin123@MiCollection',
+      email: process.env.ADMIN_EMAIL || 'admin@evcng.com',
+      password: process.env.ADMIN_DEFAULT_PASSWORD || '',
     });
     if (adminAuthErr || !adminAuthData.session) {
       throw new Error(`Failed to authenticate admin: ${adminAuthErr?.message}`);
