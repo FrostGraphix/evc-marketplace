@@ -1,7 +1,7 @@
 import { Category, ColorDef, ColorKey, DeliveryOption, DeliveryType, Product } from '@/types';
 
 export const CFG = {
-  name: 'EVC Nigeria',
+  name: 'EVC Nig. Ltd',
   shortName: 'EVC',
   tagline: 'Experience Vision Creations — Real Estate & Land Marketplace',
   url: 'https://evcng.com',
@@ -95,21 +95,14 @@ export const CFG = {
       city: 'Ilorin',
       state: 'Kwara State',
       name: 'EVC Kwara Hub',
-      address: 'Suite C1, Kajo Mall, Opposite Fresh Hotel, Fate / Plot 7A, Adelodun Road, Bodunde Street, Flower Garden G.R.A., Ilorin, Kwara State',
+      address: 'Plot 7A, Adelodun Road, Bodunde Street Flower Garden G.R.A, Ilorin, Kwara State',
       phone: '+234 708 293 8870',
     },
     {
       city: 'Ibadan',
       state: 'Oyo State',
       name: 'EVC Oyo Experience Center',
-      address: 'Plot 11, Oluyoro Avenue, Off Awolowo Road, Bodija, Ibadan, Oyo State',
-      phone: '+234 708 293 8870',
-    },
-    {
-      city: 'Abuja',
-      state: 'FCT Abuja',
-      name: 'EVC Corporate FCT',
-      address: 'EVC Corporate / FCT Abuja',
+      address: 'Plot 11, Oluyoro Avenue, Off Awolowo Rd, Bodija, Ibadan, Oyo State',
       phone: '+234 708 293 8870',
     },
   ],
@@ -125,7 +118,7 @@ export const CFG = {
       fee: 0,
     },
     abuja: {
-      label: 'Abuja Corporate Courier',
+      label: 'Nationwide Registered Courier (Abuja)',
       eta: '24 to 72 hours',
       fee: 0,
     },
@@ -143,7 +136,7 @@ export const CFG = {
   bank: {
     name: process.env.NEXT_PUBLIC_BANK_NAME || 'Stanbic IBTC Bank',
     accountNumber: process.env.NEXT_PUBLIC_BANK_ACCOUNT_NUMBER || '0049281726',
-    accountName: process.env.NEXT_PUBLIC_BANK_ACCOUNT_NAME || 'EVC Nigeria Technology Ltd',
+    accountName: process.env.NEXT_PUBLIC_BANK_ACCOUNT_NAME || 'EVC Nig. Ltd',
   },
   promo: {
     code: 'EVC2026',
@@ -196,12 +189,12 @@ export const PAL: Record<ColorKey, ColorDef> = {
   navy: { n: 'Deep Navy', main: '#0a1628', dark: '#040810', light: '#1e293b', deep: '#020617' },
   glow: { n: 'Solar Glow', main: '#ff7a33', dark: '#e05b14', light: '#ffa066', deep: '#b34106' },
   black: { n: 'Obsidian Black', main: '#03090a', dark: '#000000', light: '#1e293b', deep: '#010405' },
-  ivory: { n: 'Architectural Ivory', main: '#f8fafc', dark: '#e2e8f0', light: '#ffffff', deep: '#cbd5e1' },
+  ivory: { n: 'Architectural Ivory', main: '#eae8e1', dark: '#dedcd3', light: '#eae8e1', deep: '#c8c6be' },
   gold: { n: 'Brass Gold', main: '#b8862e', dark: '#855d1a', light: '#deb868', deep: '#54390b' },
   blue: { n: 'Electric Blue', main: '#38bdf8', dark: '#0284c7', light: '#7dd3fc', deep: '#0369a1' },
   slate: { n: 'Anodized Slate', main: '#64748b', dark: '#334155', light: '#94a3b8', deep: '#1e293b' },
   brand: { n: 'EVC Orange', main: '#f26522', dark: '#c24912', light: '#ff8547', deep: '#872e05' },
-  white: { n: 'Pure White', main: '#ffffff', dark: '#e2e8f0', light: '#ffffff', deep: '#cbd5e1' },
+  white: { n: 'Warm Ivory', main: '#eae8e1', dark: '#dedcd3', light: '#eae8e1', deep: '#cbd5e1' },
   silver: { n: 'Brushed Silver', main: '#cbd5e1', dark: '#94a3b8', light: '#f1f5f9', deep: '#64748b' },
   amber: { n: 'Solar Amber', main: '#f59e0b', dark: '#b45309', light: '#fcd34d', deep: '#78350f' },
   charcoal: { n: 'Charcoal Grey', main: '#1f2937', dark: '#111827', light: '#374151', deep: '#030712' },
@@ -325,8 +318,8 @@ export const PRODUCTS: Product[] = [
     "name": "Afonja Boulevard District 1",
     "slug": "afonja-boulevard",
     "cat": "residential-estates",
-    "price": 650000,
-    "was": 900000,
+    "price": 1800000,
+    "was": 1500000,
     "art": "estate",
     "colors": [
       "orange",
@@ -335,10 +328,10 @@ export const PRODUCTS: Product[] = [
       "slate"
     ],
     "sizes": [
-      "150 SQM (₦650K)",
-      "300 SQM (₦1.3M)",
-      "500 SQM (₦1.8M)",
-      "1 Acre / 6 Plots (₦10.8M)"
+      "300 SQM (₦1.8M - Dep ₦300K)",
+      "500 SQM (₦3M - Dep ₦500K)",
+      "1 Acre Residential (₦10.8M)",
+      "1 Acre Commercial (₦18M)"
     ],
     "badge": "C of O in View",
     "desc": "Embodying the future of urban lifestyle where visionary design and cutting-edge infrastructure converge. Afonja Boulevard District 1 is strategically located in Oke Oyi, Ilorin, offering 100% dry table land, modern road networks, commercial zones, and rapid capital appreciation in the Kwara State growth corridor.",
@@ -348,16 +341,18 @@ export const PRODUCTS: Product[] = [
       "Registered Deed of Assignment",
       "Location: Oke Oyi, Ilorin, Kwara State",
       "100% Dry Table Land ready for immediate building",
-      "Initial Deposit from only ₦200,000",
+      "300 SQM: ₦1,800,000 (Initial Deposit: ₦300,000)",
+      "500 SQM: ₦3,000,000 (Initial Deposit: ₦500,000)",
+      "1 Acre Residential: ₦10,800,000 (Initial Deposit: ₦1.8M)",
+      "1 Acre Commercial: ₦18,000,000 (Initial Deposit: ₦3M)",
       "Flexible payment plans up to 12 months",
-      "Perimeter fencing & modern gatehouse layout",
-      "Dedicated green community recreation & commercial spaces"
+      "Perimeter fencing & modern gatehouse layout"
     ],
     "images": [
+      "/images/projects/afonja-boulevard.png",
       "https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png",
       "https://framerusercontent.com/images/blOJPGX0VAy46Sr0PkBkZ0Bh30.png",
-      "https://framerusercontent.com/images/T6j9XjxzmbLmuO8ygeXmh8pJNEM.png",
-      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png"
+      "https://framerusercontent.com/images/T6j9XjxzmbLmuO8ygeXmh8pJNEM.png"
     ],
     "stock": 24,
     "status": "active"
@@ -379,28 +374,28 @@ export const PRODUCTS: Product[] = [
     "sizes": [
       "300 SQM Land (₦2M)",
       "500 SQM Land (₦3.2M)",
-      "Studio Apartment (₦18M)",
-      "2 Bedroom Flat (₦35M)",
-      "3 Bedroom Flat (₦40M)"
+      "Room & Parlour Studio Flat (₦25M)",
+      "2 Bedroom Bungalow (₦45M)"
     ],
     "badge": "Solar Powered Estate",
-    "desc": "Granting access to smarter communal living in the high-demand host community of Kwara State University (KWASU), Malete. Broadway Residentials combines serviced residential plots with turn-key, solar-powered apartments (Studio, 2-Bedroom, and 3-Bedroom units) delivering guaranteed high student and executive rental yields.",
+    "desc": "Granting access to smarter communal living in the high-demand host community of Kwara State University (KWASU), Malete. Broadway Residentials combines serviced residential plots with turn-key, solar-powered apartments delivering guaranteed high student and executive rental yields.",
     "feat": [
       "Title: Certificate of Occupancy (C of O)",
-      "Free Provisional Survey (in client’s name) & Deed of Assignment",
+      "Free Provisional Survey & Registered Deed of Assignment",
       "Location: Malete, Kwara State University (KWASU Corridor)",
       "Solar-powered uninterrupted clean electricity estate grid",
       "Land Plots: 300 SQM (₦2M), 500 SQM (₦3.2M)",
-      "Apartments: Studio (₦18M), 2-Bed (₦35M), 3-Bed (₦40M)",
+      "Room & Parlour Studio Apartment: ₦25,000,000",
+      "2 Bedroom Luxury Bungalow: ₦45,000,000",
       "Initial deposit: ₦2,000,000 for housing units",
       "High rental yield from university student & faculty influx",
       "Paved access roads, drainage systems, and 24/7 security patrol"
     ],
     "images": [
+      "/images/projects/broadway-2bed.png",
+      "/images/projects/broadway-studio.png",
       "https://framerusercontent.com/images/kbRFYh9OoPZpzrl0d7cY7dJZGk8.png",
-      "https://framerusercontent.com/images/4Tb7BuM5ZXAEoaIlC9k8xdoug.png",
-      "https://framerusercontent.com/images/RbQbI6tcH466lV1Ac7bijsLVw.png",
-      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
+      "https://framerusercontent.com/images/4Tb7BuM5ZXAEoaIlC9k8xdoug.png"
     ],
     "stock": 15,
     "status": "active"
@@ -410,8 +405,8 @@ export const PRODUCTS: Product[] = [
     "name": "Eden Crest",
     "slug": "eden-crest",
     "cat": "residential-estates",
-    "price": 2100000,
-    "was": 2800000,
+    "price": 3000000,
+    "was": 2500000,
     "art": "estate",
     "colors": [
       "gold",
@@ -420,29 +415,32 @@ export const PRODUCTS: Product[] = [
       "ivory"
     ],
     "sizes": [
-      "300 SQM (₦2.1M)",
-      "500 SQM (₦3.5M)",
-      "1000 SQM (₦7M)",
-      "1 Acre / 6 Plots (₦12.6M)"
+      "300 SQM (₦3M - Dep ₦500K)",
+      "500 SQM (₦4.8M - Dep ₦1M)",
+      "1,000 SQM (₦9.6M - Dep ₦1M)",
+      "1 Acre / 300 SQM (₦15M - Dep ₦3M)",
+      "1 Acre / 500 SQM (₦24M - Dep ₦5M)",
+      "1 Acre / 1000 SQM (₦48M - Dep ₦10M)"
     ],
-    "badge": "Lagos Corridor",
-    "desc": "Where every sunrise signals opportunity. Eden Crest is a premium residential development situated along the Ikorodu–Ogun State growth corridor, off Agbowa Ikosi. Designed to re-awaken heritage and luxury living, it delivers the strategic dual benefit of Lagos connectivity and exceptional land appreciation.",
+    "badge": "Lagos-Ibadan Corridor",
+    "desc": "Where every sunrise signals opportunity. Eden Crest is a premium residential development situated along the Siun Interchange / Abeokuta Expressway. Designed to re-awaken heritage and luxury living, it delivers the strategic dual benefit of Lagos-Ibadan expressway connectivity and exceptional land appreciation.",
     "feat": [
       "Title: C of O in View",
       "Free Provisional Survey (in client’s name) & Deed of Assignment",
-      "Location: Off Agbowa Ikosi, Ikorodu–Ogun State Corridor",
+      "Location: Siun Interchange / Abeokuta Expressway",
       "100% Dry Table Land with zero flood risk",
-      "Initial Deposit: ₦500,000",
-      "Sizes: 300 SQM (₦2.1M), 500 SQM (₦3.5M), 1000 SQM (₦7M), 1 Acre (₦12.6M)",
+      "300 SQM: ₦3,000,000 (Initial Deposit: ₦500,000)",
+      "500 SQM: ₦4,800,000 (Initial Deposit: ₦1,000,000)",
+      "1,000 SQM: ₦9,600,000 (Initial Deposit: ₦1,000,000)",
+      "Acre Packages: 300 SQM Acre (₦15M), 500 SQM Acre (₦24M), 1000 SQM Acre (₦48M)",
       "Perimeter fencing & gated security architecture",
-      "Close proximity to proposed Lagos Fourth Mainland Bridge route",
       "Instant allocation upon completion of initial commitments"
     ],
     "images": [
+      "/images/projects/eden-crest.png",
+      "/images/projects/eden-crest-price.png",
       "https://framerusercontent.com/images/IkRFbDpoMDnpxsbQDOf9zBhK8EQ.png",
-      "https://framerusercontent.com/images/dUZvASmZvj4xtZCZLjLr0yAXm4.png",
-      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp",
-      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png"
+      "https://framerusercontent.com/images/dUZvASmZvj4xtZCZLjLr0yAXm4.png"
     ],
     "stock": 30,
     "status": "active"
@@ -452,8 +450,8 @@ export const PRODUCTS: Product[] = [
     "name": "Idera Farm City",
     "slug": "idera-farm-city",
     "cat": "farmland-agricultural",
-    "price": 750000,
-    "was": 1000000,
+    "price": 4500000,
+    "was": 3000000,
     "art": "farmland",
     "colors": [
       "gold",
@@ -462,11 +460,9 @@ export const PRODUCTS: Product[] = [
       "ivory"
     ],
     "sizes": [
-      "500 SQM (₦750K)",
-      "1,000 SQM (₦1.5M)",
-      "3,000 SQM (₦4.5M)",
-      "1 Acre (₦4.5M)",
-      "1 Hectare / 10,000 SQM (₦11.25M)"
+      "500 SQM Smart Farming (₦4.5M)",
+      "1,000 SQM Smart Farming (₦9M)",
+      "3,000 SQM Smart Farming (₦27M)"
     ],
     "badge": "Farmland & Agro-City",
     "desc": "“Idera” meaning Ease, Peace & Relief. Located in Ado Awaye, Iseyin, Oyo State, near the famed suspended lake. IDERA FARMS is more than farmland—it is an inter-generational gateway into food security wealth, commercial agriculture, and high land appreciation with functional water sources and solar street lighting.",
@@ -474,18 +470,18 @@ export const PRODUCTS: Product[] = [
       "Title: C of O in View & Surveyed Farmland Parcels",
       "Free Provisional Survey (in client’s name) & Registered Deed",
       "Location: Ado Awaye, Iseyin, Oyo State (Agro-tourism corridor)",
+      "500 SQM Smart Farming: ₦4,500,000",
+      "1,000 SQM Smart Farming: ₦9,000,000",
+      "3,000 SQM Smart Farming: ₦27,000,000",
       "Functional year-round agricultural water source & irrigation layout",
       "Solar-powered perimeter lighting and security guard posts",
-      "Flexible sizes: 500 SQM to multi-hectare farm acquisitions",
-      "Initial Deposit: only ₦300,000",
-      "Ideal for crop farming, livestock, agro-processing, or land banking",
       "Direct farm-to-market road access connecting Oyo and Ibadan"
     ],
     "images": [
+      "/images/projects/idera-farm-city.png",
       "https://framerusercontent.com/images/9fqTXq8yaPPUtZzQt6YuOIWa4.png",
       "https://framerusercontent.com/images/t86q15iDhqlSTXV3YErgDQDegNE.png",
-      "https://framerusercontent.com/images/G9uTJ1zaMXb8x7hYRKfrQQlu8c.png",
-      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
+      "https://framerusercontent.com/images/G9uTJ1zaMXb8x7hYRKfrQQlu8c.png"
     ],
     "stock": 45,
     "status": "active"
@@ -495,8 +491,8 @@ export const PRODUCTS: Product[] = [
     "name": "The Providence — Alabata (Abeokuta)",
     "slug": "the-providence-alabata",
     "cat": "corridor-developments",
-    "price": 800000,
-    "was": 1100000,
+    "price": 1200000,
+    "was": 800000,
     "art": "estate",
     "colors": [
       "orange",
@@ -505,10 +501,9 @@ export const PRODUCTS: Product[] = [
       "gold"
     ],
     "sizes": [
-      "300 SQM (₦800K)",
-      "500 SQM (₦1.5M)",
-      "1000 SQM (₦3M)",
-      "1 Acre (₦4.8M)"
+      "300 SQM (₦1.2M - Dep ₦300K)",
+      "500 SQM (₦2M - Dep ₦500K)",
+      "1,000 SQM (₦4M - Dep ₦1M)"
     ],
     "badge": "100% Dry Land",
     "desc": "Tucked between nature and promise. The Providence Alabata, Abeokuta (Ogun State) brings envisioned comfort into reality along the strategic Abeokuta-Ibadan expressway. An accessible investment corridor boasting 100% dry terrain, serene green views, and verified title documentation.",
@@ -517,16 +512,16 @@ export const PRODUCTS: Product[] = [
       "Free Provisional Survey & Registered Deed of Assignment",
       "Location: Alabata, Abeokuta, Ogun State",
       "100% dry terrain with immediate layout demarcation",
-      "Sizes: 300 SQM (₦800K), 500 SQM (₦1.5M), 1000 SQM (₦3M)",
-      "Initial Deposit: ₦300,000 with 6 to 12 months spread",
-      "Acre option: 1 Acre (₦4.8M)",
+      "300 SQM: ₦1,200,000 (Initial Deposit: ₦300,000)",
+      "500 SQM: ₦2,000,000 (Initial Deposit: ₦500,000)",
+      "1,000 SQM: ₦4,000,000 (Initial Deposit: ₦1,000,000)",
       "Direct connectivity to Abeokuta metropolitan center and federal highway"
     ],
     "images": [
+      "/images/projects/tp-alabata.png",
       "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
       "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
-      "https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png",
-      "https://framerusercontent.com/images/sl5PcJHaYEnJk65qJjnFbJQPwhM.png"
+      "https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png"
     ],
     "stock": 20,
     "status": "active"
@@ -536,8 +531,8 @@ export const PRODUCTS: Product[] = [
     "name": "The Providence — Moniya (Ibadan)",
     "slug": "the-providence-moniya",
     "cat": "corridor-developments",
-    "price": 1500000,
-    "was": 1900000,
+    "price": 2400000,
+    "was": 2000000,
     "art": "estate",
     "colors": [
       "orange",
@@ -546,10 +541,9 @@ export const PRODUCTS: Product[] = [
       "ivory"
     ],
     "sizes": [
-      "300 SQM (₦1.5M)",
-      "450 SQM (₦2.25M)",
-      "600 SQM (₦3M)",
-      "1 Acre (₦9M)"
+      "300 SQM (₦2.4M - Dep ₦500K)",
+      "450 SQM (₦3.6M - Dep ₦500K)",
+      "600 SQM (₦4.8M - Dep ₦1M)"
     ],
     "badge": "Train Station Hub",
     "desc": "Planting your dreams on solid grounds! Situated in Moniya, Akinyele Local Government, Ibadan—the epicentre of Oyo State’s modern transportation network. Minutes from the Obafemi Awolowo Train Station, Inland Dry Port, and the Ibadan Circular Road.",
@@ -558,16 +552,16 @@ export const PRODUCTS: Product[] = [
       "Free Provisional Survey & Deed of Assignment in client’s name",
       "Location: Moniya, Akinyele LGA, Ibadan, Oyo State",
       "Proximity to Moniya Train Terminal & Ibadan Circular Road",
-      "Sizes: 300 SQM (₦1.5M), 450 SQM (₦2.25M), 600 SQM (₦3M)",
-      "Commercial Acre packages from ₦9,000,000",
-      "Initial Deposit: ₦500,000",
+      "300 SQM: ₦2,400,000 (Initial Deposit: ₦500,000)",
+      "450 SQM: ₦3,600,000 (Initial Deposit: ₦500,000)",
+      "600 SQM: ₦4,800,000 (Initial Deposit: ₦1,000,000)",
       "Fast-track capital appreciation backed by massive state infrastructure"
     ],
     "images": [
+      "/images/projects/tp-moniya.png",
       "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
       "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
-      "https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png",
-      "https://framerusercontent.com/images/WiBIxL9lfO7Y5JoMESN7Dxl1Iw.png"
+      "https://framerusercontent.com/images/95oFgmJhGUmueUW57ndCFE0pNBY.png"
     ],
     "stock": 18,
     "status": "active"
@@ -598,17 +592,17 @@ export const PRODUCTS: Product[] = [
       "Title: C of O in View & Registered Survey",
       "Free Provisional Survey (in client’s name) & Deed of Assignment",
       "Location: Omu, Epe Corridor, Lagos State",
-      "100% dry elevated table land with instant plot demarcation",
+      "Perimeter fencing & secured gated entrance",
+      "Landscaping, green recreational pockets & good estate layout",
+      "Cornerpiece allocation & estate electrical plan",
       "Sizes: 300 SQM (₦2.25M), 500 SQM (₦3.75M), 1000 SQM (₦7.5M)",
-      "Initial Deposit: ₦500,000",
-      "Commercial Acre parcels available for institutional investors",
-      "High appreciation trajectory in Lagos State’s prime expansion axis"
+      "Initial Deposit: ₦500,000"
     ],
     "images": [
+      "/images/projects/tp-omu-epe.jpg",
       "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
       "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
-      "https://framerusercontent.com/images/dJ4DsaWLcjmQNZd18IOgK1IRCv4.png",
-      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
+      "https://framerusercontent.com/images/dJ4DsaWLcjmQNZd18IOgK1IRCv4.png"
     ],
     "stock": 22,
     "status": "active"
@@ -618,8 +612,8 @@ export const PRODUCTS: Product[] = [
     "name": "The Providence Prime Portfolio",
     "slug": "the-providence",
     "cat": "corridor-developments",
-    "price": 800000,
-    "was": 1200000,
+    "price": 1200000,
+    "was": 1800000,
     "art": "estate",
     "colors": [
       "orange",
@@ -628,28 +622,28 @@ export const PRODUCTS: Product[] = [
       "slate"
     ],
     "sizes": [
-      "Alabata 300 SQM (₦800K)",
-      "Moniya 300 SQM (₦1.5M)",
+      "Alabata 300 SQM (₦1.2M)",
+      "Moniya 300 SQM (₦2.4M)",
       "Omu Epe 300 SQM (₦2.25M)",
       "1 Acre Multi-Hub Options"
     ],
     "badge": "Multi-State Corridor",
-    "desc": "The Providence is EVC Nigeria’s signature multi-state land development brand spanning strategic economic corridors across Lagos, Ibadan, and Ogun State. Unlocking accessibility, 100% dry land, and verified ownership for smart property investors.",
+    "desc": "The Providence is EVC Nig. Ltd’s signature multi-state land development brand spanning strategic economic corridors across Lagos, Ibadan, and Ogun State. Unlocking accessibility, 100% dry land, and verified ownership for smart property investors.",
     "feat": [
       "Title: C of O in View across all three project hubs",
       "Free Provisional Survey in client’s name & Registered Deed",
       "Strategic locations in Lagos (Omu, Epe), Oyo (Moniya), and Ogun (Alabata)",
       "100% Dry Land guarantee with physical verification visits",
-      "Entry pricing from ₦800,000 for 300 SQM",
+      "Entry pricing: Alabata (₦1.2M), Moniya (₦2.4M), Omu Epe (₦2.25M)",
       "Initial deposits starting from ₦300,000",
       "Flexible installment options: Outright, 3 Months, 6 Months, 12 Months",
       "Scheduled weekly site inspections (Tuesdays, Thursdays, Saturdays)"
     ],
     "images": [
-      "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png",
-      "https://framerusercontent.com/images/XsagG8P20f1jElhw1uZ5YxltiE.webp",
-      "https://framerusercontent.com/images/UXVhgcUSulXRvYzGZCmtJTbzHw.png",
-      "https://framerusercontent.com/images/sl5PcJHaYEnJk65qJjnFbJQPwhM.png"
+      "/images/projects/tp-alabata.png",
+      "/images/projects/tp-moniya.png",
+      "/images/projects/tp-omu-epe.jpg",
+      "https://framerusercontent.com/images/fNgenhjLFViJOiOMPVeCBwiNIY.png"
     ],
     "stock": 35,
     "status": "active"
@@ -659,8 +653,8 @@ export const PRODUCTS: Product[] = [
     "name": "Vision Smart City (Phase 1 & 2)",
     "slug": "vision-smart-city",
     "cat": "smart-tech-cities",
-    "price": 1200000,
-    "was": 2400000,
+    "price": 2400000,
+    "was": 2000000,
     "art": "city",
     "colors": [
       "black",
@@ -669,9 +663,9 @@ export const PRODUCTS: Product[] = [
       "slate"
     ],
     "sizes": [
-      "300 SQM (₦1.2M)",
-      "450 SQM (₦1.8M)",
-      "600 SQM (₦2.4M)",
+      "300 SQM (₦2.4M)",
+      "450 SQM (₦3.6M)",
+      "600 SQM (₦4.8M)",
       "1 Acre (₦7.2M)"
     ],
     "badge": "SOLD OUT",
@@ -681,16 +675,16 @@ export const PRODUCTS: Product[] = [
       "Title: Certificate of Occupancy (C of O)",
       "Location: Ido, Ibadan, Oyo State",
       "Proximity to Ibadan Train Station and Ido Local Govt Secretariat",
-      "Historical Pricing: 300 SQM (₦1.2M) to 600 SQM (₦2.4M)",
+      "Historical Pricing: 300 SQM (₦2.4M), 450 SQM (₦3.6M), 600 SQM (₦4.8M)",
       "All plots allocated to verified subscribers",
       "Internal drainage, perimeter wall, and solar streetlights active",
       "Inquire with EVC sales desk for resale opportunities or Phase 3 alerts"
     ],
     "images": [
+      "/images/projects/vision-smart-city.png",
       "https://framerusercontent.com/images/AONfpWfc0Kh6HV9vx9KFwgjydxg.png",
       "https://framerusercontent.com/images/JLOv3dBORetS3V2IQIKcbI589S0.webp",
-      "https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png",
-      "https://framerusercontent.com/images/wEaw2mmuefKqnp8parWCjEFAgcc.webp"
+      "https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png"
     ],
     "stock": 0,
     "status": "archived"
@@ -765,7 +759,7 @@ export const PRODUCTS: Product[] = [
       "Historical plot entry from ₦500,000",
       "Instant cornerpiece allocations completed",
       "Delivered exponential capital growth to early subscribers",
-      "Contact EVC Nigeria for next Malete investment releases"
+      "Contact EVC Nig. Ltd for next Malete investment releases"
     ],
     "images": [
       "https://framerusercontent.com/images/TNqXPeSRISpqi0P6YFPJkOyMqRs.png",
@@ -872,7 +866,7 @@ export function catOf(catId: string): Category {
     found || {
       id: catId,
       name: catId.replace('-', ' '),
-      blurb: 'Verified EVC Nigeria property investments and real estate developments.',
+      blurb: 'Verified EVC Nig. Ltd property investments and real estate developments.',
       art: ['estate'],
       cols: ['orange', 'navy'],
       image: 'https://framerusercontent.com/images/ShZHFc2W5LjWZSqlOFseIXtCric.png',

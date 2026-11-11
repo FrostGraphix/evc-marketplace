@@ -78,7 +78,7 @@ function OrderSuccessContent() {
 
   const whatsappMessage = order
     ? order.wa
-    : `Hello EVC Nigeria, I just placed an equipment order with reference #${orderId}. Please confirm site delivery schedule!`;
+    : `Hello EVC Nig. Ltd, I just placed an equipment order with reference #${orderId}. Please confirm site delivery schedule!`;
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">

@@ -55,14 +55,14 @@ function getEmailFooter(): string {
       <tr>
         <td align="center">
           <p style="margin: 0 0 8px 0; color: #f8fafc; font-weight: 700; font-size: 13px;">
-            EVC Nigeria (evcng.com) — Engineering & Connected Living
+            EVC Nig. Ltd (evcng.com) — Engineering & Connected Living
           </p>
           <p style="margin: 0 0 12px 0; color: #94a3b8; line-height: 1.6;">
             <strong>Ilorin Hub:</strong> Kajo Mall, Fate / Flower Garden GRA • <strong>Ibadan:</strong> Bodija Experience Hub<br/>
             <strong>Abuja:</strong> Corporate FCT • WhatsApp Concierge: <a href="https://wa.me/${CFG.phone}" style="color: #25d366; text-decoration: none; font-weight: 700;">${CFG.phoneDisp}</a>
           </p>
           <div style="padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 11px; color: #64748b;">
-            © ${new Date().getFullYear()} EVC Nigeria Technology Ltd. All rights reserved.
+            © ${new Date().getFullYear()} EVC Nig. Ltd. All rights reserved.
           </div>
         </td>
       </tr>
@@ -132,14 +132,14 @@ export function generateOrderConfirmationEmail(order: OrderRecord): string {
     <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>EVC Nigeria Order Confirmation #${order.id}</title>
+      <title>EVC Nig. Ltd Order Confirmation #${order.id}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin: 0; padding: 24px 12px; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 18px; box-shadow: 0 12px 36px rgba(10, 22, 40, 0.12); overflow: hidden;">
         <tr>
           <td>
-            ${getEmailHeader(`Order Confirmation #${order.id}`, `Hello ${order.name}, thank you for choosing EVC Nigeria.`)}
+            ${getEmailHeader(`Order Confirmation #${order.id}`, `Hello ${order.name}, thank you for choosing EVC Nig. Ltd.`)}
             
             <div style="padding: 28px 24px;">
               <!-- Intro -->
@@ -369,7 +369,7 @@ export function generateDispatchEmail(
     <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>Your EVC Nigeria Order #${order.id} has been dispatched!</title>
+      <title>Your EVC Nig. Ltd Order #${order.id} has been dispatched!</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin: 0; padding: 24px 12px; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">

@@ -15,8 +15,19 @@ const CARD_THEMES = [
   { bg: '#0a151f', text: '#f8fafc', sub: 'rgba(248,250,252,0.8)', border: 'rgba(255,122,51,0.25)' },
 ];
 
+const TOP_5_CATEGORY_IDS = [
+  'residential-estates',
+  'corridor-developments',
+  'farmland-agricultural',
+  'housing-developments',
+  'smart-tech-cities',
+];
+
 export const StackedCards: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const displayCats = TOP_5_CATEGORY_IDS
+    .map((id) => CATS.find((c) => c.id === id))
+    .filter((c): c is typeof CATS[0] => Boolean(c));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +62,7 @@ export const StackedCards: React.FC = () => {
 
   return (
     <div ref={containerRef} className="flex flex-col gap-8 pb-12 relative">
-      {CATS.map((cat, i) => {
+      {displayCats.map((cat, i) => {
         const items = PRODUCTS.filter((p) => p.cat === cat.id);
         const fromPrice = items.length ? Math.min(...items.map((p) => p.price)) : 25000;
         const theme = CARD_THEMES[i % CARD_THEMES.length];

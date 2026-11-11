@@ -34,7 +34,7 @@ export function generateOrderText(
 ): string {
   if (order) {
     return (
-      `Hello EVC Nigeria, I just placed order ${order.id}.\n` +
+      `Hello EVC Nig. Ltd, I just placed order ${order.id}.\n` +
       `${order.lines.join('\n')}\n` +
       `Total: ${money(order.total)}\n` +
       `Name: ${order.name}\n` +
@@ -53,13 +53,13 @@ export function generateOrderText(
     }).filter(Boolean);
 
     return (
-      `Hello EVC Nigeria, I would like to order:\n` +
+      `Hello EVC Nig. Ltd, I would like to order:\n` +
       `${lines.join('\n')}\n` +
       `Subtotal: ${money(subtotalAmount || 0)}`
     );
   }
 
-  return `Hello EVC Nigeria, I would like to place an inquiry / order.`;
+  return `Hello EVC Nig. Ltd, I would like to place an inquiry / order.`;
 }
 
 export function cn(...classes: (string | undefined | null | false)[]): string {

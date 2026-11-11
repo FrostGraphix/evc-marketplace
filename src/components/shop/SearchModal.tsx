@@ -52,15 +52,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
 
   if (!isOpen) return null;
 
-  const popularSearches = [
-    'Solar Inverter',
-    'Lithium Battery',
-    'Smart Lock',
-    'Acoustic Panels',
-    'CCTV Camera',
-    'Smart Switch',
-  ];
-
   const results: Product[] = query.trim()
     ? PRODUCTS.filter((p) => {
         const fullString = `${p.name} ${p.cat} ${p.desc}`.toLowerCase();
@@ -97,7 +88,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search solar inverters, smart locks, acoustic panels..."
+            placeholder="Search estates, locations (Ilorin, Ibadan, Lagos), or plot sizes..."
             className="flex-1 bg-transparent border-0 outline-none text-sm sm:text-base text-[var(--ink)] placeholder:text-[var(--mute)]"
           />
           {query && (
@@ -123,24 +114,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
             <div className="space-y-4">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--mute)] block mb-2.5">
-                  Trending Equipment & Finishes
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {popularSearches.map((term) => (
-                    <button
-                      key={term}
-                      onClick={() => setQuery(term)}
-                      className="text-xs px-3.5 py-1.5 rounded-full border border-[var(--line)] bg-[var(--surface2)] hover:border-brand hover:text-brand text-[var(--ink)] transition-colors"
-                    >
-                      {term}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--mute)] block mb-2.5">
-                  Browse by Category
+                  Browse by Property Category
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {CATS.map((c) => (
@@ -205,7 +179,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                 Need a specific solar capacity, switch gang, or bespoke architectural panel? Chat directly with our engineering desk on WhatsApp.
               </p>
               <a
-                href={waLink(`Hello EVC Nigeria, I searched for "${query}" on your marketplace and could not find it. Can you source or quote this?`)}
+                href={waLink(`Hello EVC Nig. Ltd, I searched for "${query}" on your marketplace and could not find it. Can you source or quote this?`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-wa text-xs py-2 px-4 inline-flex items-center gap-1.5"

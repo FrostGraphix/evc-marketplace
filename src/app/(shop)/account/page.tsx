@@ -468,7 +468,7 @@ export default function AccountPage() {
                             <Truck className="w-3.5 h-3.5" /> Track Consignment
                           </Link>
                           <a
-                            href={waLink(`Hello EVC Nigeria, I am checking on my order #${ord.id}.`)}
+                            href={waLink(`Hello EVC Nig. Ltd, I am checking on my order #${ord.id}.`)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-wa text-xs py-1.5 px-3 flex items-center gap-1"

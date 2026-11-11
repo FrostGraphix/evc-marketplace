@@ -304,7 +304,7 @@ export async function POST(request: Request) {
         };
 
         const waCleanPhone = phone.replace(/^0/, '234').replace(/[^0-9]/g, '');
-        const inviteMessage = `Hello ${name}, your EVC Nigeria staff account has been provisioned!\n\n` +
+        const inviteMessage = `Hello ${name}, your EVC Nig. Ltd staff account has been provisioned!\n\n` +
           `🔐 Portal URL: https://evcng.com/admin/login\n` +
           `📧 Login Email: ${email}\n` +
           `🔑 Temporary Password: ${finalPassword}\n` +
@@ -365,7 +365,7 @@ export async function POST(request: Request) {
         message: `Staff member ${name} created successfully (sandbox mode).`,
         staff: newStaff,
         temporaryPassword: finalPassword,
-        waInviteUrl: `https://wa.me/?text=${encodeURIComponent(`Hello ${name}, welcome to EVC Nigeria operations!`)}`,
+        waInviteUrl: `https://wa.me/?text=${encodeURIComponent(`Hello ${name}, welcome to EVC Nig. Ltd operations!`)}`,
       },
       { status: 201 }
     );

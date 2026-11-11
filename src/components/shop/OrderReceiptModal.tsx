@@ -63,7 +63,7 @@ export const OrderReceiptModal: React.FC<OrderReceiptModalProps> = ({
     window.print();
   };
 
-  const supportMessage = `Hello EVC Nigeria, I am contacting you regarding official invoice for order ${order.orderId}.`;
+  const supportMessage = `Hello EVC Nig. Ltd, I am contacting you regarding official invoice for order ${order.orderId}.`;
 
   return (
     <div
@@ -119,7 +119,7 @@ export const OrderReceiptModal: React.FC<OrderReceiptModalProps> = ({
               </div>
               <div>
                 <h3 className="font-display font-extrabold text-xl text-[var(--ink)]">
-                  EVC Nigeria Limited
+                  EVC Nig. Ltd Limited
                 </h3>
                 <span className="text-xs text-[var(--mute)]">
                   Smart Tech • Solar Energy • Architectural Finishes
@@ -235,9 +235,9 @@ export const OrderReceiptModal: React.FC<OrderReceiptModalProps> = ({
           {/* Corporate Offices Footnote */}
           <div className="pt-4 border-t border-[var(--line)] text-[11px] text-[var(--mute)] space-y-1">
             <div className="font-semibold text-[var(--ink)]">Corporate Operational Centers:</div>
-            <div>• Ilorin: Suite C1, Kajo Mall, Opp Fresh Hotel, Fate / Plot 7A, Bodunde St, G.R.A., Kwara</div>
+            <div>• Ilorin: Plot 7A, Adelodun Road, Bodunde Street, Flower Garden G.R.A., Kwara State</div>
             <div>• Ibadan: Plot 11, Oluyoro Avenue, Off Awolowo Road, Bodija, Oyo State</div>
-            <div>• Abuja: EVC Corporate / FCT Abuja | Email: {CFG.email} | Support: {CFG.phoneDisp}</div>
+            <div>• Email: {CFG.email} | Support: {CFG.phoneDisp}</div>
           </div>
         </div>
 

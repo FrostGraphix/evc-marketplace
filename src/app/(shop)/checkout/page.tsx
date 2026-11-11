@@ -115,7 +115,7 @@ export default function CheckoutPage() {
 
   const handlePaymentGatewayFailure = (orderId: string, errorDetail?: string) => {
     const waText =
-      `Hello EVC Nigeria! I was attempting to pay for Order #${orderId} (${money(total)}) with Card/Paystack, but experienced an issue.\n` +
+      `Hello EVC Nig. Ltd! I was attempting to pay for Order #${orderId} (${money(total)}) with Card/Paystack, but experienced an issue.\n` +
       `Customer: ${formData.name} (${formData.phone})\n` +
       `Delivery: ${formData.address}, ${formData.state}\n` +
       `Items:\n` +
@@ -310,7 +310,7 @@ export default function CheckoutPage() {
           {/* Left Column: Form Fields */}
           <div className="lg:col-span-7 xl:col-span-8 space-y-8">
             {/* 1. Contact & Customer Info */}
-            <div className="p-6 sm:p-8 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-5">
+            <div className="p-6 sm:p-8 rounded-3xl border border-[var(--line)] bg-[var(--surface)] shadow-sm space-y-5">
               <h3 className="font-display text-lg font-bold text-[var(--ink)] flex items-center gap-2">
                 <span className="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">1</span>
                 Contact &amp; Client Details
@@ -318,7 +318,7 @@ export default function CheckoutPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     Full Name or Company Name *
                   </label>
                   <input
@@ -328,11 +328,11 @@ export default function CheckoutPage() {
                     placeholder="e.g. Engr. Babatunde Adeleke"
                     className="input-field w-full text-sm"
                   />
-                  {errors.name && <p className="text-xs text-rose-400 mt-1">{errors.name}</p>}
+                  {errors.name && <p className="text-xs text-rose-500 font-semibold mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     WhatsApp Phone Number *
                   </label>
                   <input
@@ -342,11 +342,11 @@ export default function CheckoutPage() {
                     placeholder="e.g. 0801 234 5678"
                     className="input-field w-full text-sm"
                   />
-                  {errors.phone && <p className="text-xs text-rose-400 mt-1">{errors.phone}</p>}
+                  {errors.phone && <p className="text-xs text-rose-500 font-semibold mt-1">{errors.phone}</p>}
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     Email Address (For Invoicing &amp; Receipts) *
                   </label>
                   <input
@@ -356,13 +356,13 @@ export default function CheckoutPage() {
                     placeholder="e.g. b.adeleke@company.com"
                     className="input-field w-full text-sm"
                   />
-                  {errors.email && <p className="text-xs text-rose-400 mt-1">{errors.email}</p>}
+                  {errors.email && <p className="text-xs text-rose-500 font-semibold mt-1">{errors.email}</p>}
                 </div>
               </div>
             </div>
 
             {/* 2. Delivery & Destination */}
-            <div className="p-6 sm:p-8 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-5">
+            <div className="p-6 sm:p-8 rounded-3xl border border-[var(--line)] bg-[var(--surface)] shadow-sm space-y-5">
               <h3 className="font-display text-lg font-bold text-[var(--ink)] flex items-center gap-2">
                 <span className="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">2</span>
                 Site Destination &amp; Delivery Hub
@@ -370,7 +370,7 @@ export default function CheckoutPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     State *
                   </label>
                   <select
@@ -387,7 +387,7 @@ export default function CheckoutPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     Logistics Route *
                   </label>
                   <select
@@ -397,7 +397,6 @@ export default function CheckoutPage() {
                   >
                     <option value="ilorin">Ilorin Direct / Hub Delivery ({money(CFG.delivery.ilorin.fee)})</option>
                     <option value="ibadan">Ibadan Bodija Hub Delivery ({money(CFG.delivery.ibadan.fee)})</option>
-                    <option value="abuja">Abuja Doorstep &amp; Corporate ({money(CFG.delivery.abuja.fee)})</option>
                     <option value="nationwide">Nationwide Courier / Freight ({money(CFG.delivery.nationwide.fee)})</option>
                     <option value="pickup">Hub Self-Pickup (Free)</option>
                   </select>
@@ -405,7 +404,7 @@ export default function CheckoutPage() {
 
                 {delivery !== 'pickup' && (
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                       Delivery / Site Address *
                     </label>
                     <input
@@ -415,12 +414,12 @@ export default function CheckoutPage() {
                       placeholder="e.g. Suite 4B, Harmony Estate, Fate Road, Ilorin"
                       className="input-field w-full text-sm"
                     />
-                    {errors.address && <p className="text-xs text-rose-400 mt-1">{errors.address}</p>}
+                    {errors.address && <p className="text-xs text-rose-500 font-semibold mt-1">{errors.address}</p>}
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     Nearest Landmark / Area
                   </label>
                   <input
@@ -433,7 +432,7 @@ export default function CheckoutPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-1.5">
                     Project / Delivery Notes
                   </label>
                   <input
@@ -448,7 +447,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* 3. Payment Method */}
-            <div className="p-6 sm:p-8 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-5">
+            <div className="p-6 sm:p-8 rounded-3xl border border-[var(--line)] bg-[var(--surface)] shadow-sm space-y-5">
               <h3 className="font-display text-lg font-bold text-[var(--ink)] flex items-center gap-2">
                 <span className="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">3</span>
                 Payment Method
@@ -460,7 +459,7 @@ export default function CheckoutPage() {
                   className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between gap-3 ${
                     paymentMethod === 'link'
                       ? 'border-brand bg-brand/10 shadow-md ring-1 ring-brand/20'
-                      : 'border-glow/25 bg-[var(--surface)] hover:border-glow/40'
+                      : 'border-[var(--line)] bg-[var(--surface)] hover:border-brand/40'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -484,7 +483,7 @@ export default function CheckoutPage() {
                   className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between gap-3 ${
                     paymentMethod === 'transfer'
                       ? 'border-brand bg-brand/10 shadow-md ring-1 ring-brand/20'
-                      : 'border-glow/25 bg-[var(--surface)] hover:border-glow/40'
+                      : 'border-[var(--line)] bg-[var(--surface)] hover:border-brand/40'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -507,10 +506,10 @@ export default function CheckoutPage() {
                 <label
                   className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between gap-3 ${
                     !isPodAvailable
-                      ? 'opacity-40 cursor-not-allowed border-glow/15 bg-neutral-900/50'
+                      ? 'opacity-40 cursor-not-allowed border-[var(--line)] bg-[var(--surface2)]'
                       : paymentMethod === 'pod'
                       ? 'border-brand bg-brand/10 shadow-md ring-1 ring-brand/20'
-                      : 'border-glow/25 bg-[var(--surface)] hover:border-glow/40'
+                      : 'border-[var(--line)] bg-[var(--surface)] hover:border-brand/40'
                   }`}
                 >
                   <div className="flex items-center justify-between">

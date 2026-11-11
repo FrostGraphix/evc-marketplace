@@ -282,7 +282,7 @@ export default function AdminCustomersPage() {
                     <td className="py-3.5 px-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <a
-                          href={waLink(`Hello ${cust.name}, this is EVC Nigeria following up regarding your equipment orders.`)}
+                          href={waLink(`Hello ${cust.name}, this is EVC Nig. Ltd following up regarding your equipment orders.`)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn-wa text-xs py-1 px-2.5 inline-flex items-center gap-1"
@@ -359,7 +359,7 @@ export default function AdminCustomersPage() {
 
             <div className="flex gap-3">
               <a
-                href={waLink(`Hello ${activeDossier.name}, this is EVC Nigeria regarding your power system inquiry.`)}
+                href={waLink(`Hello ${activeDossier.name}, this is EVC Nig. Ltd regarding your power system inquiry.`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-wa flex-1 h-10 justify-center text-xs"

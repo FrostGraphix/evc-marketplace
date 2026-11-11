@@ -82,7 +82,7 @@ export const ShareCartModal: React.FC<ShareCartModalProps> = ({
   });
 
   const whatsappMessage =
-    `${greeting}I have selected these project items from EVC Nigeria:${noteText}\n` +
+    `${greeting}I have selected these project items from EVC Nig. Ltd:${noteText}\n` +
     `${itemsText}\n` +
     `Total Equipment Cost: ${money(subtotal)}\n\n` +
     `You can view and approve or checkout directly at:\n` +

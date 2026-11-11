@@ -131,12 +131,12 @@ export async function GET(request: Request) {
           order,
           searchParams.get('tracking') || undefined
         );
-        subject = `Your EVC Nigeria Order #${order.id} has been dispatched!`;
+        subject = `Your EVC Nig. Ltd Order #${order.id} has been dispatched!`;
         break;
       case 'order_confirmation':
       default:
         html = generateOrderConfirmationEmail(order);
-        subject = `EVC Nigeria Order Confirmation #${order.id}`;
+        subject = `EVC Nig. Ltd Order Confirmation #${order.id}`;
         break;
     }
 

@@ -9,6 +9,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/why-us',
+        destination: '/about',
+        permanent: false,
+      },
+      {
+        source: '/track',
+        destination: '/account',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

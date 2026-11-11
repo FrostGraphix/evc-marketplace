@@ -16,7 +16,7 @@ export interface ProductReviewItem {
   createdAt: string;
 }
 
-// Curated default high-end reviews for EVC Nigeria products
+// Curated default high-end reviews for EVC Nig. Ltd products
 const DEFAULT_REVIEWS: Record<number, ProductReviewItem[]> = {
   1: [
     {
@@ -74,7 +74,7 @@ const GENERIC_REVIEWS: ProductReviewItem[] = [
     reviewerLocation: 'Victoria Island, Lagos',
     rating: 5,
     title: 'Superb architectural build and finish',
-    comment: 'The industrial design and build tolerances exceed standard imports. EVC Nigeria delivers authentic engineering quality and reliable warranty.',
+    comment: 'The industrial design and build tolerances exceed standard imports. EVC Nig. Ltd delivers authentic engineering quality and reliable warranty.',
     verifiedBuyer: true,
     fitRecommendation: 'true_to_size',
     sizePurchased: 'Standard',
@@ -197,7 +197,7 @@ export async function POST(req: NextRequest) {
       reviewerName: String(reviewerName).trim(),
       reviewerLocation: String(reviewerLocation || 'Nigeria').trim(),
       rating: Math.min(5, Math.max(1, Number(rating))),
-      title: String(title || 'Verified EVC Nigeria Purchase').trim(),
+      title: String(title || 'Verified EVC Nig. Ltd Purchase').trim(),
       comment: String(comment).trim(),
       verifiedBuyer: true,
       fitRecommendation: fitRecommendation || 'true_to_size',
@@ -228,7 +228,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Review submitted successfully. Thank you for rating EVC Nigeria!',
+      message: 'Review submitted successfully. Thank you for rating EVC Nig. Ltd!',
       review: newReview,
     });
   } catch (error: any) {

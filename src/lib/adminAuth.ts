@@ -1,5 +1,5 @@
 /**
- * Admin Authentication & Session Management Core for EVC Nigeria
+ * Admin Authentication & Session Management Core for EVC Nig. Ltd
  * Connected directly to Live Supabase Authentication
  */
 

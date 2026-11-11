@@ -102,7 +102,7 @@ export default function HelpPage() {
           Chat directly with our clean energy engineers on WhatsApp for a custom sizing audit and quote.
         </p>
         <a
-          href={waLink('Hello EVC Nigeria, I have a question regarding solar sizing and equipment options.')}
+          href={waLink('Hello EVC Nig. Ltd, I have a question regarding solar sizing and equipment options.')}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-wa inline-flex text-xs py-3 px-6 shadow-lg"

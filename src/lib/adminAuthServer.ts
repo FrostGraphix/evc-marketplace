@@ -1,5 +1,5 @@
 /**
- * Server-Side Admin & Staff Authentication Verification Helper for EVC Nigeria
+ * Server-Side Admin & Staff Authentication Verification Helper for EVC Nig. Ltd
  * Verifies staff roles: 'super_admin' | 'store_manager' | 'dispatcher'
  */
 

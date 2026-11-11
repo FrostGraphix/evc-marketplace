@@ -244,7 +244,7 @@ export async function GET(request: Request) {
       {
         step: 'delivered',
         title: 'Delivered to Customer',
-        description: 'Package successfully delivered and signed for. Thank you for choosing EVC Nigeria!',
+        description: 'Package successfully delivered and signed for. Thank you for choosing EVC Nig. Ltd!',
         completed: status === 'delivered',
         current: status === 'delivered',
       },
@@ -268,7 +268,7 @@ export async function GET(request: Request) {
 
     // 5. Generate WhatsApp Support Link
     const waText = encodeURIComponent(
-      `Hello EVC Nigeria, I am tracking my order #${order.id} (${order.deliveryLabel}). Can you provide a live dispatch update?`
+      `Hello EVC Nig. Ltd, I am tracking my order #${order.id} (${order.deliveryLabel}). Can you provide a live dispatch update?`
     );
     const waSupportUrl = `https://wa.me/${CFG.phone}?text=${waText}`;
 

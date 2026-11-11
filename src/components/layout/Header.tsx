@@ -197,12 +197,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
     };
   }, []);
 
-  // Specified nav links: Shop, Categories, Why Us, Track Order, About, Contact
+  // Specified nav links: Shop, Categories, About, Contact
   const navLinks = [
     { label: 'Shop', href: '/shop' },
     { label: 'Categories', href: '/shop#categories', hasMega: true },
-    { label: 'Why Us', href: '/why-us' },
-    { label: 'Track Order', href: '/track' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -280,13 +278,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
           <Link
             href="/"
             className="group flex items-center flex-shrink-0"
-            aria-label="EVC Nigeria Homepage"
+            aria-label="EVC Nig. Ltd Homepage"
           >
             <div className="relative h-8 sm:h-9 w-28 sm:w-32 transition-transform duration-200 group-hover:scale-[1.02]">
               {/* Light Theme Logo */}
               <Image
                 src="/images/evc-logo-light.png"
-                alt="EVC Nigeria"
+                alt="EVC Nig. Ltd"
                 fill
                 sizes="(max-width: 640px) 112px, 128px"
                 className="object-contain object-left dark:hidden"
@@ -295,7 +293,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
               {/* Dark Theme Logo */}
               <Image
                 src="/images/evc-logo-dark.png"
-                alt="EVC Nigeria"
+                alt="EVC Nig. Ltd"
                 fill
                 sizes="(max-width: 640px) 112px, 128px"
                 className="object-contain object-left hidden dark:block"
@@ -499,14 +497,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
                           <UserIcon className="w-4 h-4 text-brand" />
                           <span>My Account</span>
                         </Link>
-                        <Link
-                          href="/track"
-                          onClick={() => setIsProfileMenuOpen(false)}
-                          className="flex items-center gap-2 px-2.5 py-2 rounded-xl hover:bg-[var(--surface2)] text-[var(--ink)] hover:text-brand transition-colors"
-                        >
-                          <Package className="w-4 h-4 text-brand" />
-                          <span>Track Shipments</span>
-                        </Link>
                         {isStaff && (
                           <Link
                             href="/admin"
@@ -623,25 +613,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
               </div>
 
               <Link
-                href="/why-us"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
-              >
-                Why Choose EVC
-              </Link>
-              <Link
-                href="/track"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
-              >
-                Track Allocation / Deed
-              </Link>
-              <Link
                 href="/about"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center px-4 py-3 rounded-2xl hover:bg-[var(--surface2)] font-display font-bold text-base text-[var(--ink)] hover:text-brand transition-colors"
               >
-                About EVC Nigeria
+                About EVC Nig. Ltd
               </Link>
               <Link
                 href="/contact"

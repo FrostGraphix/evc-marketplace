@@ -115,7 +115,7 @@ export default function ResetPasswordPage() {
             Create <em className="serif-italic text-brand">New Password</em>
           </h1>
           <p className="text-xs text-slate-400">
-            Choose a strong, secure password for your EVC Nigeria account.
+            Choose a strong, secure password for your EVC Nig. Ltd account.
           </p>
         </div>
 

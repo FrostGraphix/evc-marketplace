@@ -1,7 +1,7 @@
 # 🏛️ EVC Marketplace — Nigeria's Premier Smart Infrastructure & Clean Energy Store
 
 > **Experience Vision Creations — Marketplace**  
-> Official digital marketplace for [EVC Nigeria](https://evcng.com) providing smart home automation, tier-1 solar & power storage systems, Italian architectural finishes, executive luxury interiors, building tech, and EVC lifestyle merchandise.
+> Official digital marketplace for [EVC Nig. Ltd](https://evcng.com) providing smart home automation, tier-1 solar & power storage systems, Italian architectural finishes, executive luxury interiors, building tech, and EVC lifestyle merchandise.
 
 ---
 
@@ -31,7 +31,7 @@
 - **Verified Social Media**:
   - Instagram: [@evc_ng](https://www.instagram.com/evc_ng/)
   - X (Twitter): [@evcnigeria](https://x.com/evcnigeria)
-  - LinkedIn: [EVC Nigeria](https://www.linkedin.com/company/evc-nigeria/)
+  - LinkedIn: [EVC Nig. Ltd](https://www.linkedin.com/company/evc-nigeria/)
   - YouTube: [@evcnigeria](https://www.youtube.com/@evcnigeria)
   - Facebook: [@evcnigeria](https://www.facebook.com/evcnigeria)
   - TikTok: [@evcnigeria](https://www.tiktok.com/@evcnigeria)

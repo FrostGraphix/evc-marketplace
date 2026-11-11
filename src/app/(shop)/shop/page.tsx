@@ -146,7 +146,7 @@ function ShopContent() {
           )}
         </h1>
         <p className="text-sm text-slate-400 max-w-xl mt-2 leading-relaxed">
-          Explore official master-planned estates, highway corridors, farmland cities, and housing developments from EVC Nigeria (evcng.com/buy-land).
+          Explore official master-planned estates, highway corridors, farmland cities, and housing developments from EVC Nig. Ltd (evcng.com/buy-land).
         </p>
       </div>
 
@@ -342,7 +342,7 @@ function ShopContent() {
                   <RotateCcw className="w-3.5 h-3.5" /> Clear Filters
                 </button>
                 <a
-                  href={waLink('Hello EVC Nigeria, I am looking for a specific land or property investment.')}
+                  href={waLink('Hello EVC Nig. Ltd, I am looking for a specific land or property investment.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary text-xs py-2.5 px-5 inline-flex items-center gap-1.5"

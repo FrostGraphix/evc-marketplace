@@ -11,8 +11,8 @@ export const AnnouncementBar: React.FC = () => {
   }
 
   const items = [
-    'EVC Nigeria — Verified Real Estate, Land & Master-Planned Estates (evcng.com)',
-    'Experience Hubs: Ilorin (Fate / Flower Garden GRA) • Ibadan (Bodija) • Abuja',
+    'EVC Nig. Ltd — Verified Real Estate, Land & Master-Planned Estates (evcng.com)',
+    'Regional Experience Hubs: Ilorin (Flower Garden GRA) • Ibadan (Bodija)',
     'Free Guided Site Tours: Tuesdays, Thursdays & Saturdays (10:00 AM)',
     `WhatsApp Advisory & Site Inspection Booking: ${CFG.phoneDisp}`,
     'Guaranteed Titles: C of O, C of O in View, Registered Surveys & Zero Encumbrance',

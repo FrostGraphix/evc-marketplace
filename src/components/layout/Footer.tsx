@@ -4,16 +4,13 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { CATS, CFG } from '@/lib/products';
+import { CFG } from '@/lib/products';
 import { waLink } from '@/lib/utils';
 import {
   Phone,
   Mail,
-  MapPin,
-  MessageSquare,
   Send,
   CheckCircle2,
-  Building,
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -59,7 +56,7 @@ export const Footer: React.FC = () => {
     },
     {
       name: 'LinkedIn',
-      handle: 'EVC Nigeria',
+      handle: 'EVC Nig. Ltd',
       url: CFG.socials.linkedin,
       icon: (
         <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
@@ -100,10 +97,10 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="mt-auto bg-[var(--inv)] text-[var(--inv-ink)] pt-16 md:pt-20 rounded-t-[40px] overflow-hidden relative border-t border-white/10">
+    <footer className="mt-auto bg-[var(--inv)] text-[var(--inv-ink)] pt-14 md:pt-16 pb-8 rounded-t-[40px] overflow-hidden relative border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Top Newsletter & Quote Banner */}
-        <div className="pb-12 mb-12 border-b border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Top Newsletter & Updates Banner */}
+        <div className="pb-10 mb-10 border-b border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
             <span className="inline-block text-xs font-bold uppercase tracking-wider text-brand mb-2">
               Stay Ahead with EVC
@@ -122,7 +119,7 @@ export const Footer: React.FC = () => {
                 required
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="Enter your corporate email address..."
+                placeholder="Enter your email address..."
                 className="flex-1 bg-white/5 border border-white/15 rounded-full px-4 py-2.5 text-xs text-white placeholder:text-slate-500 outline-none focus:border-brand"
               />
               <button type="submit" className="btn-primary text-xs py-2.5 px-5 flex-shrink-0">
@@ -140,194 +137,159 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Footer Navigation & Directory */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-16 border-b border-white/10">
+        {/* Main Footer Navigation & Directory (Matching Image Specification) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 pb-12 border-b border-white/10">
           {/* Brand Info */}
-          <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center" aria-label="EVC Nigeria Homepage">
-              <div className="relative h-8 w-32">
+          <div className="md:col-span-12 lg:col-span-4 flex flex-col gap-4">
+            <Link href="/" className="flex items-center w-fit" aria-label="EVC Nig. Ltd Homepage">
+              <div className="relative h-9 w-36">
                 <Image
                   src="/images/evc-logo-dark.png"
-                  alt="EVC Nigeria"
+                  alt="EVC Nig. Ltd"
                   fill
-                  sizes="128px"
+                  sizes="144px"
                   className="object-contain object-left"
                 />
               </div>
             </Link>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Nigeria&apos;s premier developer for master-planned residential estates, strategic highway growth corridors, student housing, and commercial agro-cities.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm">
+              We are a company that specializes in building construction and passionate about bringing designs to live.
             </p>
-            <a
-              href={waLink('Hello EVC Nigeria, I would like to request a quotation.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-wa inline-flex items-center gap-2 text-xs py-2 px-4 w-fit mt-1"
-            >
-              <MessageSquare className="w-3.5 h-3.5" /> Instant WhatsApp Desk
-            </a>
           </div>
 
-          {/* Shop Categories */}
-          <div>
+          {/* Portfolio Links */}
+          <div className="md:col-span-4 lg:col-span-2">
             <h4 className="text-xs font-bold uppercase tracking-wider text-brand mb-4">
-              Catalog Categories
+              Portfolio
             </h4>
-            <ul className="flex flex-col gap-2 text-xs text-slate-300">
-              {CATS.map((cat) => (
-                <li key={cat.id}>
-                  <Link
-                    href={`/shop?cat=${cat.id}`}
-                    className="hover:text-brand transition-colors inline-block"
-                  >
-                    {cat.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="pt-2">
-                <Link
-                  href="/shop"
-                  className="text-brand font-semibold hover:text-brand-light transition-colors"
+            <ul className="flex flex-col gap-2.5 text-xs text-slate-300">
+              <li>
+                <Link href="/shop" className="hover:text-brand transition-colors inline-block">
+                  Buy Land
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop?cat=housing-developments" className="hover:text-brand transition-colors inline-block">
+                  Build Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop?cat=corridor-developments" className="hover:text-brand transition-colors inline-block">
+                  Investment
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* EVC Links */}
+          <div className="md:col-span-4 lg:col-span-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-brand mb-4">
+              EVC
+            </h4>
+            <ul className="flex flex-col gap-2.5 text-xs text-slate-300">
+              <li>
+                <a
+                  href="https://evcng.com/why-us"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand transition-colors inline-block"
                 >
-                  View All Products &rarr;
+                  Why EVC
+                </a>
+              </li>
+              <li>
+                <Link href="/shop" className="hover:text-brand transition-colors inline-block">
+                  Marketplace
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://evcng.com/blog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand transition-colors inline-block"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href={waLink('Hello EVC Nig. Ltd, I would like to book a site inspection.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand transition-colors inline-block"
+                >
+                  Book Inspection
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Customer Care & Direct Links */}
-          <div>
+          {/* Get in Touch (Strictly Ilorin and Ibadan - NO Abuja!) */}
+          <div className="md:col-span-4 lg:col-span-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-brand mb-4">
-              Customer Support
+              Get in Touch
             </h4>
-            <ul className="flex flex-col gap-2 text-xs text-slate-300">
-              <li>
-                <Link href="/about" className="hover:text-brand transition-colors">
-                  About EVC Nigeria
-                </Link>
-              </li>
-              <li>
-                <Link href="/why-us" className="hover:text-brand transition-colors font-semibold text-brand">
-                  Why Us &amp; Core Pillars
-                </Link>
-              </li>
-              <li>
-                <Link href="/track" className="hover:text-brand transition-colors font-medium text-brand-light">
-                  Track Consignment
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-brand transition-colors">
-                  Corporate Inquiries & Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/cart" className="hover:text-brand transition-colors">
-                  Review Shopping Cart
-                </Link>
-              </li>
-              <li>
-                <Link href="/wishlist" className="hover:text-brand transition-colors">
-                  Saved Project Items
-                </Link>
-              </li>
-              <li>
-                <Link href="/account" className="hover:text-brand transition-colors">
-                  Client Portal
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Corporate Offices */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-brand mb-4">
-              Corporate Offices
-            </h4>
-            <div className="flex flex-col gap-3.5 text-xs text-slate-300">
-              {/* Ilorin */}
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong className="block text-white">Ilorin Headquarters:</strong>
-                  <span className="text-slate-400 leading-normal text-[11px]">
-                    Suite C1, Kajo Mall, Opp Fresh Hotel, Fate / Plot 7A, Adelodun Rd, Bodunde St, Flower Garden G.R.A., Ilorin, Kwara State
-                  </span>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+              {/* Ilorin Office */}
+              <div className="space-y-1">
+                <span className="font-bold text-white text-[11px] uppercase tracking-wider block">
+                  ILORIN OFFICE
+                </span>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Plot 7A, Adelodun Road, Bodunde Street Flower Garden G.R.A, Ilorin.
+                </p>
               </div>
 
-              {/* Ibadan */}
-              <div className="flex items-start gap-2">
-                <Building className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong className="block text-white">Ibadan Regional Office:</strong>
-                  <span className="text-slate-400 leading-normal text-[11px]">
-                    Plot 11, Oluyoro Avenue, Off Awolowo Road, Bodija, Ibadan, Oyo State
-                  </span>
-                </div>
+              {/* Ibadan Office */}
+              <div className="space-y-1">
+                <span className="font-bold text-white text-[11px] uppercase tracking-wider block">
+                  IBADAN OFFICE
+                </span>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Plot 11, Oluyoro Avenue, Off Awolowo Rd, Bodija, Ibadan, Oyo State.
+                </p>
               </div>
+            </div>
 
-              {/* Abuja */}
-              <div className="flex items-start gap-2">
-                <Building className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong className="block text-white">Abuja Corporate Center:</strong>
-                  <span className="text-slate-400 leading-normal text-[11px]">
-                    EVC Corporate / FCT Abuja
-                  </span>
-                </div>
-              </div>
-
-              {/* Phone & Email */}
-              <div className="pt-2 border-t border-white/10 flex flex-col gap-1.5 text-[11px]">
-                <a href="tel:+2347082938870" className="flex items-center gap-2 hover:text-brand transition-colors">
-                  <Phone className="w-3.5 h-3.5 text-brand" /> {CFG.phoneDisp}
-                </a>
-                <a href={`mailto:${CFG.email}`} className="flex items-center gap-2 hover:text-brand transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-brand" /> {CFG.email}
-                </a>
-              </div>
+            {/* Direct Contact Links */}
+            <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-400">
+              <a href="tel:+2347082938870" className="flex items-center gap-1.5 hover:text-brand transition-colors">
+                <Phone className="w-3.5 h-3.5 text-brand" /> +234 708 293 8870
+              </a>
+              <a href="mailto:contact@evcng.com" className="flex items-center gap-1.5 hover:text-brand transition-colors">
+                <Mail className="w-3.5 h-3.5 text-brand" /> contact@evcng.com
+              </a>
             </div>
           </div>
         </div>
 
         {/* Verified Socials Dock - Icons Only */}
-        <div className="py-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-            Official Verified Channels:
-          </span>
-          <div className="flex items-center gap-2.5 sm:gap-3">
-            {socialLinks.map((s) => (
-              <a
-                key={s.name}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`${s.name} (${s.handle})`}
-                aria-label={`${s.name} (${s.handle})`}
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/15 bg-white/5 hover:border-brand hover:bg-brand/10 hover:text-brand text-slate-300 flex items-center justify-center transition-all duration-200 hover:scale-110"
-              >
-                {s.icon}
-              </a>
-            ))}
+        <div className="py-5 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="flex items-center gap-3">
+            <span className="font-semibold uppercase tracking-wider text-slate-400 text-[11px]">
+              Follow Us:
+            </span>
+            <div className="flex items-center gap-2">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                  className="w-8 h-8 rounded-full bg-white/5 hover:bg-brand text-slate-300 hover:text-white border border-white/10 flex items-center justify-center transition-all duration-200"
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Bottom Bar: Clean Copyright */}
-        <div className="py-6 flex items-center justify-center text-center text-xs text-slate-400">
-          <span>&copy; {new Date().getFullYear()} EVC Nigeria Limited. All rights reserved.</span>
+          <p className="text-[11px] text-slate-500">
+            &copy; {new Date().getFullYear()} EVC Nig. Ltd. All rights reserved.
+          </p>
         </div>
-      </div>
-
-      {/* Stylized Giant Background Typography */}
-      <div
-        className="font-display font-extrabold text-[clamp(3.5rem,18vw,16rem)] leading-none text-center select-none text-transparent tracking-tighter opacity-10 overflow-hidden whitespace-nowrap pointer-events-none mt-2 -mb-6"
-        style={{
-          WebkitTextStroke: '2px rgba(255, 122, 51, 0.4)',
-        }}
-        aria-hidden="true"
-      >
-        EVC NIGERIA
       </div>
     </footer>
   );

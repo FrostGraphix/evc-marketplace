@@ -285,7 +285,7 @@ export const RecentOrdersTicker: React.FC<RecentOrdersTickerProps> = ({
 
               <div className="pt-2 border-t border-[var(--line)] flex justify-end gap-2">
                 <a
-                  href={waLink(`Hello ${selectedOrder.name}, reaching out from EVC Nigeria regarding your order ${selectedOrder.id}.`)}
+                  href={waLink(`Hello ${selectedOrder.name}, reaching out from EVC Nig. Ltd regarding your order ${selectedOrder.id}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-wa text-xs py-2 px-3.5 inline-flex items-center gap-1.5"

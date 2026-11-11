@@ -257,10 +257,10 @@ export default function ProductDetailPage({ params }: PageProps) {
   };
 
   const whatsappInquiryMessage = isSoldOut
-    ? `Hello EVC Nigeria, I am inquiring about secondary resale opportunities or upcoming phase releases for ${currentProduct.name}.`
-    : `Hello EVC Nigeria, I would like to reserve/order: ${quantity} x ${currentProduct.name} (${activeSize || 'Standard Plot'}) at ${money(dynamicPrice)} each.`;
+    ? `Hello EVC Nig. Ltd, I am inquiring about secondary resale opportunities or upcoming phase releases for ${currentProduct.name}.`
+    : `Hello EVC Nig. Ltd, I would like to reserve/order: ${quantity} x ${currentProduct.name} (${activeSize || 'Standard Plot'}) at ${money(dynamicPrice)} each.`;
 
-  const whatsappInspectionMessage = `Hello EVC Nigeria, I would like to schedule a physical site inspection for ${currentProduct.name} (${activeSize || 'Plot allocation'}). Please confirm available inspection days (Tuesdays, Thursdays, or Saturdays).`;
+  const whatsappInspectionMessage = `Hello EVC Nig. Ltd, I would like to schedule a physical site inspection for ${currentProduct.name} (${activeSize || 'Plot allocation'}). Please confirm available inspection days (Tuesdays, Thursdays, or Saturdays).`;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 bg-[#03090a] text-slate-100 min-h-screen">
@@ -364,7 +364,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
             <div className="absolute right-3.5 bottom-3.5 px-3 py-1.5 rounded-full bg-[var(--nav-bg)]/80 backdrop-blur-md border border-glow/25 text-[11px] font-semibold text-[var(--ink2)] pointer-events-none z-20 flex items-center gap-1.5">
               <BadgeCheck className="w-3.5 h-3.5 text-brand" />
-              Verified EVC Nigeria Title
+              Verified EVC Nig. Ltd Title
             </div>
           </div>
         </div>

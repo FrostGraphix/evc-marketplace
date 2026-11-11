@@ -311,7 +311,7 @@ export const ProductReviews: React.FC<ProductReviewsProps> = ({
                       type="text"
                       value={formCity}
                       onChange={(e) => setFormCity(e.target.value)}
-                      placeholder="e.g. Ilorin / Ibadan / Abuja"
+                      placeholder="e.g. Ilorin / Ibadan / Lagos"
                       className="w-full h-10 px-3.5 rounded-xl bg-[var(--surface2)] border border-[var(--line)] outline-none focus:border-brand text-[var(--ink)]"
                     />
                   </div>

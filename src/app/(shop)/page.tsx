@@ -143,7 +143,7 @@ export default function HomePage() {
           <div className="lg:col-span-7 flex flex-col gap-6 items-start">
             <div className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-brand border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 px-3.5 py-1.5 rounded-full">
               <span className="w-2 h-2 rounded-full bg-brand animate-ping" />
-              Official EVC Nigeria Real Estate Marketplace &bull; evcng.com
+              Official EVC Nig. Ltd Real Estate Marketplace &bull; evcng.com
             </div>
 
             {/* Headline */}
@@ -168,7 +168,7 @@ export default function HomePage() {
                 Explore All Projects <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href={waLink('Hello EVC Nigeria, I am interested in acquiring land and would like to speak with a property consultant.')}
+                href={waLink('Hello EVC Nig. Ltd, I am interested in acquiring land and would like to speak with a property consultant.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost text-sm text-[#25d366] hover:border-[#25d366] hover:bg-green-500/10 inline-flex items-center gap-2"
@@ -377,7 +377,7 @@ export default function HomePage() {
         <BudgetShelf />
       </section>
 
-      {/* Why Choose EVC Nigeria: 4 Pillars & Luxury Owners Testimonials (from evcng.com/why-us) */}
+      {/* Why Choose EVC Nig. Ltd: 4 Pillars & Luxury Owners Testimonials (from evcng.com/why-us) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
@@ -385,7 +385,7 @@ export default function HomePage() {
               The EVC Standard &bull; evcng.com/why-us
             </span>
             <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white mt-1">
-              Why Investors Choose EVC Nigeria
+              Why Investors Choose EVC Nig. Ltd
             </h2>
           </div>
           <Link
@@ -464,7 +464,7 @@ export default function HomePage() {
             </p>
             <div className="pt-2">
               <a
-                href={waLink('Hello EVC Nigeria, I would like to consult on large acreage acquisition / diaspora property investment.')}
+                href={waLink('Hello EVC Nig. Ltd, I would like to consult on large acreage acquisition / diaspora property investment.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-sm inline-flex items-center gap-2"

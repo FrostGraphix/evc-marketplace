@@ -188,7 +188,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               {order.email && <div className="text-[var(--mute)]">{order.email}</div>}
               <div className="pt-2 mt-1 border-t border-[var(--line)]">
                 <a
-                  href={waLink(`Hello ${order.name}, this is EVC Nigeria regarding your consignment #${order.id}.`)}
+                  href={waLink(`Hello ${order.name}, this is EVC Nig. Ltd regarding your consignment #${order.id}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-wa text-[11px] py-1 px-3 inline-flex items-center gap-1.5"

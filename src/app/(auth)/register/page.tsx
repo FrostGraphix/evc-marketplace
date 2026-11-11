@@ -80,7 +80,7 @@ export default function RegisterPage() {
             Create an <em className="serif-italic text-brand">Account</em>
           </h1>
           <p className="text-xs text-slate-400">
-            Join EVC Nigeria to save projects, track solar & tech orders, and access trade terms.
+            Join EVC Nig. Ltd to save projects, track solar & tech orders, and access trade terms.
           </p>
         </div>
 

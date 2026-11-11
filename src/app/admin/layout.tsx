@@ -76,7 +76,7 @@ export default function AdminLayout({
           <Loader2 className="w-6 h-6 animate-spin text-brand absolute -bottom-2 -right-2" />
         </div>
         <h3 className="font-display font-bold text-lg text-white">Securing Operations Session</h3>
-        <p className="text-xs text-[var(--mute)] mt-1">Authenticating EVC Nigeria Command Node...</p>
+        <p className="text-xs text-[var(--mute)] mt-1">Authenticating EVC Nig. Ltd Command Node...</p>
       </div>
     );
   }

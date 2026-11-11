@@ -24,11 +24,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://evcng.com'),
-  title: 'EVC Nigeria — Real Estate & Land Marketplace | Buy Verified Land & Estates',
+  title: 'EVC Nig. Ltd — Real Estate & Land Marketplace | Buy Verified Land & Estates',
   description:
-    'EVC Nigeria (evcng.com) is your premier marketplace for verified land, master-planned residential estates, highway corridors, student housing, and commercial agro-cities. Guaranteed C of O titles, 100% dry land, and weekly free site inspections in Kwara, Oyo, Lagos, Ogun, and Abuja.',
+    'EVC Nig. Ltd (evcng.com) is your premier marketplace for verified land, master-planned residential estates, highway corridors, student housing, and commercial agro-cities. Guaranteed C of O titles, 100% dry land, and weekly free site inspections in Kwara, Oyo, Lagos, Ogun, and Abuja.',
   keywords: [
-    'EVC Nigeria',
+    'EVC Nig. Ltd',
     'evcng.com',
     'Buy Land Nigeria',
     'Broadway Residentials Malete',
@@ -44,11 +44,11 @@ export const metadata: Metadata = {
     'Real Estate Marketplace Nigeria',
   ],
   openGraph: {
-    title: 'EVC Nigeria — Real Estate & Land Marketplace | Buy Verified Land & Estates',
+    title: 'EVC Nig. Ltd — Real Estate & Land Marketplace | Buy Verified Land & Estates',
     description:
       'Buy verified land, residential estates, highway corridors, student housing, and agro-cities with guaranteed C of O titles. Weekly free physical inspections across Nigeria.',
     url: 'https://evcng.com',
-    siteName: 'EVC Nigeria',
+    siteName: 'EVC Nig. Ltd',
     type: 'website',
   },
   icons: {

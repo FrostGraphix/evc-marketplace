@@ -34,7 +34,7 @@ export default function AboutPage() {
               />
             </div>
             <h3 className="font-display text-2xl font-bold text-[var(--ink)]">
-              EVC Nigeria
+              EVC Nig. Ltd
             </h3>
             <p className="text-xs text-[var(--mute)] max-w-xs leading-relaxed">
               Experience Vision Creations — Pioneer real estate developer shaping master-planned residential communities, highway growth corridors, and smart cities.
@@ -45,9 +45,6 @@ export default function AboutPage() {
               </span>
               <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-brand/15 text-brand border border-brand/30">
                 Ibadan Hub
-              </span>
-              <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-brand/15 text-brand border border-brand/30">
-                Abuja Hub
               </span>
             </div>
           </div>
@@ -64,13 +61,13 @@ export default function AboutPage() {
 
           <div className="space-y-4 text-sm sm:text-base text-[var(--ink2)] leading-relaxed">
             <p>
-              EVC Nigeria (<strong>evcng.com</strong>) is an institutional real estate firm delivering guaranteed land titles, thoughtfully master-planned residential estates, student housing, and commercial agricultural developments across Nigeria.
+              EVC Nig. Ltd (<strong>evcng.com</strong>) is an institutional real estate firm delivering guaranteed land titles, thoughtfully master-planned residential estates, student housing, and commercial agricultural developments across Nigeria.
             </p>
             <p>
-              Every property in our portfolio—from <strong>Broadway Residentials</strong> in Malete to <strong>Eden Crest</strong> along the Agbowa-Ikosi corridor, <strong>Afonja Boulevard</strong> in Ilorin, and <strong>The Providence Corridors</strong> in Abeokuta, Moniya, and Epe—is 100% dry tableland with verified legal documentation (C of O, C of O in View, and Registered Survey).
+              Every property in our portfolio—from <strong>Broadway Residentials</strong> in Malete to <strong>Eden Crest</strong> along the Siun/Expressway corridor, <strong>Afonja Boulevard</strong> in Ilorin, and <strong>The Providence Corridors</strong> in Abeokuta, Moniya, and Epe—is 100% dry tableland with verified legal documentation (C of O, C of O in View, and Registered Survey).
             </p>
             <p>
-              With strategic regional fulfillment centers in <strong>Ilorin (Kwara State)</strong>, <strong>Ibadan (Oyo State)</strong>, and <strong>Abuja (FCT)</strong>, we offer transparent milestone payments, weekly physical site tours, and prompt 24-to-48-hour deed documentation dispatch for local and diaspora clients.
+              With strategic regional fulfillment centers in <strong>Ilorin (Kwara State)</strong> and <strong>Ibadan (Oyo State)</strong>, we offer transparent milestone payments, weekly physical site tours, and prompt 24-to-48-hour deed documentation dispatch for local and diaspora clients.
             </p>
           </div>
 
@@ -78,8 +75,8 @@ export default function AboutPage() {
             <Link href="/shop" className="btn-primary text-sm">
               Explore Property Portfolio <ArrowRight className="w-4 h-4 ml-1.5" />
             </Link>
-            <Link href="/why-us" className="btn-ghost text-sm border border-glow/25">
-              Why EVC Nigeria (4 Pillars) &rarr;
+            <Link href="/contact" className="btn-ghost text-sm border border-[var(--line)]">
+              Contact &amp; Book Inspection &rarr;
             </Link>
           </div>
         </div>
