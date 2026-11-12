@@ -126,9 +126,9 @@ export default function HomePage() {
   }, []);
 
   // Top 3 featured properties for hero parallax
-  const broadway = byId(1) || PRODUCTS[0];
-  const eden = byId(2) || PRODUCTS[1];
-  const afonja = byId(4) || PRODUCTS[3];
+  const afonja = PRODUCTS.find((p) => p.slug === 'afonja-boulevard') || byId(1) || PRODUCTS[0];
+  const eden = PRODUCTS.find((p) => p.slug === 'eden-crest') || byId(3) || PRODUCTS[2];
+  const broadway = PRODUCTS.find((p) => p.slug === 'broadway-residentials') || byId(2) || PRODUCTS[1];
 
   return (
     <div className="flex flex-col gap-20 md:gap-28 bg-[#03090a] text-slate-100 min-h-screen">
@@ -159,7 +159,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
-              Explore officially verified land, master-planned residential estates, student housing, and strategic corridors in Kwara, Oyo, Lagos, Ogun, and Abuja. 100% dry land with guaranteed titles.
+              Explore officially verified land, master-planned residential estates, student housing, and strategic corridors in Kwara, Oyo, Lagos, and Ogun States. 100% dry land with guaranteed titles.
             </p>
 
             {/* CTAs */}
@@ -197,9 +197,9 @@ export default function HomePage() {
             className="lg:col-span-5 relative aspect-square max-w-[500px] mx-auto w-full"
             style={{ ['--mx' as any]: 0, ['--my' as any]: 0 }}
           >
-            {/* Card 1: Broadway Residentials */}
+            {/* Card 1: Afonja Boulevard */}
             <Link
-              href={`/product/${broadway.slug || broadway.id}`}
+              href={`/product/${afonja.slug || afonja.id}`}
               className="absolute left-0 top-[2%] w-[48%] aspect-[1/1.18] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105"
               style={{
                 transform:
@@ -207,13 +207,13 @@ export default function HomePage() {
               }}
             >
               <ProductImage
-                src={broadway.images?.[0]}
-                alt={broadway.name}
-                fallbackArt={{ type: 'building', color: 'orange', view: 0 }}
+                src={afonja.images?.[0]}
+                alt={afonja.name}
+                fallbackArt={{ type: 'estate', color: 'orange', view: 0 }}
               />
               <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
-                <span className="truncate max-w-[80px]">Broadway</span>
-                <b className="text-brand font-mono">{money(broadway.price)}</b>
+                <span className="truncate max-w-[80px]">Afonja Blvd</span>
+                <b className="text-brand font-mono">{money(afonja.price)}</b>
               </div>
             </Link>
 
@@ -237,9 +237,9 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Card 3: Afonja Boulevard */}
+            {/* Card 3: Broadway Residentials */}
             <Link
-              href={`/product/${afonja.slug || afonja.id}`}
+              href={`/product/${broadway.slug || broadway.id}`}
               className="absolute left-[26%] bottom-[0%] w-[46%] aspect-[1/1.1] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105 z-10"
               style={{
                 transform:
@@ -247,13 +247,13 @@ export default function HomePage() {
               }}
             >
               <ProductImage
-                src={afonja.images?.[0]}
-                alt={afonja.name}
-                fallbackArt={{ type: 'land', color: 'orange', view: 0 }}
+                src={broadway.images?.[0]}
+                alt={broadway.name}
+                fallbackArt={{ type: 'building', color: 'orange', view: 0 }}
               />
               <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
-                <span className="truncate max-w-[80px]">Afonja Blvd</span>
-                <b className="text-brand font-mono">{money(afonja.price)}</b>
+                <span className="truncate max-w-[80px]">Broadway</span>
+                <b className="text-brand font-mono">{money(broadway.price)}</b>
               </div>
             </Link>
 
