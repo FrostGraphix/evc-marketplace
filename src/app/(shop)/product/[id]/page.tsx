@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useRef, use } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import {
   Heart,
   ShoppingBag,
@@ -36,7 +36,7 @@ import { useWishlist } from '@/context/WishlistContext';
 import { flyToCart } from '@/lib/effects';
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params?: { id: string } | Promise<{ id: string }>;
 }
 
 function parsePriceFromSize(sizeStr: string): number | null {
@@ -52,9 +52,13 @@ function parsePriceFromSize(sizeStr: string): number | null {
   return null;
 }
 
-export default function ProductDetailPage({ params }: PageProps) {
-  const resolvedParams = use(params);
-  const idParam = String(resolvedParams?.id || '');
+export default function ProductDetailPage(props: PageProps) {
+  const routeParams = useParams();
+  const rawId =
+    props?.params && typeof (props.params as any)?.then !== 'function'
+      ? (props.params as any)?.id
+      : routeParams?.id;
+  const idParam = String(rawId || '');
   const numId = Number(idParam);
   const router = useRouter();
 

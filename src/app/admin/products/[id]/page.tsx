@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState, use } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ProductForm } from '@/components/admin/ProductForm';
 import { PRODUCTS } from '@/lib/products';
@@ -9,12 +9,16 @@ import { Product } from '@/types';
 import { ArrowLeft, RefreshCw, AlertCircle, Package } from 'lucide-react';
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params?: { id: string } | Promise<{ id: string }>;
 }
 
-export default function EditProductPage({ params }: PageProps) {
-  const resolvedParams = use(params);
-  const idStr = String(resolvedParams?.id || '');
+export default function EditProductPage(props: PageProps) {
+  const routeParams = useParams();
+  const rawId =
+    props?.params && typeof (props.params as any)?.then !== 'function'
+      ? (props.params as any)?.id
+      : routeParams?.id;
+  const idStr = String(rawId || '');
   const router = useRouter();
 
   // Seed with static PRODUCTS data if matching
