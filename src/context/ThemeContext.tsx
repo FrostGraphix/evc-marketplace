@@ -36,12 +36,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     document.documentElement.dataset.theme = t;
     if (t === 'dark') {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
       document.body.style.backgroundColor = '#03090a';
       document.body.style.color = '#f8fafc';
     } else {
       document.documentElement.classList.remove('dark');
-      document.body.style.backgroundColor = '#f8fafc';
-      document.body.style.color = '#0f172a';
+      document.documentElement.classList.add('light');
+      document.body.style.backgroundColor = '#eae8e1';
+      document.body.style.color = '#0a1118';
     }
   };
 

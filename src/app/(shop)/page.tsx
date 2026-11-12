@@ -127,11 +127,11 @@ export default function HomePage() {
 
   // Top 3 featured properties for hero parallax
   const afonja = PRODUCTS.find((p) => p.slug === 'afonja-boulevard') || byId(1) || PRODUCTS[0];
-  const eden = PRODUCTS.find((p) => p.slug === 'eden-crest') || byId(3) || PRODUCTS[2];
   const broadway = PRODUCTS.find((p) => p.slug === 'broadway-residentials') || byId(2) || PRODUCTS[1];
+  const idera = PRODUCTS.find((p) => p.slug === 'idera-farm-city') || byId(4) || PRODUCTS[3];
 
   return (
-    <div className="flex flex-col gap-20 md:gap-28 bg-[#03090a] text-slate-100 min-h-screen">
+    <div className="flex flex-col gap-20 md:gap-28 bg-[var(--bg)] text-[var(--ink)] min-h-screen">
       {/* Hero Section */}
       <section ref={heroSectionRef} className="relative pt-8 md:pt-16 pb-12 overflow-hidden">
         {/* Subtle Ambient Glow */}
@@ -141,24 +141,24 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Hero Copy */}
           <div className="lg:col-span-7 flex flex-col gap-6 items-start">
-            <div className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-brand border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 px-3.5 py-1.5 rounded-full">
+            <div className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-brand border border-[var(--line)] bg-[var(--surface)] px-3.5 py-1.5 rounded-full shadow-sm">
               <span className="w-2 h-2 rounded-full bg-brand animate-ping" />
               Official EVC Nig. Ltd Real Estate Marketplace &bull; evcng.com
             </div>
 
             {/* Headline */}
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.92] text-white">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.92] text-[var(--ink)]">
               <span className="block overflow-hidden py-1">
                 <span className="inline-block">Own Verified.</span>
               </span>
               <span className="block overflow-hidden py-1">
                 <span className="inline-block text-brand">
-                  <em className="serif-italic text-white">Build</em> Wealth.
+                  <em className="serif-italic text-[var(--ink)]">Build</em> Wealth.
                 </span>
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--mute)] max-w-xl leading-relaxed">
               Explore officially verified land, master-planned residential estates, student housing, and strategic corridors in Kwara, Oyo, Lagos, and Ogun States. 100% dry land with guaranteed titles.
             </p>
 
@@ -178,7 +178,7 @@ export default function HomePage() {
             </div>
 
             {/* Trust Bullet Items */}
-            <ul className="flex flex-wrap items-center gap-4 sm:gap-8 pt-4 text-xs sm:text-sm font-medium text-slate-400">
+            <ul className="flex flex-wrap items-center gap-4 sm:gap-8 pt-4 text-xs sm:text-sm font-medium text-[var(--mute)]">
               <li className="flex items-center gap-2">
                 <FileCheck className="w-4 h-4 text-brand" /> Verified Title (C of O &amp; Survey)
               </li>
@@ -200,7 +200,7 @@ export default function HomePage() {
             {/* Card 1: Afonja Boulevard */}
             <Link
               href={`/product/${afonja.slug || afonja.id}`}
-              className="absolute left-0 top-[2%] w-[48%] aspect-[1/1.18] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105"
+              className="absolute left-0 top-[2%] w-[48%] aspect-[1/1.18] rounded-3xl overflow-hidden bg-[var(--surface)] border border-[var(--line)] shadow-2xl transition-transform duration-300 hover:scale-105"
               style={{
                 transform:
                   'translate(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -10px)) rotate(-6deg)',
@@ -211,39 +211,19 @@ export default function HomePage() {
                 alt={afonja.name}
                 fallbackArt={{ type: 'estate', color: 'orange', view: 0 }}
               />
-              <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
+              <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--line)] flex items-center justify-between text-[11px] font-semibold text-[var(--ink)]">
                 <span className="truncate max-w-[80px]">Afonja Blvd</span>
                 <b className="text-brand font-mono">{money(afonja.price)}</b>
               </div>
             </Link>
 
-            {/* Card 2: Eden Crest */}
+            {/* Card 2: Broadway Residentials */}
             <Link
-              href={`/product/${eden.slug || eden.id}`}
-              className="absolute right-0 top-[10%] w-[48%] aspect-[1/1.15] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105"
+              href={`/product/${broadway.slug || broadway.id}`}
+              className="absolute right-0 top-[10%] w-[48%] aspect-[1/1.15] rounded-3xl overflow-hidden bg-[var(--surface)] border border-[var(--line)] shadow-2xl transition-transform duration-300 hover:scale-105"
               style={{
                 transform:
                   'translate(calc(var(--mx, 0) * 18px), calc(var(--my, 0) * 12px)) rotate(6deg)',
-              }}
-            >
-              <ProductImage
-                src={eden.images?.[0]}
-                alt={eden.name}
-                fallbackArt={{ type: 'estate', color: 'orange', view: 0 }}
-              />
-              <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
-                <span className="truncate max-w-[80px]">Eden Crest</span>
-                <b className="text-brand font-mono">{money(eden.price)}</b>
-              </div>
-            </Link>
-
-            {/* Card 3: Broadway Residentials */}
-            <Link
-              href={`/product/${broadway.slug || broadway.id}`}
-              className="absolute left-[26%] bottom-[0%] w-[46%] aspect-[1/1.1] rounded-3xl overflow-hidden bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl transition-transform duration-300 hover:scale-105 z-10"
-              style={{
-                transform:
-                  'translate(calc(var(--mx, 0) * -8px), calc(var(--my, 0) * 16px)) rotate(-2deg)',
               }}
             >
               <ProductImage
@@ -251,21 +231,41 @@ export default function HomePage() {
                 alt={broadway.name}
                 fallbackArt={{ type: 'building', color: 'orange', view: 0 }}
               />
-              <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[#03090a]/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-[11px] font-semibold text-white">
+              <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--line)] flex items-center justify-between text-[11px] font-semibold text-[var(--ink)]">
                 <span className="truncate max-w-[80px]">Broadway</span>
                 <b className="text-brand font-mono">{money(broadway.price)}</b>
               </div>
             </Link>
 
+            {/* Card 3: Idera Farm City */}
+            <Link
+              href={`/product/${idera.slug || idera.id}`}
+              className="absolute left-[26%] bottom-[0%] w-[46%] aspect-[1/1.1] rounded-3xl overflow-hidden bg-[var(--surface)] border border-[var(--line)] shadow-2xl transition-transform duration-300 hover:scale-105 z-10"
+              style={{
+                transform:
+                  'translate(calc(var(--mx, 0) * -8px), calc(var(--my, 0) * 16px)) rotate(-2deg)',
+              }}
+            >
+              <ProductImage
+                src={idera.images?.[0]}
+                alt={idera.name}
+                fallbackArt={{ type: 'farmland', color: 'gold', view: 0 }}
+              />
+              <div className="absolute left-2.5 right-2.5 bottom-2.5 z-10 px-3 py-1.5 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--line)] flex items-center justify-between text-[11px] font-semibold text-[var(--ink)]">
+                <span className="truncate max-w-[80px]">Idera Farm</span>
+                <b className="text-brand font-mono">{money(idera.price)}</b>
+              </div>
+            </Link>
+
             {/* Rotating Brand Pill */}
-            <div className="hidden sm:flex absolute right-4 bottom-6 w-28 h-28 rounded-full border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 text-white items-center justify-center shadow-xl z-20">
+            <div className="hidden sm:flex absolute right-4 bottom-6 w-28 h-28 rounded-full border border-[var(--line)] bg-[var(--surface)]/80 text-[var(--ink)] items-center justify-center shadow-xl z-20">
               <svg viewBox="0 0 132 132" className="absolute inset-0 w-full h-full animate-[spin_16s_linear_infinite]">
                 <defs>
                   <path id="badgeCircle" d="M66 66 m-48 0 a48 48 0 1 1 96 0 a48 48 0 1 1 -96 0" />
                 </defs>
-                <text className="text-[10px] font-semibold uppercase tracking-[0.24em] fill-white">
+                <text className="text-[10px] font-semibold uppercase tracking-[0.24em] fill-current text-[var(--ink)]">
                   <textPath href="#badgeCircle">
-                    EVC NIGERIA &bull; EVCNG.COM &bull;
+                    EVC NIG. LTD &bull; EVCNG.COM &bull;
                   </textPath>
                 </text>
               </svg>
@@ -276,7 +276,7 @@ export default function HomePage() {
       </section>
 
       {/* Marquee Section */}
-      <section className="bg-[#03090a] text-white py-5 -rotate-1 -mx-4 border-y border-glow/25 select-none overflow-hidden">
+      <section className="bg-[var(--surface2)] text-[var(--ink)] py-5 -rotate-1 -mx-4 border-y border-[var(--line)] select-none overflow-hidden">
         <div
           ref={marqueeTrackRef}
           className="flex items-center gap-8 text-2xl sm:text-4xl font-display font-extrabold uppercase tracking-tight will-change-transform"
@@ -300,11 +300,11 @@ export default function HomePage() {
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
               Property Portfolios
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 max-w-lg text-white">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 max-w-lg text-[var(--ink)]">
               Master-planned estates and strategic investment corridors.
             </h2>
           </div>
-          <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
+          <p className="text-sm text-[var(--mute)] max-w-sm leading-relaxed">
             From low-density residential estates to interstate commercial corridors and organic agro-cities, discover verified properties with guaranteed title security.
           </p>
         </div>
@@ -319,7 +319,7 @@ export default function HomePage() {
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
               Prime Projects
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 text-white">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 text-[var(--ink)]">
               Trending estates across Nigeria.
             </h2>
           </div>
@@ -357,13 +357,13 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="bg-[#03090a] py-16 md:py-24 border-y border-glow/25">
+      <section className="bg-[var(--surface)] py-16 md:py-24 border-y border-[var(--line)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-12">
             <span className="text-xs font-semibold uppercase tracking-wider text-brand">
               Transparent Acquisition
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 text-white">
+            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mt-1 text-[var(--ink)]">
               From site inspection to registered deed allocation.
             </h2>
           </div>
@@ -384,13 +384,13 @@ export default function HomePage() {
             <span className="text-xs font-bold uppercase tracking-wider text-brand">
               The EVC Standard &bull; evcng.com/why-us
             </span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white mt-1">
+            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-[var(--ink)] mt-1">
               Why Investors Choose EVC Nig. Ltd
             </h2>
           </div>
           <Link
-            href="/why-us"
-            className="btn-ghost text-xs py-2.5 px-5 border border-glow/25 inline-flex items-center gap-1.5 w-fit"
+            href="/about"
+            className="btn-ghost text-xs py-2.5 px-5 border border-[var(--line)] inline-flex items-center gap-1.5 w-fit"
           >
             Learn More on Why Us <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -401,15 +401,15 @@ export default function HomePage() {
           {CFG.whyUs.pillars.map((pillar) => (
             <div
               key={pillar.id}
-              className="p-6 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col justify-between gap-3"
+              className="p-6 rounded-3xl border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between gap-3 shadow-sm hover:border-brand/40 transition-all"
             >
-              <h3 className="font-display font-bold text-base text-white">
+              <h3 className="font-display font-bold text-base text-[var(--ink)]">
                 {pillar.title}
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-[var(--mute)] leading-relaxed">
                 {pillar.desc}
               </p>
-              <Link href="/why-us" className="text-[11px] font-semibold text-brand hover:underline mt-2 inline-block">
+              <Link href="/about" className="text-[11px] font-semibold text-brand hover:underline mt-2 inline-block">
                 Explore pillar &rarr;
               </Link>
             </div>
@@ -417,30 +417,30 @@ export default function HomePage() {
         </div>
 
         {/* Testimonials Shelf: Trusted by Luxury Owners */}
-        <div className="p-8 sm:p-10 rounded-[36px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-6">
+        <div className="p-8 sm:p-10 rounded-[36px] border border-[var(--line)] bg-[var(--surface)] space-y-6 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-brand">
                 Trusted by Luxury Owners &amp; Tech Founders
               </span>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mt-0.5">
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-0.5">
                 Take our word for it.
               </h3>
             </div>
-            <span className="text-xs text-slate-400 hidden sm:inline-block">Verified investor reviews</span>
+            <span className="text-xs text-[var(--mute)] hidden sm:inline-block">Verified investor reviews</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CFG.whyUs.testimonials.slice(0, 2).map((t, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-[#03090a]/80 border border-glow/25 flex flex-col justify-between gap-4"
+                className="p-6 rounded-2xl bg-[var(--surface2)] border border-[var(--line)] flex flex-col justify-between gap-4"
               >
-                <p className="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--ink)] italic leading-relaxed">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs">
-                  <strong className="text-white font-semibold">{t.author}</strong>
+                <div className="flex items-center justify-between pt-3 border-t border-[var(--line)] text-xs">
+                  <strong className="text-[var(--ink)] font-semibold">{t.author}</strong>
                   <span className="text-brand text-[11px] font-mono">{t.role}</span>
                 </div>
               </div>
@@ -451,15 +451,15 @@ export default function HomePage() {
 
       {/* Custom Procurement Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full pb-16">
-        <div className="rounded-[40px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 text-white p-8 sm:p-12 md:p-16 relative overflow-hidden grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-2xl">
+        <div className="rounded-[40px] border border-[var(--line)] bg-gradient-to-br from-brand/10 via-[var(--surface)] to-[var(--surface2)] text-[var(--ink)] p-8 sm:p-12 md:p-16 relative overflow-hidden grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-xl">
           <div className="md:col-span-7 flex flex-col gap-4 relative z-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-brand">
               Diaspora Investment &amp; Institutional Portfolios
             </span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight text-white">
+            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight text-[var(--ink)]">
               Planning large acreage acquisition or commercial development?
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-lg">
+            <p className="text-sm sm:text-base text-[var(--mute)] leading-relaxed max-w-lg">
               Our real estate advisory team handles comprehensive title verifications, boundary surveys, master layout planning, and diaspora remote allocations with video walk-throughs.
             </p>
             <div className="pt-2">
@@ -475,29 +475,33 @@ export default function HomePage() {
           </div>
 
           <div className="md:col-span-5 grid grid-cols-2 gap-4 relative z-10">
-            <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
+            <div className="p-6 rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-sm flex flex-col gap-2 text-center transition-all hover:border-brand/40">
               <span className="font-display text-4xl font-extrabold text-brand">
                 <AnimatedCounter end={100} suffix="%" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Dry Land &amp; Verified Titles</span>
+              <strong className="text-xs font-bold text-[var(--ink)]">Dry Land &amp; Verified Titles</strong>
+              <span className="text-[11px] text-[var(--mute)] font-medium">Instant Allocation</span>
             </div>
-            <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
+            <div className="p-6 rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-sm flex flex-col gap-2 text-center transition-all hover:border-brand/40">
               <span className="font-display text-4xl font-extrabold text-brand">
                 <AnimatedCounter end={13} suffix="+" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Master-Planned Projects</span>
+              <strong className="text-xs font-bold text-[var(--ink)]">Master-Planned Projects</strong>
+              <span className="text-[11px] text-[var(--mute)] font-medium">4 Strategic Corridors</span>
             </div>
-            <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
+            <div className="p-6 rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-sm flex flex-col gap-2 text-center transition-all hover:border-brand/40">
               <span className="font-display text-4xl font-extrabold text-brand">
-                <AnimatedCounter end={3} suffix=" Hubs" />
+                <AnimatedCounter end={2} suffix=" Hubs" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Ilorin &bull; Ibadan &bull; Abuja</span>
+              <strong className="text-xs font-bold text-[var(--ink)]">Ilorin &amp; Ibadan Offices</strong>
+              <span className="text-[11px] text-[var(--mute)] font-medium">Active Regional Desks</span>
             </div>
-            <div className="p-6 rounded-3xl bg-[#03090a]/80 border border-glow/25 flex flex-col gap-2 text-center">
+            <div className="p-6 rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-sm flex flex-col gap-2 text-center transition-all hover:border-brand/40">
               <span className="font-display text-4xl font-extrabold text-brand">
                 <AnimatedCounter end={3} suffix=" Days/Wk" />
               </span>
-              <span className="text-xs font-medium text-slate-400">Free Guided Site Tours</span>
+              <strong className="text-xs font-bold text-[var(--ink)]">Free Guided Site Tours</strong>
+              <span className="text-[11px] text-[var(--mute)] font-medium">Tue, Thu &amp; Sat Inspections</span>
             </div>
           </div>
         </div>

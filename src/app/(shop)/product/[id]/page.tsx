@@ -263,7 +263,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   const whatsappInspectionMessage = `Hello EVC Nig. Ltd, I would like to schedule a physical site inspection for ${currentProduct.name} (${activeSize || 'Plot allocation'}). Please confirm available inspection days (Tuesdays, Thursdays, or Saturdays).`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 bg-[#03090a] text-slate-100 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 bg-[var(--bg)] text-[var(--ink)] min-h-screen">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-[var(--mute)] mb-6 overflow-x-auto whitespace-nowrap">
         <Link href="/" className="hover:text-brand transition-colors">
@@ -757,7 +757,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
       {/* Mobile Enhanced Sticky Buy Bar */}
       <aside
-        className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#03090a]/95 backdrop-blur-xl border-t border-glow/25 p-3 px-4 shadow-2xl transition-transform duration-300 ${
+        className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[var(--surface)]/95 backdrop-blur-xl border-t border-[var(--line)] p-3 px-4 shadow-2xl transition-transform duration-300 ${
           showStickyBar ? 'translate-y-0' : 'translate-y-full'
         }`}
         style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}

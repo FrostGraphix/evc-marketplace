@@ -17,7 +17,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   viewportFit: 'cover',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: light)', color: '#eae8e1' },
     { media: '(prefers-color-scheme: dark)', color: '#03090a' },
   ],
 };
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://evcng.com'),
   title: 'EVC Nig. Ltd — Real Estate & Land Marketplace | Buy Verified Land & Estates',
   description:
-    'EVC Nig. Ltd (evcng.com) is your premier marketplace for verified land, master-planned residential estates, highway corridors, student housing, and commercial agro-cities. Guaranteed C of O titles, 100% dry land, and weekly free site inspections in Kwara, Oyo, Lagos, Ogun, and Abuja.',
+    'EVC Nig. Ltd (evcng.com) is your premier marketplace for verified land, master-planned residential estates, highway corridors, student housing, and commercial agro-cities. Guaranteed C of O titles, 100% dry land, and weekly free site inspections in Kwara, Oyo, Lagos, and Ogun States.',
   keywords: [
     'EVC Nig. Ltd',
     'evcng.com',
@@ -72,7 +72,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#03090a] text-slate-100 transition-colors duration-300">
+      <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)] transition-colors duration-300">
         <ThemeProvider>
           <AuthProvider>
             <WishlistProvider>

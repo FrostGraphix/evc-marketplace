@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-16 bg-[#03090a] text-slate-100 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-16 bg-[var(--bg)] text-[var(--ink)] min-h-screen">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-[var(--mute)]">
         <Link href="/" className="hover:text-brand transition-colors">
@@ -21,7 +21,7 @@ export default function AboutPage() {
       {/* Main Split Story */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Visual Card */}
-        <div className="lg:col-span-5 relative aspect-square rounded-[40px] overflow-hidden border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-2xl flex items-center justify-center p-8">
+        <div className="lg:col-span-5 relative aspect-square rounded-[40px] overflow-hidden border border-[var(--line)] bg-[var(--surface)] shadow-xl flex items-center justify-center p-8">
           <div className="absolute inset-0 bg-radial-glow opacity-30" />
           <div className="relative z-10 flex flex-col items-center text-center space-y-4">
             <div className="w-20 h-20 rounded-3xl bg-brand/20 border border-brand/40 flex items-center justify-center text-brand p-2">
@@ -84,32 +84,32 @@ export default function AboutPage() {
 
       {/* Vision & Mission from evcng.com/why-us */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="p-8 sm:p-10 rounded-[32px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-4">
+        <div className="p-8 sm:p-10 rounded-[32px] border border-[var(--line)] bg-[var(--surface)] space-y-4 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center text-brand">
               <Compass className="w-5 h-5" />
             </div>
             <span className="text-xs font-bold uppercase tracking-widest text-brand">Our Vision</span>
           </div>
-          <h3 className="font-display text-2xl font-bold text-white leading-snug">
+          <h3 className="font-display text-2xl font-bold text-[var(--ink)] leading-snug">
             {CFG.whyUs.vision}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[var(--mute)] leading-relaxed">
             Propelled by architectural crafts, meticulous surveyor expertise, and modern community design to lead Nigeria&apos;s property transformation.
           </p>
         </div>
 
-        <div className="p-8 sm:p-10 rounded-[32px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-4">
+        <div className="p-8 sm:p-10 rounded-[32px] border border-[var(--line)] bg-[var(--surface)] space-y-4 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center text-brand">
               <Award className="w-5 h-5" />
             </div>
             <span className="text-xs font-bold uppercase tracking-widest text-brand">Our Mission</span>
           </div>
-          <h3 className="font-display text-2xl font-bold text-white leading-snug">
+          <h3 className="font-display text-2xl font-bold text-[var(--ink)] leading-snug">
             {CFG.whyUs.mission}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[var(--mute)] leading-relaxed">
             Delivering accessible, budget-friendly installment structures alongside premium master-planned standards across every Nigerian state.
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function AboutPage() {
 
       {/* 3 Core Pillars */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 sm:p-8 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-3">
+        <div className="p-6 sm:p-8 rounded-3xl border border-[var(--line)] bg-[var(--surface)] space-y-3 shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-brand/15 border border-brand/30 flex items-center justify-center text-brand">
             <FileCheck className="w-6 h-6" />
           </div>
@@ -127,7 +127,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="p-6 sm:p-8 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-3">
+        <div className="p-6 sm:p-8 rounded-3xl border border-[var(--line)] bg-[var(--surface)] space-y-3 shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-brand/15 border border-brand/30 flex items-center justify-center text-brand">
             <Calendar className="w-6 h-6" />
           </div>
@@ -137,7 +137,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="p-6 sm:p-8 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 space-y-3">
+        <div className="p-6 sm:p-8 rounded-3xl border border-[var(--line)] bg-[var(--surface)] space-y-3 shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-brand/15 border border-brand/30 flex items-center justify-center text-brand">
             <Building2 className="w-6 h-6" />
           </div>
@@ -154,10 +154,10 @@ export default function AboutPage() {
           <span className="text-xs font-bold uppercase tracking-wider text-brand">
             Operational Team
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[var(--ink)] mt-1">
             Leadership &amp; Directorate
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-2">
+          <p className="text-xs sm:text-sm text-[var(--mute)] mt-2">
             The experienced professionals guiding your land allocations and development projects.
           </p>
         </div>
@@ -166,20 +166,20 @@ export default function AboutPage() {
           {CFG.whyUs.leadership.map((leader, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 flex flex-col gap-3 text-center items-center"
+              className="p-6 rounded-3xl border border-[var(--line)] bg-[var(--surface)] flex flex-col gap-3 text-center items-center shadow-sm hover:border-brand/40 transition-all"
             >
               <div className="w-16 h-16 rounded-2xl bg-brand/15 border border-brand/30 flex items-center justify-center text-brand font-display font-bold text-xl">
                 {leader.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
               </div>
               <div>
-                <strong className="block font-display text-base font-bold text-white">
+                <strong className="block font-display text-base font-bold text-[var(--ink)]">
                   {leader.name}
                 </strong>
                 <span className="text-xs font-semibold text-brand block mt-0.5">
                   {leader.role}
                 </span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed mt-1">
+              <p className="text-xs text-[var(--mute)] leading-relaxed mt-1">
                 {leader.desc}
               </p>
             </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
       </section>
 
       {/* Regional Hubs Section */}
-      <section className="p-8 sm:p-12 rounded-[40px] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10">
+      <section className="p-8 sm:p-12 rounded-[40px] border border-[var(--line)] bg-[var(--surface)] shadow-sm">
         <div className="max-w-2xl mb-8">
           <span className="text-xs font-semibold uppercase tracking-widest text-brand">
             Regional Presence
@@ -201,10 +201,10 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {CFG.offices.map((office, idx) => (
-            <div key={idx} className="p-5 rounded-2xl bg-black/40 border border-glow/25 space-y-2">
-              <h4 className="font-display font-bold text-base text-white">{office.city} Hub</h4>
+            <div key={idx} className="p-5 rounded-2xl bg-[var(--surface2)] border border-[var(--line)] space-y-2">
+              <h4 className="font-display font-bold text-base text-[var(--ink)]">{office.city} Hub</h4>
               <p className="text-xs text-brand font-medium">{office.state}</p>
               <p className="text-xs text-[var(--mute)] leading-relaxed">{office.address}</p>
             </div>

@@ -124,19 +124,19 @@ function ShopContent() {
   }, [categories, selectedCat]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 bg-[#03090a] text-slate-100 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 bg-[var(--bg)] text-[var(--ink)] min-h-screen">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+      <nav className="flex items-center gap-2 text-xs text-[var(--mute)] mb-4">
         <Link href="/" className="hover:text-brand transition-colors">
           Home
         </Link>
         <span>/</span>
-        <span className="text-white font-semibold">Properties &amp; Land</span>
+        <span className="text-[var(--ink)] font-semibold">Properties &amp; Land</span>
       </nav>
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+        <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-[var(--ink)]">
           {selectedCat === 'all' ? (
             <>
               All <em className="serif-italic text-brand">Land &amp; Projects</em>
@@ -145,7 +145,7 @@ function ShopContent() {
             currentCategory.name
           )}
         </h1>
-        <p className="text-sm text-slate-400 max-w-xl mt-2 leading-relaxed">
+        <p className="text-sm text-[var(--mute)] max-w-xl mt-2 leading-relaxed">
           Explore official master-planned estates, highway corridors, farmland cities, and housing developments from EVC Nig. Ltd (evcng.com/buy-land).
         </p>
       </div>
@@ -157,7 +157,7 @@ function ShopContent() {
           className={`flex-none text-xs font-semibold px-4 py-2 rounded-full border transition-all ${
             selectedCat === 'all'
               ? 'bg-brand text-white border-transparent'
-              : 'bg-[#03090a] border-slate-800 text-slate-300'
+              : 'bg-[var(--surface)] border-[var(--line)] text-[var(--ink)]'
           }`}
         >
           All ({products.length})
@@ -169,7 +169,7 @@ function ShopContent() {
             className={`flex-none text-xs font-semibold px-4 py-2 rounded-full border transition-all ${
               selectedCat === cat.id
                 ? 'bg-brand text-white border-transparent'
-                : 'bg-[#03090a] border-slate-800 text-slate-300'
+                : 'bg-[var(--surface)] border-[var(--line)] text-[var(--ink)]'
             }`}
           >
             {cat.name} ({products.filter((p) => p.cat === cat.id).length})
@@ -180,9 +180,9 @@ function ShopContent() {
       {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Desktop Sidebar Filters */}
-        <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-6 rounded-3xl bg-[#03090a] border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 shadow-sm space-y-6">
+        <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-6 rounded-3xl bg-[var(--surface)] border border-[var(--line)] shadow-sm space-y-6">
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-3">
               Portfolios &amp; Sectors
             </h4>
             <div className="flex flex-col gap-1">
@@ -191,7 +191,7 @@ function ShopContent() {
                 className={`flex items-center justify-between text-xs font-semibold py-2 px-3 rounded-xl transition-all ${
                   selectedCat === 'all'
                     ? 'bg-brand text-white'
-                    : 'text-slate-300 hover:bg-slate-800/60'
+                    : 'text-[var(--ink2)] hover:bg-[var(--surface2)]'
                 }`}
               >
                 <span>All Projects</span>
@@ -206,7 +206,7 @@ function ShopContent() {
                     className={`flex items-center justify-between text-xs font-semibold py-2 px-3 rounded-xl transition-all ${
                       selectedCat === cat.id
                         ? 'bg-brand text-white'
-                        : 'text-slate-300 hover:bg-slate-800/60'
+                        : 'text-[var(--ink2)] hover:bg-[var(--surface2)]'
                     }`}
                   >
                     <span>{cat.name}</span>
@@ -218,7 +218,7 @@ function ShopContent() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--mute)] mb-2">
               Max Plot Price
             </h4>
             <input
@@ -230,15 +230,15 @@ function ShopContent() {
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="w-full accent-brand cursor-pointer"
             />
-            <div className="flex items-center justify-between text-xs text-slate-400 mt-2 font-mono">
+            <div className="flex items-center justify-between text-xs text-[var(--mute)] mt-2 font-mono">
               <span>₦500K</span>
               <span className="font-bold text-brand">{money(maxPrice)}</span>
             </div>
           </div>
 
           {/* Site Inspection Callout */}
-          <div className="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/20 text-xs text-emerald-200 space-y-1">
-            <span className="font-bold flex items-center gap-1.5 text-emerald-300">
+          <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-600 dark:text-emerald-300 space-y-1">
+            <span className="font-bold flex items-center gap-1.5 text-emerald-700 dark:text-emerald-300">
               <ShieldCheck className="w-4 h-4" /> Free Site Inspections
             </span>
             <p className="text-[11px] leading-relaxed">
@@ -246,10 +246,10 @@ function ShopContent() {
             </p>
           </div>
 
-          <div className="pt-2 border-t border-slate-800">
+          <div className="pt-2 border-t border-[var(--line)]">
             <button
               onClick={resetFilters}
-              className="w-full py-2.5 px-4 rounded-xl text-xs font-semibold border border-slate-700 hover:border-brand text-slate-300 hover:text-white transition-all inline-flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-4 rounded-xl text-xs font-semibold border border-[var(--line)] hover:border-brand text-[var(--ink2)] hover:text-brand transition-all inline-flex items-center justify-center gap-2"
             >
               <RotateCcw className="w-3.5 h-3.5" /> Reset Filters
             </button>
@@ -258,15 +258,15 @@ function ShopContent() {
 
         {/* Products Grid Content */}
         <div className="lg:col-span-9 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[#03090a] border border-glow/25">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[var(--surface)] border border-[var(--line)] shadow-sm">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[var(--mute)] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search land, estate name, SQM size, or state..."
-                className="w-full h-10 pl-10 pr-4 rounded-xl bg-[#03090a] border border-slate-800 text-xs text-white placeholder:text-slate-500 outline-none focus:border-brand transition-all"
+                className="w-full h-10 pl-10 pr-4 rounded-xl bg-[var(--surface2)] border border-[var(--line)] text-xs text-[var(--ink)] placeholder:text-[var(--mute)] outline-none focus:border-brand transition-all"
               />
             </div>
 
@@ -274,7 +274,7 @@ function ShopContent() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="h-10 px-3 rounded-xl bg-[#03090a] border border-slate-800 text-xs text-slate-200 outline-none focus:border-brand cursor-pointer"
+                className="h-10 px-3 rounded-xl bg-[var(--surface2)] border border-[var(--line)] text-xs text-[var(--ink)] outline-none focus:border-brand cursor-pointer"
               >
                 <option value="featured">Featured First</option>
                 <option value="low">Price: Low to High</option>
@@ -284,7 +284,7 @@ function ShopContent() {
 
               <button
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
-                className="lg:hidden h-10 px-3 rounded-xl border border-slate-800 bg-[#03090a] text-slate-300 inline-flex items-center gap-1.5 text-xs font-medium"
+                className="lg:hidden h-10 px-3 rounded-xl border border-[var(--line)] bg-[var(--surface2)] text-[var(--ink)] inline-flex items-center gap-1.5 text-xs font-medium"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 Filters
@@ -294,9 +294,9 @@ function ShopContent() {
 
           {/* Mobile Filter Drawer / Toggle */}
           {showMobileFilters && (
-            <div className="lg:hidden p-5 rounded-2xl bg-[#03090a] border border-glow/25 space-y-4">
+            <div className="lg:hidden p-5 rounded-2xl bg-[var(--surface)] border border-[var(--line)] space-y-4 shadow-sm">
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-2">Max Plot Price</label>
+                <label className="text-xs font-semibold text-[var(--ink)] block mb-2">Max Plot Price</label>
                 <input
                   type="range"
                   min="500000"
@@ -306,7 +306,7 @@ function ShopContent() {
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
                   className="w-full accent-brand"
                 />
-                <div className="flex justify-between text-xs text-slate-400 mt-1 font-mono">
+                <div className="flex justify-between text-xs text-[var(--mute)] mt-1 font-mono">
                   <span>₦500K</span>
                   <span className="font-bold text-brand">{money(maxPrice)}</span>
                 </div>
@@ -314,7 +314,7 @@ function ShopContent() {
 
               <button
                 onClick={resetFilters}
-                className="w-full py-2 text-xs font-semibold rounded-xl border border-slate-800 text-slate-300"
+                className="w-full py-2 text-xs font-semibold rounded-xl border border-[var(--line)] text-[var(--ink)]"
               >
                 Reset All Filters
               </button>
@@ -329,9 +329,9 @@ function ShopContent() {
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center space-y-4 rounded-3xl border border-glow/25 bg-gradient-to-br from-glow/20 to-brand/10 p-8">
-              <h3 className="font-display text-2xl font-bold text-white">No properties found</h3>
-              <p className="text-xs text-slate-400 max-w-sm mx-auto">
+            <div className="py-20 text-center space-y-4 rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-8 shadow-sm">
+              <h3 className="font-display text-2xl font-bold text-[var(--ink)]">No properties found</h3>
+              <p className="text-xs text-[var(--mute)] max-w-sm mx-auto">
                 No land or housing developments match your selected criteria. Try adjusting the price range or search terms.
               </p>
               <div className="flex flex-wrap gap-3 justify-center pt-2">

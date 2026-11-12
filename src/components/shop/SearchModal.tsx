@@ -176,10 +176,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                 No catalog items found matching &quot;{query}&quot;
               </p>
               <p className="text-xs text-[var(--mute)] max-w-sm mx-auto">
-                Need a specific solar capacity, switch gang, or bespoke architectural panel? Chat directly with our engineering desk on WhatsApp.
+                Looking for a specific plot size, estate corridor, or commercial acreage? Chat directly with our property advisors on WhatsApp.
               </p>
               <a
-                href={waLink(`Hello EVC Nig. Ltd, I searched for "${query}" on your marketplace and could not find it. Can you source or quote this?`)}
+                href={waLink(`Hello EVC Nig. Ltd, I searched for "${query}" on your marketplace and would like to speak with an advisor about property availability.`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-wa text-xs py-2 px-4 inline-flex items-center gap-1.5"
